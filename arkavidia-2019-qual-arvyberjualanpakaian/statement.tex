@@ -1,0 +1,94 @@
+\documentclass{article}
+
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\hypersetup{ colorlinks=true, linkcolor=black, filecolor=magenta, urlcolor=cyan}
+\geometry{ a4paper, total={170mm,257mm}, top=20mm, right=20mm, bottom=20mm, left=20mm}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1em}
+\renewcommand{\headrulewidth}{0pt}
+\lhead{Competitive Programming - Arkavidia V}
+\fancyfoot[CE,CO]{\thepage}
+
+\begin{document}
+
+\begin{center}
+    \section*{A. Arvy Berjualan Pakaian} % ganti judul soal
+
+    \begin{tabular}{ | c c | }
+        \hline
+        Batas Waktu  & 1s \\    % jangan lupa ganti time limit
+        Batas Memori & 64MB \\  % jangan lupa ganti memory limit
+        \hline
+    \end{tabular}
+\end{center}
+
+\subsection*{Deskripsi}
+
+Saat berbelanja, diskon $70\%$ berbeda dengan $50\% + 20\%$.
+Misalkan pada sebuah baju yang memiliki harga Rp 100.000, diskon $70\%$ artinya harga dipotong menjadi Rp 30.000, sedangkan diskon $50\% + 20\%$ akan memotong harga sebesar $50\%$ menjadi Rp 50.000, lalu sisanya dipotong $20\%$ menjadi harga akhir Rp 40.000.
+
+Arvy ingin menjual pakaian-pakaian bekasnya.
+Untuk menarik pembeli, ia memberikan diskon $X / K$ (diskon tidak dalam bentuk $\%$ namun per-$K$).
+Ia menyadari kalau diskon $X / K$ bisa ditulis dengan banyak konfigurasi.
+Kini ia bertanya, manakah konfigurasi penulisan diskon yang memiliki jumlah terbesar?
+Cara mencari konfigurasi dengan jumlah terbesar adalah sebagai berikut:
+\begin{enumerate}
+    \item Daftar semua barisan bilangan positif $A_1, A_2, A_3, \dots$ yang menyebabkan diskon $\frac{A_1}{K}, \frac{A_2}{K}, \frac{A_3}{K} , \dots $ sama dengan diskon $X / K$ (dengan cara menghitung yang sudah dijelaskan di atas).
+    \item Jika ada lebih dari satu konfigurasi, pilih barisan dengan $A_1 + A_2 + A_3 + \dots $ terbesar.
+\end{enumerate}
+
+
+
+\subsection*{Format Masukan}
+
+Baris pertama terdiri dari sebuah bilangan $T$ ($1 \leq T \leq 100$), menyatakan jumlah kasus uji.
+Tiap kasus uji, terdiri dari bilangan $X$ dan $K$ ($1 \leq X < K \leq 500$).
+
+\subsection*{Format Keluaran}
+
+Untuk tiap kasus uji, tuliskan bilangan N yang merupakan panjang barisan konfigurasi dengan jumlah terbesar, diikuti dengan bilangan - bilangan pembentuk konfigurasi dari kasus uji tersebut. Jika ada lebih dari satu solusi, keluarkan yang mana saja.
+\\
+
+\begin{multicols}{2}
+\subsection*{Contoh Masukan}
+\begin{lstlisting}
+3
+90 100
+25 40
+40 60
+\end{lstlisting}
+\columnbreak
+\subsection*{Contoh Keluaran}
+\begin{lstlisting}
+4 20 50 50 50
+3 10 8 15
+6 10 12 10 6 10 12
+
+\end{lstlisting}
+\vfill
+\null
+\end{multicols}
+
+\subsection*{Penjelasan}
+Pada kasus uji pertama, $90\%$ dapat ditulis ulang menjadi:
+
+\begin{itemize}
+    \setlength\itemsep{0pt}
+    \item $90\%$
+    \item $50\% + 80\%$
+    \item $20\% + 50\% + 50\% + 50\%$
+    \item dan seterusnya.
+\end{itemize}
+
+Dari semua konfigurasi, $20\% + 50\% + 50\% + 50\%$ adalah konfigurasi dengan jumlah terbesar.
+
+\pagebreak
+
+\end{document}
