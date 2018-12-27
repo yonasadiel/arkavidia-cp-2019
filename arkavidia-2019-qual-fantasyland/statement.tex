@@ -1,0 +1,89 @@
+\documentclass{article}
+
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\hypersetup{ colorlinks=true, linkcolor=black, filecolor=magenta, urlcolor=cyan}
+\geometry{ a4paper, total={170mm,257mm}, top=20mm, right=20mm, bottom=20mm, left=20mm}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1em}
+\renewcommand{\headrulewidth}{0pt}
+\lhead{Competitive Programming - Arkavidia V}
+\fancyfoot[CE,CO]{\thepage}
+
+\begin{document}
+
+\begin{center}
+    \section*{F. Fantasy Land} % ganti judul soal
+
+    \begin{tabular}{ | c c | }
+        \hline
+        Batas Waktu  & 1s \\    % jangan lupa ganti time limit
+        Batas Memori & 64MB \\  % jangan lupa ganti memory limit
+        \hline
+    \end{tabular}
+\end{center}
+
+\subsection*{Deskripsi}
+
+Ketika Arvy berulang tahun yang ke-18, ia berencana mentraktir teman-temannya untuk pergi ke wahana bermain \textit{Fantasy Land}.
+Namun, wahana ini memiliki biaya tiket masuk yang unik.
+Pada loket masuk terdapat $N$ pilihan paket.
+Tiap paket berisikan $K$ dan $P$, yang artinya Arvy dapat membeli tiket seharga $P$ untuk $K$ orang.
+Anehnya, antara paket satu dengan yang lainnya tidak memiliki hubungan kelipatan harga sama sekali.
+Karena Arvy yang membayar, tentu saja ia ingin biaya yang minimum agar ia dan teman-temannya dapat masuk ke wahana bermain tersebut.
+
+
+\subsection*{Format Masukan}
+
+Baris pertama tediri dari sebuah bilangan $T$ ($1 \leq T \leq 10$), menyatakan banyak kasus uji.
+Tiap kasus uji terdiri dari bilangan $N$ dan $Q$ ($1 \leq N, Q \leq 1.000$), dengan $N$ adalah banyak pilihan paket dan $Q$ adalah banyak pertanyaan.
+$N$ baris berikutnya terdiri atas dua bilangan $K$ ($1 \leq K \leq 1.000$) dan $P$ ($1 \leq P \leq 1.000.000$), dengan $K$ menyatakan jumlah orang dan $P$ menyatakan biaya masuknya.
+$Q$ baris berikutnya terdiri atas bilangan $M$ ($1 \leq M \leq 1.000$), dengan $M$ menyatakan jumlah orang yang akan masuk (Arvy dan teman-temannya).
+Dijamin ada paket di mana $K = 1$.
+
+\subsection*{Format Keluaran}
+
+Untuk setiap kasus uji, tuliskan biaya minimum yang perlu dibayar agar Arvy dan teman-temannya dapat masuk ke \textit{Fantasy Land}.
+
+\begin{multicols}{2}
+\subsection*{Contoh Masukan}
+\begin{lstlisting}
+1
+7 3
+1 1000
+2 2500
+3 3300
+4 3900
+5 4700
+6 6400
+7 7500
+3
+7
+12
+\end{lstlisting}
+\columnbreak
+\subsection*{Contoh Keluaran}
+\begin{lstlisting}
+3000
+6700
+11400
+\end{lstlisting}
+\vfill
+\null
+\end{multicols}
+
+
+\subsection*{Penjelasan}
+
+Saat $M=3$, daripada langsung membeli paket 3 orang seharga 3300, lebih baik membeli paket 1 orang 1000 sebanyak tiga kali.
+Saat $M=7$, daripada langsung membeli paket 7 orang seharga 7500, lebih baik membeli paket 1 orang dua kali dan paket 5 orang sekali.
+
+\pagebreak
+
+\end{document}
