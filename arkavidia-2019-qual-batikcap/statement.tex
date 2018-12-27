@@ -1,0 +1,74 @@
+\documentclass{article}
+
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\hypersetup{ colorlinks=true, linkcolor=black, filecolor=magenta, urlcolor=cyan}
+\geometry{ a4paper, total={170mm,257mm}, top=20mm, right=20mm, bottom=20mm, left=20mm}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1em}
+\renewcommand{\headrulewidth}{0pt}
+\lhead{Competitive Programming - Arkavidia V}
+\fancyfoot[CE,CO]{\thepage}
+
+\begin{document}
+\begin{center}
+    \section*{B. Batik Cap} % ganti judul soal
+    \begin{tabular}{ | c c | }
+        \hline
+        Batas Waktu  & 1s \\    % jangan lupa ganti time limit
+        Batas Memori & 64MB \\  % jangan lupa ganti memory limit
+        \hline
+    \end{tabular}
+\end{center}
+
+\subsection*{Deskripsi}
+Arvy, seorang pembatik yang hemat, ingin membuat cap untuk dua pola batik yang akan ia buat.
+Pola batik Arvy dapat digambarkan sebagai sebuah \textit{string} yang terdiri dari $N$ karakter.
+Sebuah pola batik $B$ dapat dibentuk oleh pola cap $C$ jika $B$ dapat dibentuk dengan mengulang pola $C$.
+Sebagai contoh, \lstinline{ababab} dapat dibentuk dari pola \lstinline{ab}, \lstinline{ababab}, namun tidak \lstinline{aba}, ataupun \lstinline{a}.
+
+Ia hanya ingin membuat satu cap, namun tetap dapat membentuk kedua pola batik.
+Ia juga ingin jumlah penggunaan cap untuk membuat kedua pola batik harus sesedikit mungkin.
+Tentukan pola cap seperti apa yang harus ia buat!
+
+\subsection*{Format Masukan}
+Baris pertama terdiri dari satu bilangan bulat positif $T$ ($1 \leq T \leq 100$), menyatakan banyaknya kasus uji.
+Tiap kasus uji terdiri dari 2 string yang menunjukkan pola batik yang ingin dibuat, dipisahkan oleh baris baru.
+Pola batik dijamin hanya terdiri dari huruf non-kapital alfabet Bahasa Indonesia (a-z).
+Dijamin jumlah panjang pola batik untuk semua kasus uji tidak lebih dari $100.000$ karakter.
+
+\subsection*{Format Keluaran}
+Untuk tiap kasus uji, tuliskan dalam satu baris, satu pola cap batik yang dapat membentuk kedua pola batik dengan jumlah pengecapan paling minimum.
+Jika tidak ada pola yang memenuhi, tuliskan \lstinline{-} (strip).
+\\
+
+\begin{multicols}{2}
+\subsection*{Contoh Masukan}
+\begin{lstlisting}
+3
+ababab
+abab
+bbcdbbcd
+bbcd
+aaa
+bb
+\end{lstlisting}
+\columnbreak
+\subsection*{Contoh Keluaran}
+\begin{lstlisting}
+ab
+bbcd
+-
+\end{lstlisting}
+\vfill
+\null
+\end{multicols}
+
+\pagebreak
+\end{document}

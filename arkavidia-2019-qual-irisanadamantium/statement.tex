@@ -1,0 +1,82 @@
+\documentclass{article}
+
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\hypersetup{ colorlinks=true, linkcolor=black, filecolor=magenta, urlcolor=cyan}
+\geometry{ a4paper, total={170mm,257mm}, top=20mm, right=20mm, bottom=20mm, left=20mm}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1em}
+\renewcommand{\headrulewidth}{0pt}
+\lhead{Competitive Programming - Arkavidia V}
+\fancyfoot[CE,CO]{\thepage}
+
+\begin{document}
+\begin{center}
+    \section*{I. Irisan Adamantium} % ganti judul soal
+
+    \begin{tabular}{ | c c | }
+        \hline
+        Batas Waktu  & 1s \\    % jangan lupa ganti time limit
+        Batas Memori & 64MB \\  % jangan lupa ganti memory limit
+        \hline
+    \end{tabular}
+\end{center}
+
+\subsection*{Deskripsi}
+Dua orang pewaris sedang memperebutkan sebuah balok Adamantium yang merupakan sebuah warisan keramat dari Kakek mereka.
+Adamantium adalah sebuah logam yang sangat keras, dan biaya pemotongan nya luar biasa mahal.
+Arvy diminta untuk memotong logam tersebut supaya warisan terbagi rata antara 2 orang.
+
+Logam terdiri dari $2N$ lapisan, dan ada $N$ jenis lapisan yang tersebar acak, sehingga ada tepat 2 lapisan berbeda memiliki jenis yang sama.
+Karena nilai setiap lapisan tidak diketahui pasti, satu-satunya cara memastikan agar pembagian rata adalah ketika setiap orang memiliki satu dari masing-masing jenis lapisan.
+Tetapi, tingkat kekerasan Adamantium kian lapisan jauh semakin keras (tidak dipengaruhi jenis lapisan), sehingga biaya untuk memotong lapisan ke-$i$ dan lapisan $i+1$ adalah $2^i$.
+Kini Arvy harus menghitung biaya pemotongan minimum untuk membagi logam tersebut kepada dua pewaris.
+
+\subsection*{Format Masukan}
+Baris pertama terdiri dari satu bilangan bulat positif $T$ ($1 \leq T \leq 100$), menyatakan banyaknya kasus uji.
+Untuk tiap kasus uji, baris pertama menyatakan bilangan positif $N$ ($1 \leq N \leq 100.000$) dan baris kedua terdiri dari $N$ bilangan $A_1, A_2, \dots, A_N$ yang dipisahkan oleh spasi, menyatakan jenis tiap lapisan.
+
+\subsection*{Format Keluaran}
+Untuk tiap kasus uji, keluarkan satu baris berisi satu bilangan bulat, yakni biaya pemotongan termurah.
+\\
+
+\begin{multicols}{2}
+\subsection*{Contoh Masukan}
+\begin{lstlisting}
+3
+3
+1 2 3 1 2 3
+3
+1 1 2 2 3 3
+3
+1 2 1 2 3 3
+\end{lstlisting}
+\columnbreak
+\subsection*{Contoh Keluaran}
+\begin{lstlisting}
+8
+42
+36
+\end{lstlisting}
+\vfill
+\null
+\end{multicols}
+
+\subsection*{Penjelasan}
+Pada kasus uji pertama, dapat dilakukan 1 potongan di $i=3$, membentuk segmen \lstinline{1 2 3} dan \lstinline{1 2 3}.
+Jadi, biaya pemotongan minimum adalah $2^3 = 8$.
+
+Pada kasus uji kedua, dapat dilakukan 3 potongan di $i=1, i=4, i=5$, membentuk segmen \lstinline{1}, \lstinline{2 3}, \lstinline{1 2}, dan \lstinline{3}.
+Jadi, biaya pemotongan minimum adalah $2^1 + 2^3 + 2^5 = 42$.
+
+Pada kasus uji pertama, dapat dilakukan 2 potongan di $i=2, i=5$, membentuk segmen \lstinline{1 2}, \lstinline{3}, dan \lstinline{1 2 3}.
+Jadi, biaya pemotongan minimum adalah $2^2 + 2^5 = 36$.
+
+\pagebreak
+\end{document}
