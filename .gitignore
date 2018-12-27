@@ -1,0 +1,24 @@
+# Ignore all
+*
+
+# Unignore all with extensions
+!*.*
+
+# Unignore all dirs
+!*/
+
+*.o
+*.aux
+*.dvi
+*.log
+*.pdf
+*.toc
+*.in
+*.synctex.gz
+*.out
+*.exe
+*.zip
+
+# ignore testcases
+**/tc
+.vscode/*
