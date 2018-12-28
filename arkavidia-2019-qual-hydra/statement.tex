@@ -1,0 +1,91 @@
+\documentclass{article}
+
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\hypersetup{ colorlinks=true, linkcolor=black, filecolor=magenta, urlcolor=cyan}
+\geometry{ a4paper, total={170mm,257mm}, top=20mm, right=20mm, bottom=20mm, left=20mm}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1em}
+\renewcommand{\headrulewidth}{0pt}
+\lhead{Competitive Programming - Arkavidia V}
+\fancyfoot[CE,CO]{\thepage}
+
+\begin{document}
+
+\begin{center}
+    \section*{H. Hydra} % ganti judul soal
+
+    \begin{tabular}{ | c c | }
+        \hline
+        Batas Waktu  & 1s \\    % jangan lupa ganti time limit
+        Batas Memori & 64MB \\  % jangan lupa ganti memory limit
+        \hline
+    \end{tabular}
+\end{center}
+
+\subsection*{Deskripsi}
+
+Hydra menyerang kota! Arvy sebagai ksatria yang paling kuat di negeri ITB, dipercaya untuk menumpas Hydra.
+Besar kekuatan Hydra berbanding dengan banyak kepala yg ia miliki.
+Saat ini, Hydra memiliki 1 kepala. Namun Arvy mendengar, kepala Hydra dapat berlipat ganda.
+Tiap malam, 1 kepala akan bercabang menjadi $X$ kepala.
+Sebagai contoh, bila $X = 3$, Hydra akan memiliki 3 kepala di hari kedua, 9 kepala di hari ketiga, dan seterusnya.
+
+Tapi Arvy memiliki rencana lain. Arvy mau menjinakkan Hydra supaya bisa digunakan untuk menyerang kerajaan lain.
+Namun setelah dijinakkan, kepala Hydra tidak akan berlipat ganda.
+
+Untuk menjinakkan Hydra, Arvy harus memberi Hydra buah kesukaannya, apel.
+Tentu, semua kepala Hydra harus mendapat apel sama banyak.
+Arvy memiliki banyak sekali apel.
+Tepatnya, banyaknya apel yang Arvy miliki adalah $A_1! \times A_2! \times A_3! \times \dots \times A_N!$.
+Semua apel ini harus digunakan tanpa sisa, atau raja bisa marah pada Arvy.
+
+Jadi, pada hari keberapa Arvy harus menjinakkan Hydra supaya mendapat kondisi Hydra dengan jumlah kepala sebanyak mungkin?
+
+\subsection*{Format Masukan}
+Baris pertama berisi bilangan positif $T$ ($T \leq 100$), menyatakan banyaknya kasus uji.
+Baris kedua terdiri dari dua bilangan $X$ ($1 \leq X \leq 3 \times {10}^{14}$) dan $N$ ($1 \leq N \leq 100.000$), menyatakan banyaknya bilangan $A$ dan banyaknya cabang kepala hydra, sesuai deskripsi di atas.
+Baris berikutnya terdiri dari $N$ bilangan $A_1, A_2, \dots, A_N$ ($1 \leq A_i \leq {10}^{18}$).
+
+\subsection*{Format Keluaran}
+Untuk tiap kasus uji, keluarkan satu bilangan, menyatakan pada hari ke berapa Arvy harus mejinakkan Hydra supaya mendapat jumlah kepala sebanyak mungkin.
+
+\begin{multicols}{2}
+\subsection*{Contoh Masukan}
+\begin{lstlisting}
+2
+2 3
+2 2 2
+2 4
+1 2 3 4
+\end{lstlisting}
+\columnbreak
+\subsection*{Contoh Keluaran}
+\begin{lstlisting}
+3
+5
+\end{lstlisting}
+\vfill
+\null
+\end{multicols}
+
+\subsection*{Penjelasan}
+Pada kasus uji pertama, banyaknya apel ada $2! \times 2! \times 2! = 8$.
+Pada hari ketiga, Hydra memiliki $8$ kepala dan apel masih bisa dibagi sama rata dengan masing-masing kepala mendapat $1$ apel.
+Pada hari keempat, Hydra memiliki $16$ kepala dan apel sudah tidak bisa dibagi sama rata tanpa sisa.
+Jadi, Arvy harus memberikan apel pada hari ketiga.
+
+Pada kasus uji kedua, banyaknya apel ada $1! \times 2! \times 3! \times 4! = 288$.
+Pada hari kelima, Hydra memiliki $32$ kepala dan apel masih bisa dibagi sama rata dengan masing-masing kepala mendapat $9$ apel.
+Pada hari keenam, Hydra memiliki $64$ kepala dan apel sudah tidak bisa dibagi sama rata tanpa sisa.
+Jadi, Arvy harus memberikan apel pada hari kelima.
+
+\pagebreak
+
+\end{document}
