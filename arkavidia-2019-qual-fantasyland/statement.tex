@@ -35,7 +35,7 @@ Ketika Arvy berulang tahun yang ke-18, ia berencana mentraktir teman-temannya un
 Namun, wahana ini memiliki biaya tiket masuk yang unik.
 Pada loket masuk terdapat $N$ pilihan paket.
 Tiap paket berisikan $K$ dan $P$, yang artinya Arvy dapat membeli tiket seharga $P$ untuk $K$ orang.
-Anehnya, antara paket satu dengan yang lainnya tidak memiliki hubungan kelipatan harga sama sekali.
+Tiap paket bisa dibeli lebih dari sekali, tapi Arvy tidak ingin membeli tiket lebih dari $M$ orang.
 Karena Arvy yang membayar, tentu saja ia ingin biaya yang minimum agar ia dan teman-temannya dapat masuk ke wahana bermain tersebut.
 
 
@@ -44,12 +44,12 @@ Karena Arvy yang membayar, tentu saja ia ingin biaya yang minimum agar ia dan te
 Baris pertama terdiri dari satu bilangan bulat positif $T$ ($1 \leq T \leq 10$), menyatakan banyaknya kasus uji.
 Tiap kasus uji terdiri dari bilangan $N$ dan $Q$ ($1 \leq N, Q \leq 1.000$), dengan $N$ adalah banyak pilihan paket dan $Q$ adalah banyak pertanyaan.
 $N$ baris berikutnya terdiri atas dua bilangan $K$ ($1 \leq K \leq 1.000$) dan $P$ ($1 \leq P \leq 1.000.000$), dengan $K$ menyatakan jumlah orang dan $P$ menyatakan biaya masuknya.
-$Q$ baris berikutnya terdiri atas bilangan $M$ ($1 \leq M \leq 1.000$), dengan $M$ menyatakan jumlah orang yang akan masuk (Arvy dan teman-temannya).
+$Q$ baris berikutnya terdiri atas bilangan $M$ ($1 \leq M \leq 1.000$), dengan $M$ menyatakan banyaknya orang yang akan masuk (Arvy dan teman-temannya).
 Dijamin ada paket di mana $K = 1$.
 
 \subsection*{Format Keluaran}
 
-Untuk setiap kasus uji, tuliskan biaya minimum yang perlu dibayar agar Arvy dan teman-temannya dapat masuk ke \textit{Fantasy Land}.
+Untuk setiap kasus uji, tuliskan $Q$ baris, masing-masing berisi satu bilanga yang menyatakan biaya minimum yang perlu dibayar untuk $M$ orang dapat masuk ke \textit{Fantasy Land}.
 
 \begin{multicols}{2}
 \subsection*{Contoh Masukan}
