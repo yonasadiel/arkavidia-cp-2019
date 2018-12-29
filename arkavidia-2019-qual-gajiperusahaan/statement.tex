@@ -1,0 +1,79 @@
+\documentclass{article}
+
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\hypersetup{ colorlinks=true, linkcolor=black, filecolor=magenta, urlcolor=cyan}
+\geometry{ a4paper, total={170mm,257mm}, top=20mm, right=20mm, bottom=20mm, left=20mm}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1em}
+\renewcommand{\headrulewidth}{0pt}
+\lhead{Competitive Programming - Arkavidia V}
+\fancyfoot[CE,CO]{\thepage}
+
+\begin{document}
+
+\begin{center}
+    \section*{G. Gaji Perusahaan} % ganti judul soal
+
+    \begin{tabular}{ | c c | }
+        \hline
+        Batas Waktu  & 1s \\    % jangan lupa ganti time limit
+        Batas Memori & 64MB \\  % jangan lupa ganti memory limit
+        \hline
+    \end{tabular}
+\end{center}
+
+\subsection*{Deskripsi}
+
+Arvy mengikuti tur ke sebuah perusahaan.
+Perusahaan ini menarik, karena gaji tiap karyawan merupakan salah satu angka favorit CEO perusahaan.
+Kriteria untuk gaji seorang karyawan adalah:
+\begin{itemize}
+    \item terdiri dari $N$ digit,
+    \item tidak ada karyawan lain dengan gaji yang sama,
+    \item merupakan bilangan kelipatan 3 (tiga), dan
+    \item mengandung setidaknya sebuah angka 3 (tiga).
+\end{itemize}
+Kini Arvy penasaran, berapa maksimal banyaknya karyawan di perusahaan ini sampai tidak ada lagi angka yang memenuhi kriteria di atas?
+
+\subsection*{Format Masukan}
+
+Baris pertama terdiri dari sebuah bilangan $T$ ($1 \leq T \leq 100.000$), menyatakan jumlah kasus uji.
+Tiap kasus uji terdiri dari satu bilangan $N$ ($1 \leq N \leq 10^{12}$), menyatakan banyaknya digit gaji perusahaan.
+
+\subsection*{Format Keluaran}
+
+Untuk tiap kasus uji, tuliskan sebuah baris, menyatakan banyaknya karyawan maksimal yang bisa dimiliki perusahaan tersebut tanpa ada 2 karyawan dengan gaji yang sama, dimodulo ${10}^9+7$.
+\\
+
+\begin{multicols}{2}
+\subsection*{Contoh Masukan}
+\begin{lstlisting}
+3
+2
+5
+7
+\end{lstlisting}
+\columnbreak
+\subsection*{Contoh Keluaran}
+\begin{lstlisting}
+6
+12504
+1582824
+\end{lstlisting}
+\vfill
+\null
+\end{multicols}
+
+\subsection*{Penjelasan}
+Pada kasus uji pertama, daftar bilangan yang memenuhi antara lain: $30, 33, 36, 39, 63, 93$
+
+\pagebreak
+
+\end{document}
