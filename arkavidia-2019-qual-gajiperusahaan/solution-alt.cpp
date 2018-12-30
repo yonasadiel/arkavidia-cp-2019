@@ -1,4 +1,4 @@
-// by : Dewita
+// by : Dewita Sonya
 
 #include <bits/stdc++.h>
 using namespace std;
