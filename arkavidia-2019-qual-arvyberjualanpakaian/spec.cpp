@@ -1,10 +1,9 @@
-//by : irfan sofyana
 #include <tcframe/spec.hpp>
 using namespace tcframe;
 using namespace std;
 
 #define MAXT 100
-#define MAXX 200
+#define MAXX 100
 
 class ProblemSpec : public BaseProblemSpec{
     protected:
@@ -12,7 +11,7 @@ class ProblemSpec : public BaseProblemSpec{
         int X, K, ans_size;
         vector<int> ans;
 
-        void MultipleTestConfig(){
+        void MultipleTestCasesConfig(){
             Counter(T);
             OutputPrefix("");
         }
@@ -30,7 +29,7 @@ class ProblemSpec : public BaseProblemSpec{
             MemoryLimit(64);
         }
 
-        void MultipleTestCasesConstraint(){
+        void MultipleTestCasesConstraints(){
             CONS(1 <= T && T <= MAXT);
         }
 
@@ -42,63 +41,80 @@ class ProblemSpec : public BaseProblemSpec{
 };
 
 class TestSpec : public BaseTestSpec <ProblemSpec>{
-    void SampleTestCase1(){
+    void SampleTestCase1() {
         Input({
             "90 100"
         });
         Output({
-            "4 20 50 50 50"
+            "4 50 50 50 20"
         });
     }
-    void SampleTestCase2(){
+    void SampleTestCase2() {
         Input({
             "25 40"
         });
         Output({
-            "3 10 8 15"
+            "3 15 10 8"
         });
     }
 
-    void SampleTestCase3(){
+    void SampleTestCase3() {
         Input({
             "40 60"
         });
         Output({
-            "6 10 12 10 6 10 12"
+            "6 12 12 10 10 10 6"
         });
     }
 
-    void TestCases(){
+    void TestGroup1() {
+        // corner cases
         CASE(X = 1, K = 2);
         CASE(X = 1, K = rnd.nextInt(X+1, MAXX));
-        for (int i = 0; i < 70; i++){
-            CASE(X = rnd.nextInt(1, MAXX-1), K = rnd.nextInt(X+1, MAXX));
+        CASE(X = 99, K = 100);
+        CASE(X = 89, K = 90);
+    }
+
+    void TestGroup2() {
+        // random cases
+        for (int i = 0; i < 100; i++){
+            CASE(random_x_and_k(X, K));
         }
-        for (int i = 0; i < 28; i++){
-            CASE(X = rnd.nextInt(1, MAXX-1), K = RandomK(X+1, MAXX));
+    }
+
+    void TestGroup3() {
+        // use prime K
+        for (int i = 0; i < 100; i++){
+            CASE(X = rnd.nextInt(1, MAXX-1), K = random_prime_k(X+1, MAXX));
         }
     }
 
     private:
-        bool cek(int n){
+        bool is_prime(int n){
             if (n <= 1) return false;
-            for (int i = 2; i <= (int)sqrt(n); i++){
+            for (int i = 2; i*i <= n; i++)
                 if (n%i == 0) return false;
-            }
             return true;
         }
 
-        int RandomK(int lo,int hi){
-            vector<int> bil;
-            for (int i = lo; i <= hi; i++){
-                if (!cek(i)){
-                    bil.push_back(i);
-                }
-            }
-            if ((int)bil.size() == 0) return rnd.nextInt(lo, hi);
-            rnd.shuffle(bil.begin(), bil.end());
-            int idx = rnd.nextInt(0, (int)bil.size()-1);
-            return bil[idx];
+        int random_prime_k(int lo, int hi){
+            vector<int> primes;
+            for (int i = lo; i <= hi; i++)
+                if (!is_prime(i))
+                    primes.push_back(i);
+
+            if ((int) primes.size() == 0) return rnd.nextInt(lo, hi);
+            int idx = rnd.nextInt(0, (int) primes.size() - 1);
+            return primes[idx];
+        }
+
+        void random_x_and_k(int& x, int& k) {
+            int a = rnd.nextInt(1, MAXX), b;
+            do {
+                b = rnd.nextInt(1, MAXX);
+            } while (a == b);
+            x = min(a, b);
+            k = max(a, b);
         }
 
 };

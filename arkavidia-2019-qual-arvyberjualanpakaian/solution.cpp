@@ -115,9 +115,9 @@ ll searchspace = 0;
 void brute(vector<ll> a, int pos, vector<ll> pa, vector<ll> pt) {
     // printf("pos = %d, a = ", pos); vprint(a); printf(", pt = "); vprintln(pt);
     searchspace++;
-    if (searchspace % 100000 == 0) {
-        printf("searchspace = %lld, a.size() = %lu, a.front() = %lld, a.back() = %lld\n", searchspace, a.size(), a.front(), a.back());
-    }
+    // if (searchspace % 100000 == 0) {
+    //     printf("searchspace = %lld, a.size() = %lu, a.front() = %lld, a.back() = %lld\n", searchspace, a.size(), a.front(), a.back());
+    // }
     if (exceed(pa)) {
         // puts("exceed: abort");
         return;
@@ -205,39 +205,40 @@ pair<vector<ll>,ll> solve(ll _d, ll _x) {
     return make_pair(ans, searchspace);
 }
 
-ll sum(vector<ll> &a) {
-    ll res = 0;
-    for (ll ai : a) {
-        res += ai;
-    }
-    return res;
-}
+// ll sum(vector<ll> &a) {
+//     ll res = 0;
+//     for (ll ai : a) {
+//         res += ai;
+//     }
+//     return res;
+// }
 
-void longest(ll base) {
-    int len = 0;
-    vector<ll> ans;
-    ll ansd = 0;
-    for (ll d = 1; d < base; ++d) {
-        printf("d = %lld\n", d);
-        pair<vector<ll>,ll> _ans = solve(d, base);
-        if (_ans.first.size() > len) {
-            ansd = d;
-            len = _ans.first.size();
-            ans = _ans.first;
-        }
-        printf("d = %lld, length = %d\n", d, _ans.first.size());
-        vprintln(_ans.first);
-    }
-    printf("longest for base = %lld\n", base);
-    printf("d = %lld, length = %d, sum = %lld\n", ansd, len, sum(ans));
-    vprintln(ans);
-}
+// void longest(ll base) {
+//     int len = 0;
+//     vector<ll> ans;
+//     ll ansd = 0;
+//     for (ll d = 1; d < base; ++d) {
+//         printf("d = %lld\n", d);
+//         pair<vector<ll>,ll> _ans = solve(d, base);
+//         if (_ans.first.size() > len) {
+//             ansd = d;
+//             len = _ans.first.size();
+//             ans = _ans.first;
+//         }
+//         printf("d = %lld, length = %d\n", d, _ans.first.size());
+//         vprintln(_ans.first);
+//     }
+//     printf("longest for base = %lld\n", base);
+//     printf("d = %lld, length = %d, sum = %lld\n", ansd, len, sum(ans));
+//     vprintln(ans);
+// }
 
 int solve() {
     scanf("%lld%lld", &d, &x);
     pair<vector<ll>,ll> _ans = solve(d, x);
     vector<ll> ans = _ans.first;
     ll searchspace = _ans.second;
+    if (ans.size() == 0) ans.push_back(d);
     printf("%d ", ans.size());
     vprintln(ans);
 }
