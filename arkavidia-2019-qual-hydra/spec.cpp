@@ -1,7 +1,7 @@
 #include <tcframe/spec.hpp>
 using namespace tcframe;
 
-#define MAXA 1e18
+#define MAXA 1e13
 #define MAXGENERATE 1e10
 #define BADX 152125131763605
 #define MAXX 3e14
