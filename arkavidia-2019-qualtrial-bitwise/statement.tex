@@ -1,0 +1,125 @@
+\documentclass{article}
+
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\hypersetup{ colorlinks=true, linkcolor=black, filecolor=magenta, urlcolor=cyan}
+\geometry{ a4paper, total={170mm,257mm}, top=20mm, right=20mm, bottom=20mm, left=20mm}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1em}
+\renewcommand{\headrulewidth}{0pt}
+\lhead{Competitive Programming - Arkavidia V}
+\fancyfoot[CE,CO]{\thepage}
+
+\begin{document}
+
+\begin{center}
+    \section*{B. Bitwise} % ganti judul soal
+
+    \begin{tabular}{ | c c | }
+        \hline
+        Batas Waktu  & 1s \\    % jangan lupa ganti time limit
+        Batas Memori & 64MB \\  % jangan lupa ganti memory limit
+        \hline
+    \end{tabular}
+\end{center}
+
+\subsection*{Deskripsi}
+
+Pada \textit{programming}, terdapat operator bitwise berupa AND, OR, XOR.
+Untuk lebih jelasnya, perhatikan tabel di bawah: (C menunjukkan hasil dari aplikasi operator terhadap A dan B)
+
+\begin{multicols}{3}
+    Tabel AND
+
+    \begin{tabular} { | c c | c | }
+        \hline
+        A & B & C \\
+        \hline
+        1 & 1 & 1 \\
+        1 & 0 & 0 \\
+        0 & 1 & 0 \\
+        0 & 0 & 0 \\
+        \hline
+    \end{tabular}
+
+    Tabel OR
+
+    \begin{tabular} { | c c | c | }
+        \hline
+        A & B & C \\
+        \hline
+        1 & 1 & 1 \\
+        1 & 0 & 1 \\
+        0 & 1 & 1 \\
+        0 & 0 & 0 \\
+        \hline
+    \end{tabular}
+
+    Tabel XOR
+
+    \begin{tabular} { | c c | c | }
+        \hline
+        A & B & C \\
+        \hline
+        1 & 1 & 0 \\
+        1 & 0 & 1 \\
+        0 & 1 & 1 \\
+        0 & 0 & 0 \\
+        \hline
+    \end{tabular}
+\end{multicols}
+
+Lalu, jika kita memiliki dua buah bilangan, kita dapat melakukan operasi bitwise dengan:
+\begin{enumerate}
+    \item Tulis kedua bilangan menjadi representasi binsernya.
+    \item Lakukan operasi bitwise untuk tiap digit bilangan.
+    \item Tulis bilangan baru hasil operasi sebagai bilangan baru.
+\end{enumerate}
+
+Sebagai contoh, \lstinline{5 AND 1 = 4}, \lstinline{3 OR 6 = 7}, dan \lstinline{3 XOR 6 = 5}.
+Selain itu, operator bitwise juga dapat dilakukan secara asosiatif, artinya \lstinline{(A op B) op C} dengan \lstinline{A op (B op C)} akan menghasilkan nilai yang sama.
+
+Kini Arvy punya tantangan untuk kalian.
+Arvy memiliki bilangan $X$, $N$, dan operasi bitwise $op$.
+Tugas kalian adalah menuliskan $N$ buah bilangan $A_1, A_2, \dots, A_N$ sehingga $A_1 \  op \  A_2 \  op \  \dots \  op \  A_N = X$.
+
+\subsection*{Format Masukan}
+
+Baris pertama terdiri dari satu bilangan bulat positif $T$ ($1 \leq T \leq 1.000$), menyatakan banyaknya kasus uji.
+Tiap kasus uji terdiri dari sebuah baris berisikan bilangan $X$ ($1 \leq X \leq 1.000.000.000$), $N$ ($1 \leq N \lq 1.000$), dan perintah $op$ ("\lstinline{AND}", "\lstinline{OR}", atau "\lstinline{XOR}"), dipisahkan oleh spasi.
+
+\subsection*{Format Keluaran}
+
+Untuk tiap kasus uji, tuliskan dalam satu baris bilangan $A_1, A_2, \dots, A_N$ dipisahkan oleh spasi.
+Setiap bilangan $A_i$ harus lebih dari $0$ dan kurang dari sama dengan $1.000.000.000$.
+Jika ada lebih dari satu kemungkinan jawaban, tuliskan yang mana saja.
+\\
+
+\begin{multicols}{2}
+\subsection*{Contoh Masukan}
+\begin{lstlisting}
+3
+4 2 AND
+11 3 OR
+2 3 XOR
+\end{lstlisting}
+\columnbreak
+\subsection*{Contoh Keluaran}
+\begin{lstlisting}
+5 1
+2 3 9
+6 7 3
+\end{lstlisting}
+\vfill
+\null
+\end{multicols}
+
+\pagebreak
+
+\end{document}
