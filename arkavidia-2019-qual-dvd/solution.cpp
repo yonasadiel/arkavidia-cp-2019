@@ -15,7 +15,11 @@ int solve() {
 
     // corner: kalo ga gerak sama sekali, brarti ga akan nabrak
     if (v_x == 0 && v_y == 0) {
-        printf("TIDAK\n");
+        if ((x == 0 || x == w) && (y == 0 || y == h)) {
+            printf("YA\n");
+        } else {
+            printf("TIDAK\n");
+        }
         return 0;
     }
 

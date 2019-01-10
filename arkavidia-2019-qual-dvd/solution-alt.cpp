@@ -25,7 +25,9 @@ void solve(){
     long long a = y2 - y1;
     long long b = x1 - x2;
     long long c = 1LL*(x2 - x1)*y1 - 1LL*(y2 - y1)*x1;
-    if(llabs(c) % __gcd(llabs(a * w), llabs(b * h)) == 0){
+    if (a == 0 && b == 0) {
+        puts("TIDAK");
+    } else if (llabs(c) % __gcd(llabs(a * w), llabs(b * h)) == 0){
         puts("YA");
     }
     else{
