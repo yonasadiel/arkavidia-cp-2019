@@ -8,7 +8,7 @@ bool isDivisible(const string& kata, int n) {
 	int pjg = kata.length();
 	if(pjg%n != 0){return false;}
 	
-	for(int i=n;i<pjg;i+=n){
+	for(int i=n;i<pjg;i++){
 		if(kata[i] != kata[i%n]) {return false;}
 	}
 

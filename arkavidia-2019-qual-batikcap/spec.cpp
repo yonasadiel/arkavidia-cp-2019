@@ -6,7 +6,7 @@ using namespace tcframe;
 #define pb push_back
 #define ppb pop_back
 
-#define MAXN 1000000
+#define MAXN 100000
 #define MAXT 100
 
 class ProblemSpec : public BaseProblemSpec {
@@ -82,12 +82,13 @@ protected:
 		CASE(EqualChar(a, MAXN), EqualChar(b, rnd.nextInt(MAXN/10, MAXN)));
 	}
 
+	// 91770 = 2 * 3 * 5 * 7 * 19 * 23
 	void TestGroup4() {
-		CASE(EqualChar(a, 930930), b=a);
+		CASE(EqualChar(a, 91770), b=a);
 	}
 
 	void TestGroup5() {
-		CASE(EqualChar(a, 930930), b=a.substr(0, 870870));
+		CASE(EqualChar(a, 91770), b=a.substr(0, 61180));
 	}
 
 	void TestGroup6() {
@@ -107,11 +108,11 @@ protected:
 	}
 
 	void TestGroup9() {
-		CASE(Construct(a, 997, 997), b=a);
+		CASE(Construct(a, 313, 313), b=a);
 	}
 
 	void TestGroup10() {
-		CASE(Construct(a, 997, 997), b=a.substr(0, 997));
+		CASE(Construct(a, 313, 313), b=a.substr(0, 313));
 	}
 
 	void TestGroup11() {

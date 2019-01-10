@@ -28,7 +28,7 @@ void solve(){
     n = strlen(r);
     m = strlen(s);
     if(strncmp(r, s, min(n, m)) != 0){
-        puts("-1");
+        puts("-");
         return;
     }
     int a = __gcd(n, m);
@@ -50,7 +50,7 @@ void solve(){
             return;
         }
     }
-    puts("-1");
+    puts("-");
 }
 
 int main(){
