@@ -3,10 +3,10 @@ using namespace tcframe;
 
 #define MAXA 1e13
 #define MAXGENERATE 1e10
-#define BADX 152125131763605
-#define MAXX 3e14
+#define BADX 870062193
+#define MAXX 1e10
 #define MAXN 100000
-#define MAXT 100
+#define MAXT 10
 #define MAXPRIME 1000005
 
 class ProblemSpec : public BaseProblemSpec {
@@ -15,7 +15,7 @@ class ProblemSpec : public BaseProblemSpec {
 		long long X;
 		int N;
 		vector<long long> A;
-		int res;
+		long long res;
 
 		void MultipleTestCasesConfig() {
 			Counter(T);
@@ -32,8 +32,8 @@ class ProblemSpec : public BaseProblemSpec {
 		}
 
 		void GradingConfig() {
-			TimeLimit(1);
-			MemoryLimit(64);
+			TimeLimit(2);
+			MemoryLimit(256);
 		}
 
 		void MultipleTestCasesConstraints() {
@@ -82,36 +82,58 @@ class TestSpec : public BaseTestSpec<ProblemSpec> {
 			});
 		}
 
+		void BeforeTestCases(){
+		}
 
-		void BeforeTestCase() {
+		void BeforeTestCase(){
+			PreComputePrime();
 			A.clear();
 		}
 
-
-		void TestCases() {
-			PreComputePrime();
-			for (int i = 0; i < 100; ++i) {
+		void TestGroup1(){
+			for (int i = 0; i < MAXT; ++i) {
 				CASE(X=RandomNotPrime(), N=MAXN, RandomLarge(A, N));
 			}
-			for (int i = 0; i < 100; ++i) {
+		}
+
+		void TestGroup2(){
+			for (int i = 0; i < MAXT; ++i) {
 				CASE(X=RandomNotPrime(), N=MAXN, AllVeryLarge(A, N));
 			}
-			for (int i = 0; i < 100; ++i) {
+		}
+
+		void TestGroup3(){
+			for (int i = 0; i < MAXT; ++i) {
 				CASE(X=BADX, N=MAXN, RandomLarge(A, N));
 			}
-			for (int i = 0; i < 100; ++i) {
+		}
+
+		void TestGroup4(){
+			for (int i = 0; i < MAXT; ++i) {
 				CASE(X=BADX, N=MAXN, AllVeryLarge(A, N));
 			}
-			for (int i = 0; i < 100; ++i) {
+		}
+
+		void TestGroup5(){
+			for (int i = 0; i < MAXT; ++i) {
 				CASE(X=MAXX, N=MAXN, RandomLarge(A, N));
 			}
-			for (int i = 0; i < 100; ++i) {
+		}
+
+		void TestGroup6(){
+			for (int i = 0; i < MAXT; ++i) {
 				CASE(X=MAXX, N=MAXN, AllVeryLarge(A, N));
 			}
-			for (int i = 0; i < 100; ++i) {
+		}
+
+		void TestGroup7(){
+			for (int i = 0; i < MAXT; ++i) {
 				CASE(X=HugePrime(), N=MAXN, RandomLarge(A,N));
 			}
-			for (int i = 0; i < 100; ++i) {
+		}
+
+		void TestGroup8(){
+			for (int i = 0; i < MAXT; ++i) {
 				CASE(X=HugePrime(), N=MAXN, AllVeryLarge(A,N));
 			}
 		}
@@ -134,12 +156,15 @@ class TestSpec : public BaseTestSpec<ProblemSpec> {
 			int cnt = 0;
 			long long res = 1;
 			while (bit) {
-				if (bit & 1) res *= POW(Primes[cnt], rnd.nextInt(1,3));
+				if (bit & 1){
+					long long tmp = POW(Primes[cnt], rnd.nextInt(1,3));
+					if (res > MAXGENERATE/tmp) return res;
+					res *= tmp;
+				}
 				bit >>= 1;
 				++cnt;
-				if (res > MAXGENERATE) return res;
 			}
-			return res * 2LL;
+			return res<=MAXGENERATE/2? res * 2LL : res;
 		}
 
 		void PreComputePrime() {
@@ -153,29 +178,33 @@ class TestSpec : public BaseTestSpec<ProblemSpec> {
 					}
 				}
 			}
+			HugePrimes.clear();
 			// Add Random Huges Prime
+			// 9 digits
+			HugePrimes.push_back(140113451);
+			HugePrimes.push_back(320910911);
+			HugePrimes.push_back(559093541);
+			HugePrimes.push_back(678117071);
+			HugePrimes.push_back(920294989);
+			// 10 digits
+			// HugePrimes.push_back(1100117911);
+			// HugePrimes.push_back(2871870241);
+			// HugePrimes.push_back(4230111679);
+			// HugePrimes.push_back(6311879191);
+			// HugePrimes.push_back(8137827037);
+			// 11 digits
+			// HugePrimes.push_back(29960801803);
+			// HugePrimes.push_back(33568817999);
+			// HugePrimes.push_back(54673117789);
+			// HugePrimes.push_back(89899277981);
+			// HugePrimes.push_back(96123282491);
 			// 12 digits
-			HugePrimes.push_back(103868294641);
-			HugePrimes.push_back(115981820659);
-			HugePrimes.push_back(131293893743);
-			HugePrimes.push_back(437887772299);
-			HugePrimes.push_back(987014682601);
-			// 13 digits
-			HugePrimes.push_back(1014731220367);
-			HugePrimes.push_back(1151544715333);
-			HugePrimes.push_back(2771980960849);
-			HugePrimes.push_back(8460000000847);
-			// 14 digits
-			HugePrimes.push_back(10083087720779);
-			HugePrimes.push_back(11745292359967);
-			HugePrimes.push_back(41182420705009);
-			HugePrimes.push_back(91811782339663);
-			// 15 digits
-			HugePrimes.push_back(112272535095293);
-			HugePrimes.push_back(115797848077099);
-			HugePrimes.push_back(125673790649527);
-			HugePrimes.push_back(246739592898529);
-			HugePrimes.push_back(296483719234103);
+			// HugePrimes.push_back(103868294641);
+			// HugePrimes.push_back(115981820659);
+			// HugePrimes.push_back(131293893743);
+			// HugePrimes.push_back(437887772299);
+			// HugePrimes.push_back(722038107701);
+			// HugePrimes.push_back(987014682601);
 		}
 
 		void RandomLarge(vector<long long> &A, int N) {

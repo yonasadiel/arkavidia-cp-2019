@@ -34,7 +34,7 @@ int main() {
 		}
 	}
 	while (t--) {
-		scanf("%lld %lld", &n, &x);
+		scanf("%lld %lld", &x, &n);
 		for (ll i=0;i<n;++i) {
 			scanf("%lld", a+i);
 		}
