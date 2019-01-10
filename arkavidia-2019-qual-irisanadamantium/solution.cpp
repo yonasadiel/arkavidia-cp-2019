@@ -7,7 +7,7 @@ int n; // banyak lapisan logam
 int a[200005]; // jenis tiap lapisan
 int b[100005]; // kondisi cnt pada saat kemunculan terakhir tiap jenis lapisan
 int cnt;
-long long cost[100005]; // biaya pemotongan
+long long cost[200005]; // biaya pemotongan
 
 int solve() {
     for (int i=0; i<2*n; i++) {
@@ -32,7 +32,7 @@ int solve() {
 
 int main() {
     cost[0] = 2;
-    for (int i=1; i<100005; i++) {
+    for (int i=1; i<200005; i++) {
         cost[i] = cost[i-1] << 1;
         cost[i] %= MOD;
     }

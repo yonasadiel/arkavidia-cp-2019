@@ -98,12 +98,36 @@ protected:
         arr.clear();
     }
 
-    void TestCases() {
+    void TestGroup1() {
         CASE(N=MAXN, Variant1(arr,N));
         CASE(N=MAXN, Variant1(arr,N), Reverse(arr));
         CASE(N=MAXN, Variant2(arr,N));
         CASE(N=MAXN, Variant2(arr,N), Reverse(arr));
-        for(int i = 1; i <= 96; i++){
+        for(int i = 1; i <= 6; i++){
+            CASE(N=rnd.nextInt(1,MAXN), RandomArray(arr,N));
+        }
+    }
+
+    void TestGroup2() {
+        for(int i = 1; i <= 10; i++){
+            CASE(N=rnd.nextInt(1,MAXN), RandomArray(arr,N));
+        }
+    }
+
+    void TestGroup3() {
+        for(int i = 1; i <= 10; i++){
+            CASE(N=rnd.nextInt(1,MAXN), RandomArray(arr,N));
+        }
+    }
+
+    void TestGroup4() {
+        for(int i = 1; i <= 10; i++){
+            CASE(N=rnd.nextInt(1,MAXN), RandomArray(arr,N));
+        }
+    }
+
+    void TestGroup5() {
+        for(int i = 1; i <= 10; i++){
             CASE(N=rnd.nextInt(1,MAXN), RandomArray(arr,N));
         }
     }
