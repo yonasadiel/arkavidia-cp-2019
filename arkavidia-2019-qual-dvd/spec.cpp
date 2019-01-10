@@ -4,16 +4,19 @@ using namespace std;
 using namespace tcframe;
 
 #define ull unsigned long long
+#define MINN 3
 #define MAXN 1000000000
+#define MAXV 1000000000
 #define MAXT 1000
 
 class ProblemSpec : public BaseProblemSpec {
 protected:
-    int T, W, H, X1, X2, Y1, Y2;
+    int T, W, H, WL, HL, X, Y, VX, VY;
     string result;
 
     void InputFormat() {
-        LINE(W, H, X1, Y1, X2, Y2);
+        LINE(W, H, WL, HL);
+        LINE(X, Y, VX, VY);
     }
 
     void OutputFormat() {
@@ -35,12 +38,14 @@ protected:
     }
 
     void Constraints() {
-        CONS(1 <= W <= MAXN);
-        CONS(1 <= H <= MAXN);
-        CONS(1 <= X1 <= W);
-        CONS(1 <= X2 <= W);
-        CONS(1 <= Y1 <= H);
-        CONS(1 <= Y2 <= H);
+        CONS(MINN <= W <= MAXN);
+        CONS(MINN <= H <= MAXN);
+        CONS(1 <= WL <= W);
+        CONS(1 <= HL <= H);
+        CONS(0 <= X && X <= W - WL);
+        CONS(0 <= Y && Y <= H - HL);
+        CONS(-MAXV <= VX <= MAXV);
+        CONS(-MAXV <= VY <= MAXV);
     }
 };
 
@@ -48,69 +53,187 @@ class TestSpec : public BaseTestSpec<ProblemSpec> {
 protected:
     void SampleTestCase1() {
         Input({
-            "5 10 2 4 3 6"
+            "7 8 2 3",
+            "1 2 4 4"
         });
         Output({
-            "YAY"
+            "TIDAK"
         });
     }
 
-    void TestCases() {
-        for(int i = 0; i < 100; i++){
-            CASE(W=MAXN,H=MAXN,randomize(X1,X2,Y1,Y2,W,H));
-        }
-        for(int i = 0; i < 10; i++){
-            CASE(W=rnd.nextInt(1,MAXN), H=rnd.nextInt(1,MAXN), Variant1(X1,X2,Y1,Y2,W,H,1));
+    void SampleTestCase2() {
+        Input({
+            "7 4 1 1",
+            "3 3 1 -1"
+        });
+        Output({
+            "YA"
+        });
+    }
+
+    void SampleTestCase3() {
+        Input({
+            "9 9 3 4",
+            "6 3 1 -1"
+        });
+        Output({
+            "YA"
+        });
+    }
+
+    void TestGroup1() {
+        // corner case
+
+        // sudah di sisi, gerak
+        CASE(
+            W = rnd.nextInt(MINN, MAXN), H = rnd.nextInt(MINN, MAXN),
+            WL = rnd.nextInt(1, W), HL = rnd.nextInt(1, H),
+            X = 0, Y = rnd.nextInt(0, H - HL),
+            VX = 0, VY = rnd.nextInt(-MAXV, MAXV));
+        CASE(
+            W = rnd.nextInt(MINN, MAXN), H = rnd.nextInt(MINN, MAXN),
+            WL = rnd.nextInt(1, W), HL = rnd.nextInt(1, H),
+            X = rnd.nextInt(0, W - WL), Y = 0,
+            VX = rnd.nextInt(-MAXV, MAXV), VY = 0);
+        CASE(
+            W = rnd.nextInt(MINN, MAXN), H = rnd.nextInt(MINN, MAXN),
+            WL = rnd.nextInt(1, W), HL = rnd.nextInt(1, H),
+            X = W - WL, Y = rnd.nextInt(0, H - HL),
+            VX = 0, VY = rnd.nextInt(-MAXV, MAXV));
+        CASE(
+            W = rnd.nextInt(MINN, MAXN), H = rnd.nextInt(MINN, MAXN),
+            WL = rnd.nextInt(1, W), HL = rnd.nextInt(1, H),
+            X = rnd.nextInt(0, W - WL), Y = H - HL,
+            VX = rnd.nextInt(-MAXV, MAXV), VY = 0);
+
+        // sudah di sudut, diem
+        CASE(
+            W = rnd.nextInt(MINN, MAXN), H = rnd.nextInt(MINN, MAXN),
+            WL = rnd.nextInt(1, W), HL = rnd.nextInt(1, H),
+            X = 0, Y = H - HL,
+            VX = 0, VY = 0);
+        CASE(
+            W = rnd.nextInt(MINN, MAXN), H = rnd.nextInt(MINN, MAXN),
+            WL = rnd.nextInt(1, W), HL = rnd.nextInt(1, H),
+            X = W - WL, Y = H - HL,
+            VX = 0, VY = 0);
+        CASE(
+            W = rnd.nextInt(MINN, MAXN), H = rnd.nextInt(MINN, MAXN),
+            WL = rnd.nextInt(1, W), HL = rnd.nextInt(1, H),
+            X = 0, Y = 0,
+            VX = 0, VY = 0);
+        CASE(
+            W = rnd.nextInt(MINN, MAXN), H = rnd.nextInt(MINN, MAXN),
+            WL = rnd.nextInt(1, W), HL = rnd.nextInt(1, H),
+            X = W - WL, Y = 0,
+            VX = 0, VY = 0);
+
+        // diem, tapi di tengah
+        CASE(
+            W = rnd.nextInt(MINN, MAXN), H = rnd.nextInt(MINN, MAXN),
+            WL = rnd.nextInt(1, W), HL = rnd.nextInt(1, H),
+            X = rnd.nextInt(0, W - WL), Y = rnd.nextInt(0, H - HL),
+            VX = 0, VY = 0);
+
+        // sudah di sisi, diem
+        CASE(
+            W = rnd.nextInt(MINN, MAXN), H = rnd.nextInt(MINN, MAXN),
+            WL = rnd.nextInt(1, W), HL = rnd.nextInt(1, H),
+            X = 0, Y = rnd.nextInt(0, H - HL),
+            VX = 0, VY = 0);
+        CASE(
+            W = rnd.nextInt(MINN, MAXN), H = rnd.nextInt(MINN, MAXN),
+            WL = rnd.nextInt(1, W), HL = rnd.nextInt(1, H),
+            X = rnd.nextInt(0, W - WL), Y = 0,
+            VX = 0, VY = 0);
+        CASE(
+            W = rnd.nextInt(MINN, MAXN), H = rnd.nextInt(MINN, MAXN),
+            WL = rnd.nextInt(1, W), HL = rnd.nextInt(1, H),
+            X = W - WL, Y = rnd.nextInt(0, H - HL),
+            VX = 0, VY = 0);
+        CASE(
+            W = rnd.nextInt(MINN, MAXN), H = rnd.nextInt(MINN, MAXN),
+            WL = rnd.nextInt(1, W), HL = rnd.nextInt(1, H),
+            X = rnd.nextInt(0, W - WL), Y = H - HL,
+            VX = 0, VY = 0);
+
+        // ukuran logo =  monitor
+        CASE(
+            W = rnd.nextInt(MINN, MAXN), H = rnd.nextInt(MINN, MAXN),
+            WL = W, HL = H,
+            X = 0, Y = 0,
+            VX = rnd.nextInt(-MAXV, MAXV), VY = rnd.nextInt(-MAXV, MAXV));
+    }
+
+    void TestGroup2() {
+        for(int i = 0; i < 100; i++) {
+            CASE(
+                W = MAXN,
+                H = MAXN,
+                WL = rnd.nextInt(1, W),
+                HL = rnd.nextInt(1, H),
+                X = rnd.nextInt(0, W - WL),
+                Y = rnd.nextInt(0, H - HL),
+                VX = rnd.nextInt(-MAXV, MAXV),
+                VY = rnd.nextInt(-MAXV, MAXV));
         }
 
-        for(int i = 0; i < 10; i++){
-            CASE(W=rnd.nextInt(1,MAXN), H=rnd.nextInt(1,MAXN), Variant1(X1,X2,Y1,Y2,W,H,0));
+        for(int i = 0; i < 10; i++) {
+            CASE(
+                W = rnd.nextInt(MINN,MAXN), H = rnd.nextInt(MINN,MAXN),
+                WL = rnd.nextInt(1, W - 1), HL = rnd.nextInt(1, H - 1);
+                Variant1(X, Y, VX, VY, W, H, WL, HL, 1));
         }
 
-        for(int i = 0; i < 10; i++){
-            CASE(W=rnd.nextInt(1,MAXN), H=rnd.nextInt(1,MAXN), Variant2(X1,X2,Y1,Y2,W,H,1));
+        for(int i = 0; i < 10; i++) {
+            CASE(
+                W = rnd.nextInt(MINN,MAXN), H = rnd.nextInt(MINN,MAXN),
+                WL = rnd.nextInt(1, W - 1), HL = rnd.nextInt(1, H - 1);
+                Variant1(X, Y, VX, VY, W, H, WL, HL, 0));
         }
 
-        for(int i = 0; i < 10; i++){
-            CASE(W=rnd.nextInt(1,MAXN), H=rnd.nextInt(1,MAXN), Variant2(X1,X2,Y1,Y2,W,H,0));
+        for(int i = 0; i < 10; i++) {
+            CASE(
+                W = rnd.nextInt(MINN,MAXN), H = rnd.nextInt(MINN,MAXN),
+                WL = rnd.nextInt(1, W - 1), HL = rnd.nextInt(1, H - 1);
+                Variant2(X, Y, VX, VY, W, H, WL, HL, 1));
         }
 
-        for(int i = 0; i < 860; i++){
-            CASE(W=rnd.nextInt(1,MAXN), H=rnd.nextInt(1,MAXN), randomize(X1,X2,Y1,Y2,W,H));
+        for(int i = 0; i < 10; i++) {
+            CASE(
+                W = rnd.nextInt(MINN,MAXN), H = rnd.nextInt(MINN,MAXN),
+                WL = rnd.nextInt(1, W - 1), HL = rnd.nextInt(1, H - 1);
+                Variant2(X, Y, VX, VY, W, H, WL, HL, 0));
+        }
+
+        for(int i = 0; i < 860; i++) {
+            CASE(
+                W = rnd.nextInt(MINN, MAXN),
+                H = rnd.nextInt(MINN, MAXN),
+                WL = rnd.nextInt(1, W),
+                HL = rnd.nextInt(1, H),
+                X = rnd.nextInt(0, W - WL),
+                Y = rnd.nextInt(0, H - HL),
+                VX = rnd.nextInt(-MAXV, MAXV),
+                VY = rnd.nextInt(-MAXV, MAXV));
         }
     }
 
 private:
-    void randomize(int &X1, int &X2, int &Y1, int &Y2, int W, int H){
-        X1 = rnd.nextInt(1,W);
-        X2 = rnd.nextInt(1,W);
-        Y1 = rnd.nextInt(1,H);
-        Y2 = rnd.nextInt(1,H);
-    }
 
     //Horizontal line, v for guarantee valid
-    void Variant1(int &X1, int &X2, int &Y1, int &Y2, int W, int H, bool v){
-        if(v){
-            X1 = rnd.nextInt(0,1)*(W-1)+1;
-            X2 = X1;
-        } else {
-            X1 = rnd.nextInt(1,W);
-            X2 = X1;
-        }
-        Y1 = rnd.nextInt(1,H);
-        Y2 = rnd.nextInt(1,H);
+    void Variant1(int &X, int &Y, int &VX, int &VY, int W, int H, int WL, int HL, bool v){
+        X = v ? rnd.nextInt(0, 1) * (W - WL) : rnd.nextInt(1, W - WL - 1);
+        VX = 0;
+        Y = rnd.nextInt(0, H - HL);
+        VY = rnd.nextInt(-MAXV, MAXV);
     }
 
     //Vertical line, v for guarantee valid
-    void Variant2(int &X1, int &X2, int &Y1, int &Y2, int W, int H, bool v){
-        X1 = rnd.nextInt(1,W);
-        X2 = rnd.nextInt(1,W);
-        if(v){
-            Y1 = rnd.nextInt(0,1)*(H-1)+1;
-            Y2 = Y1;
-        } else {
-            Y1 = rnd.nextInt(1,H);
-            Y2 = Y1;
-        }
-    }    
+    void Variant2(int &X, int &Y, int &VX, int &VY, int W, int H, int WL, int HL, bool v) {
+        X = rnd.nextInt(0, W - WL);
+        VX = rnd.nextInt(-MAXV, MAXV);
+        Y = v ? rnd.nextInt(0, 1) * (H - HL) : rnd.nextInt(1, H - HL - 1);
+        VY = 0;
+    }
 };

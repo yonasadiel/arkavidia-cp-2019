@@ -35,60 +35,75 @@
     \includegraphics[width=200px]{meme}
 \end{center}
 
-Arvy sedang memandang layarnya yang berukuran $W \times H$ satuan.
-Di layarnya, sedang berjalan \textit{screen saver} DVD.
+\begin{multicols}{2}
+
+Arvy sedang memandang monitornya yang berukuran $W \times H$ satuan.
+Di monitornya, sedang berjalan \textit{screen saver} DVD.
 Pada \textit{screen saver} ini, logo DVD bergerak lurus.
-Ketika menyentuh sisi layar, logo DVD akan berubah warna dan memantul dengan sudut kedatangan sama dengan sudut pantulan (secara formal, sudut yang dibentuk antara garis gerakan logo sebelum memantul dan sisi layar sama dengan sudut yang dibentuk antara garis gerakan logo sesudah memantul dan sisi layar).
-Setiap kali memantul, logo DVD berubah warna.
+Ketika menyentuh sisi monitor, logo DVD akan berubah warna dan memantul dengan sudut datang sama dengan sudut pantul (perhatikan gambar di samping).
+
+\begin{center}
+    \includegraphics[width=140px]{pantul}
+\end{center}
+\end{multicols}
 
 Arvy lelah menonton \textit{screen saver} DVD yang terus memantul-mantul.
-Ia menunggu-nunggu kapan logo DVD berhenti di sudut layar.
-Ia mulai ragu apakah logo DVD akan berhenti di sudut layar.
-Akhirnya ia memfoto gerakan logo DVD dua kali, di mana logo DVD di kedua foto masih memiliki warna yang sama. Kedua logo ini berada di koordinat $(x_1, y_1)$ dan $(x_2, y_2)$.
+Ia menunggu kapan logo DVD menyentuh di sudut monitor.
+Ia mulai ragu apakah logo DVD akan menyentuh di sudut monitor.
+Ia memiliki koordinat lokasi DVD sekarang (monitor digambarkan sebagai persegi panjang di koordinat kartesian dengan titik $(0, 0)$ di kiri bawah dan $(W, H)$ di kanan atas) dan vektor arah gerak logo yang dideskripsikan sebagai $(v_x, v_y)$ (Anda dapat menganggap logo sebagai sebuah persegi panjang dengan ukuran lebar $w_l$ dan tinggi $h_l$).
+Tentukan apakah logo akan menyentuh sudut monitor (salah satu ujung persegi panjang logo berhimpit dengan sudut monitor)!
 
 \subsection*{Format Masukan}
 
 Baris pertama terdiri dari satu bilangan bulat positif $T$ ($1 \leq T \leq 1.000$), menyatakan banyaknya kasus uji.
 
-$T$ baris berikutnya terdiri dari 6 bilangan bulat, yakni $W$, $H$ ($3 \leq W, H \leq 1.000.000.000$), $x_1$, $y_1$, $x_2$, $y_2$ ($1 \leq x_1, x_2 \leq W$, $1 \leq y_1, y_2 \leq H$).
-Dijamin $(x_1, y_1)$ dan $(x_2, y_2)$ adalah dua titik berbeda.
+Untuk tiap kasus uji, akan terdapat 2 baris.
+Baris pertama terdiri dari $W$, $H$ ($3 \leq W, H \leq 1.000.000.000$), menyatakan ukuran monitor dan $w_l$ ($1 \leq w_l \leq W$), $h_l$ ($1 \leq h_l \leq H$) menyatakan ukuran logo DVD.
+Baris kedua terdiri dari $x$ ($0 \leq x \leq W - w_l$), $y$ ($0 \leq y \leq H - h_l$) menyatakan letak titik kiri bawah logo sekarang dan $v_x, v_y$ ($-1.000.000.000 \leq v_x, v_y \leq 1.000.000.000$) menyatakan vektor arah gerak logo.
 
 \subsection*{Format Keluaran}
 
-Untuk tiap kasus uji, tuliskan \lstinline{YAY} jika logo DVD akan menyentuh koordinat tepat sudut layar TV, atau \lstinline{NAY} jika tidak.
+Untuk tiap kasus uji, tuliskan \lstinline{YA} jika logo DVD akan menyentuh koordinat tepat sudut monitor, atau \lstinline{TIDAK} jika tidak.
 \\
 
 \begin{multicols}{2}
 \subsection*{Contoh Masukan}
 \begin{lstlisting}
 3
-5 5 1 2 2 3
-6 3 3 3 4 2
-6 5 6 3 3 2
+7 8 2 3
+1 2 4 4
+7 4 1 1
+3 3 1 -1
+9 9 3 4
+6 3 -3 -1
 \end{lstlisting}
 \columnbreak
 \subsection*{Contoh Keluaran}
 \begin{lstlisting}
-NAY
-YAY
-YAY
+TIDAK
+YA
+YA
 \end{lstlisting}
 \vfill
 \null
 \end{multicols}
 
 \subsection*{Penjelasan}
-Untuk kasus uji pertama, layar TV dapat digambarkan seperti persegi panjang $ABCD$ di bawah, dengan posisi DVD pertama di titik $E$ dan posisi DVD kedua di titik $F$ disertai garis menunjukkan gerakan DVD. Jika ditelusuri, garis akan terus memantul dan tidak akan pernah sampai ke salah satu sudut.
+Untuk kasus uji pertama, monitor dapat digambarkan seperti persegi panjang $ABCD$ di bawah, dengan pergerakan logo DVD digambarkan seperti persegi panjang $EFGH$
 
-\includegraphics[height=150px]{sample-1}
+\includegraphics[width=80px]{sample-1-1}
+\includegraphics[width=80px]{sample-1-2}
+\includegraphics[width=80px]{sample-1-3}
+\includegraphics[width=80px]{sample-1-4}
+\includegraphics[width=80px]{sample-1-5}
+\includegraphics[width=80px]{sample-1-6}
 
-Untuk kasus uji kedua, layar TV dapat digambarkan seperti persegi panjang $ABCD$ di bawah, dengan posisi DVD pertama di titik $E$ dan posisi DVD kedua di titik $F$ disertai garis menunjukkan gerakan DVD.
+Untuk kasus uji kedua, pergerakan logo DVD akan seperti berikut.
 
-\includegraphics[height=150px]{sample-2}
-
-Untuk kasus uji ketiga, layar TV dapat digambarkan seperti persegi panjang $ABCD$ di bawah, dengan posisi DVD pertama di titik $E$ dan posisi DVD kedua di titik $F$ disertai garis menunjukkan gerakan DVD.
-
-\includegraphics[height=150px]{sample-3}
+\includegraphics[width=120px]{sample-2-1}
+\includegraphics[width=120px]{sample-2-2}
+\includegraphics[width=120px]{sample-2-3}
+\includegraphics[width=120px]{sample-2-4}
 
 \pagebreak
 
