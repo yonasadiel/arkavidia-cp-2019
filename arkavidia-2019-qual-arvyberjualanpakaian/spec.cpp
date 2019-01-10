@@ -73,11 +73,11 @@ class TestSpec : public BaseTestSpec <ProblemSpec>{
     }
     void SampleTestCase2() {
         Input({
-            "1 40",
-            "25"
+            "1 92",
+            "70"
         });
         Output({
-            "3 15 10 8"
+            "3 46 46 4"
         });
     }
 
