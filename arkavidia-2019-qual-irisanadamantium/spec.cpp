@@ -4,7 +4,7 @@ using namespace std;
 using namespace tcframe;
 
 #define MAXN 100000
-#define MAXT 100
+#define MAXT 10
 
 class ProblemSpec : public BaseProblemSpec {
 protected:
