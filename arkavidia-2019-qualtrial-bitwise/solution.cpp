@@ -13,8 +13,9 @@ int main() {
             }
         } else {
             if (x == 1 && n % 2 == 0) {
-                for (int i=0; i<n; i++) {
-                    printf("%d%c", (i & 1 ? 2 : 3), (i == n-1 ? '\n' : ' '));
+                printf("2 3%c", (n == 2? '\n' : ' '));
+                for (int i=2; i<n; i++) {
+                    printf("%d%c", 1, (i == n-1 ? '\n' : ' '));
                 }
             } else if (n & 1) {
                 for (int i=0; i<n; i++) {
