@@ -87,11 +87,11 @@ int main(){
             */
             scanf("%d %d", &x, &y);
             if(x == y)
-                printf("%d\n", n);
+                printf("%d\n", n - 1);
             else if(is_ancestor(y, x))
-                printf("%d\n", n - sz[find_child(y, x)]);
+                printf("%d\n", n - sz[find_child(y, x)] - 1);
             else
-                printf("%d\n", sz[y]);
+                printf("%d\n", sz[y] - 1);
         }
 
         for(i=1;i<=n;++i)

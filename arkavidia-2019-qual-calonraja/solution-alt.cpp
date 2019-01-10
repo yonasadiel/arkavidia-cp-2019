@@ -32,15 +32,16 @@ bool is_ancestor(int u, int v) {
 }
 
 int lca(int u, int v) {
-    if (is_ancestor(u, v))
-        return u;
-    if (is_ancestor(v, u))
-        return v;
+    // if (is_ancestor(u, v))
+    //     return u;
+    // if (is_ancestor(v, u))
+    //     return v;
     for (int i = l; i >= 0; --i) {
         if (!is_ancestor(up[u][i], v))
             u = up[u][i];
     }
-    return up[u][0];
+    // return up[u][0];
+    return u;
 }
 
 void preprocess(int root) {
@@ -73,15 +74,13 @@ int solve() {
         int x, y;
         scanf("%d%d", &x, &y);
         x--; y--;
-        int anc = lca(x, y);
-        if (anc == y) {
-            int ans = n - 1;
-            for (int v : adj[y]) {
-                if (is_ancestor(v, x) && !is_ancestor(v, y)) {
-                    ans -= 1 + subtree[v];
-                }
-            }
-            printf("%d\n", ans);
+        if (x == y) {
+            printf("%d\n", n - 1);
+        } else if (is_ancestor(y, x)) {
+            int anc = lca(x, y);
+            int ans = n;
+            ans -= 1 + subtree[anc];
+            printf("%d\n", ans - 1);
         } else {
             printf("%d\n", subtree[y]);
         }
