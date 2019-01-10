@@ -23,7 +23,7 @@ int solve() {
         return 0;
     }
 
-    long long gcd = __gcd(v_x, v_y);
+    long long gcd = __gcd(llabs(v_x), llabs(v_y));
     v_x /= gcd, v_y /= gcd;
 
     // kita dapat membuat barisan bilangan
@@ -47,7 +47,7 @@ int solve() {
         return 0;
     }
 
-    gcd = __gcd(v_y * w, v_x * h);
+    gcd = __gcd(llabs(llabs(v_y) * w), llabs(llabs(v_x) * h));
     // corner: kalau gerak tapi horizontal doang, vertikal doang, atau penuh
     if (gcd == 0) {
         printf("YA\n");
@@ -58,12 +58,12 @@ int solve() {
     // tx(n) = ty(m)
     // ax + bx n = ay + by m
     // bx n - by m = ay - ax
-    // w n / v_x - h m / v_y = ($ay) / v_y - ($ax) / v_x
-    // v_y w n - v_x h m = v_x ($ay) - v_y ($ax)
+    // w n / |v_x| - h m / |v_y| = ($ay) / |v_y| - ($ax) / |v_x|
+    // |v_y| w n - |v_x| h m = |v_x| ($ay) - |v_y| ($ax)
     // persamaan di atas ada solusi n, m nya kalau
-    // v_x ($ay) - v_y ($ax) habis dibagi gcd(v_y w, v_x h)
+    // |v_x| ($ay) - |v_y| ($ax) habis dibagi gcd(|v_y| w, |v_x| h)
 
-    printf("%s\n", ((abs(v_x * ay - v_y *ax) % gcd == 0)? "YA" : "TIDAK"));
+    printf("%s\n", (((llabs(v_x) * ay - llabs(v_y) * ax) % gcd == 0)? "YA" : "TIDAK"));
 }
 
 int main() {
