@@ -41,6 +41,7 @@ ll product(vector<ll> p) {
 vector<ll> ans, pp, c, px, pd, plimit;
 vector<vector<ll> > pc;
 ll d, x, sumans;
+ll last_x;
 
 // find prime factorization of t
 vector<ll> findpower(ll t) {
@@ -234,13 +235,18 @@ pair<vector<ll>,ll> solve(ll _d, ll _x) {
 // }
 
 int solve() {
-    scanf("%lld%lld", &d, &x);
-    pair<vector<ll>,ll> _ans = solve(d, x);
-    vector<ll> ans = _ans.first;
-    ll searchspace = _ans.second;
-    if (ans.size() == 0) ans.push_back(d);
-    printf("%d ", ans.size());
-    vprintln(ans);
+    ll _d, _x;
+    int n;
+    scanf("%d%lld", &n, &_x);
+    for (int i=0; i<n; i++) {
+        scanf("%lld", &_d);
+        pair<vector<ll>,ll> _ans = solve(_d, _x);
+        vector<ll> ans = _ans.first;
+        ll searchspace = _ans.second;
+        if (ans.size() == 0) ans.push_back(_d);
+        printf("%d ", ans.size());
+        vprintln(ans);
+    }
 }
 
 int main() {
@@ -255,12 +261,10 @@ int main() {
 
 /*
 worst case?
-input: 313 390
+input: 89 90
 output:
-n = 17, sum = 598
-52 52 52 52 52 52 39 39 39 38 30 26 15 15 15 15 15
-
-searchspace = 244192465
+n = 33, searchspace = 8244031, sum = 377
+15 15 15 15 15 15 15 15 15 15 15 15 10 10 10 10 10 10 10 10 9 9 9 9 9 9 9 9 9 9 9 9 9
 */
 
 

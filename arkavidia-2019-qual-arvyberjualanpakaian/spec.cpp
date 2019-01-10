@@ -1,16 +1,29 @@
-//by : irfan sofyana
 #include <tcframe/spec.hpp>
 using namespace tcframe;
 using namespace std;
 
-#define MAXT 100
-#define MAXX 100
+#define MAXT 10
+#define MAXN 10
+#define MINK 91
+#define MAXK 100
 
-class ProblemSpec : public BaseProblemSpec{
+class ProblemSpec : public BaseProblemSpec {
+    private:
+		bool eachElementBetween(const vector<int>& v, int lo, int hi) {
+			for (int x : v) {
+				if (x < lo || x > hi) {
+					return false;
+				}
+			}
+			return true;
+		}
+
     protected:
         int T;
-        int X, K, ans_size;
-        vector<int> ans;
+        int N, K;
+        vector<int> ans_size;
+        vector<vector<int> > ans;
+        vector<int> X;
 
         void MultipleTestCasesConfig(){
             Counter(T);
@@ -18,11 +31,12 @@ class ProblemSpec : public BaseProblemSpec{
         }
 
         void InputFormat(){
-            LINE(X, K);
+            LINE(N, K);
+            LINES(X) % SIZE(N);
         }
 
         void OutputFormat(){
-            LINE(ans_size, ans % SIZE(ans_size));
+            LINES(ans_size, ans) % SIZE(N);
         }
 
         void GradingConfig(){
@@ -35,87 +49,74 @@ class ProblemSpec : public BaseProblemSpec{
         }
 
         void Constraints(){
-            CONS(1 <= X <= MAXX);
-            CONS(1 <= K <= MAXX);
-            CONS(1<= X && X < K);
+            CONS(MINK <= K <= MAXK);
+            CONS(eachElementBetween(X, 1, K - 1));
+            CONS(1 <= N <= MAXN);
         }
 };
 
 class TestSpec : public BaseTestSpec <ProblemSpec>{
+    void BeforeTestCase() {
+        X.clear();
+    }
+
     void SampleTestCase1() {
         Input({
-            "90 100"
+            "2 100",
+            "90",
+            "9"
         });
         Output({
-            "4 50 50 50 20"
+            "4 50 50 50 20",
+            "1 9"
         });
     }
     void SampleTestCase2() {
         Input({
-            "25 40"
+            "1 40",
+            "25"
         });
         Output({
             "3 15 10 8"
         });
     }
 
-    void SampleTestCase3() {
-        Input({
-            "40 60"
-        });
-        Output({
-            "6 12 12 10 10 10 6"
-        });
-    }
-
     void TestGroup1() {
-        // corner cases
-        CASE(X = 1, K = 2);
-        CASE(X = 1, K = rnd.nextInt(X+1, MAXX));
-        CASE(X = 99, K = 100);
-        CASE(X = 89, K = 90);
-    }
-
-    void TestGroup2() {
-        // random cases
-        for (int i = 0; i < 100; i++){
-            CASE(random_x_and_k(X, K));
-        }
+        CASE(K = 100, X = {1, 2, 19, 64, 73, 82, 90, 91, 94, 98, 99}, N = X.size());
+        CASE(K = 91, N = 1, X = {1});
+        CASE(K = 99, X = {1, 2, 81, 89, 90, 98}, N = X.size());
     }
 
     void TestGroup3() {
-        // use prime K
-        for (int i = 0; i < 100; i++){
-            CASE(X = rnd.nextInt(1, MAXX-1), K = random_prime_k(X+1, MAXX));
-        }
+        // random
+        for (int i=0; i<MAXT; i++)
+            CASE(
+                K = rnd.nextInt(MINK, MAXK),
+                N = MAXN,
+                randomInBetween(X, N, K / 2, K - 1)
+            );
     }
 
-    private:
-        bool is_prime(int n){
-            if (n <= 1) return false;
-            for (int i = 2; i*i <= n; i++)
-                if (n%i == 0) return false;
-            return true;
+    void TestGroup2() {
+        // random
+        for (int i=0; i<MAXT; i++)
+            CASE(
+                K = rnd.nextInt(MINK, MAXK),
+                N = MAXN,
+                randomInBetween(X, N, K / 2, K - 1)
+            );
+    }
+
+    void TestGroup4() {
+        // worst time
+        for (int i=0; i<MAXT; i++)
+            CASE(K = 96, N = MAXN, randomInBetween(X, N, 95, 95));
+    }
+
+private:
+    void randomInBetween(vector<int>& v, int N, int lo, int hi) {
+        for (int i=0; i<N; i++) {
+            v.push_back(rnd.nextInt(lo, hi));
         }
-
-        int random_prime_k(int lo, int hi){
-            vector<int> primes;
-            for (int i = lo; i <= hi; i++)
-                if (!is_prime(i))
-                    primes.push_back(i);
-
-            if ((int) primes.size() == 0) return rnd.nextInt(lo, hi);
-            int idx = rnd.nextInt(0, (int) primes.size() - 1);
-            return primes[idx];
-        }
-
-        void random_x_and_k(int& x, int& k) {
-            int a = rnd.nextInt(1, MAXX), b;
-            do {
-                b = rnd.nextInt(1, MAXX);
-            } while (a == b);
-            x = min(a, b);
-            k = max(a, b);
-        }
-
+    }
 };

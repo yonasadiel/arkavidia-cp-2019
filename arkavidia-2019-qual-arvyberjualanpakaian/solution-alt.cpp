@@ -171,7 +171,8 @@ vector<LL> Solve(LL X, LL K){
         }
     }
     for (int i = 0; i < (int)kand.size(); i++){
-        vector<LL> res = {kand[i]};
+        vector<LL> res;
+        res.push_back(kand[i]);
         cari(i, res, pkand[i], PX);
     }
 
@@ -182,14 +183,18 @@ int main(){
     ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
     cin >> T;
     while (T--) {
-        cin >> X >> K;
-        vector<LL> ans = Solve(X, K);
-        if ((int)ans.size() == 0) ans.pb(K-X);
-        cout << (int)ans.size();
-        cout << " ";
-        for (int i = 0; i < (int)ans.size(); i++){
-            cout << ans[i];
-            cout << (i == (int)ans.size()-1 ? '\n' : ' ');
+        int N;
+        cin >> N >> K;
+        while (N--) {
+            cin >> X;
+            vector<LL> ans = Solve(X, K);
+            if ((int)ans.size() == 0) ans.pb(X);
+            cout << (int)ans.size();
+            cout << " ";
+            for (int i = 0; i < (int)ans.size(); i++){
+                cout << ans[i];
+                cout << (i == (int)ans.size()-1 ? '\n' : ' ');
+            }
         }
     }
     return 0;
