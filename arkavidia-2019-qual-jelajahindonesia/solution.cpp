@@ -40,7 +40,10 @@ pll dfs(int v, int p){
         ans = max(ans, now.fi + x.se + ret.se);
         ans = max(ans, now.se + x.se + ret.fi);
         ans = max(ans, now.se + x.se + ret.se);
-        now.fi = max(now.fi, x.se + ret.fi);
+		if(v != p)
+			now.fi = max(now.fi, x.se + ret.fi);
+		else
+			now.fi = x.se + ret.fi;
         now.se = max(now.se, x.se + ret.se);
     }
     ans = max(ans, now.se);
@@ -66,10 +69,12 @@ int main(){
         }
         else{
             pll tmp =  dfs(1,1);
+			debug(tmp.fi);
+			debug(tmp.se);
             if(adj[1].size() == 1){
                 ans = max(ans, tmp.fi);
             }
-
+			debug(ans);
             printf("%lld\n", 2*sum - ans);
         }
 
@@ -79,3 +84,4 @@ int main(){
     }
     return 0;
 }
+

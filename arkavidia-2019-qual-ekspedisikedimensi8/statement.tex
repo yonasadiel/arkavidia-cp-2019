@@ -48,7 +48,7 @@ Baris pertama terdiri dari satu bilangan bulat positif $T$ ($1 \leq T \leq 5$), 
 
 Tiap kasus uji diawali dengan bilangan $D$ ($1 \leq D \leq 8$), menyatakan dimensi dari array.
 Baris selanjutnya terdiri dari $D$ bilangan $L$ dipisahkan oleh spasi, dengan $D_i$ menyatakan ukuran array di dimensi ke-$i$.
-Baris selanjutnya terdiri dari $1 \leq \prod_{i=1}^{D}{D_i} \leq 100.000$ bilangan, menyatakan elemen array, jika diurutkan berdasarkan indeksnya secara leksikografis.
+Baris selanjutnya terdiri dari $1 \leq \prod_{i=1}^{D}{D_i} \leq 100.000$ bilangan, menyatakan elemen array ($|elemen| \leq 100.000$), jika diurutkan berdasarkan indeksnya secara leksikografis.
 
 Baris selanjutnya terdiri dari sebuah bilangan $Q$ ($1 \leq Q \leq 100$) menyatakan jumlah pertanyaan.
 Setiap pertanyaan ditulis dalam 2 baris, berupa vektor $l$ pada baris pertama dan $r$ pada baris kedua. Vektor $l$ dan $r$ memiliki $D$ elemen, dan masing-masing elemen ($1 \leq l_i \leq r_i, \leq L_i$) dipisahkan oleh spasi.
@@ -64,7 +64,7 @@ Untuk tiap kasus uji, tuliskan $Q$ baris, yakni jawaban dari masing-masing perta
 \begin{multicols}{2}
 \subsection*{Contoh Masukan}
 \begin{lstlisting}
-3
+2
 1
 5
 1 2 3 4 5

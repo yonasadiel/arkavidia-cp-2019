@@ -15,7 +15,8 @@ protected:
 	string a,b,s;
 
 	void InputFormat() {
-		LINE(a, b);
+		LINE(a);
+		LINE(b);
 	}
 
 	void OutputFormat() {
@@ -54,15 +55,15 @@ private:
 class TestSpec : public BaseTestSpec<ProblemSpec> {
 protected:
 	void SampleTestCase1() {
-		Input({"ababab abab"});
+		Input({"ababab", "abab"});
 	}
 
 	void SampleTestCase2() {
-		Input({"bbcdbbcd bbcd"});
+		Input({"bbcdbbcd", "bbcd"});
 	}
 
 	void SampleTestCase3() {
-		Input({"aaa bb"});
+		Input({"aaa", "bb"});
 	}
 
 	void BeforeTestCase() {

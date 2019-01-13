@@ -42,7 +42,7 @@ class ProblemSpec : public BaseProblemSpec {
 
 		void Constraints() {
 			CONS(1 <= N && N <= MAXN);
-			CONS(1 <= X && X <= MAXX);
+			CONS(2 <= X && X <= MAXX);
 			CONS(isValid(A,N));
 		}
 
