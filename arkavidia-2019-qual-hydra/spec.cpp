@@ -32,7 +32,7 @@ class ProblemSpec : public BaseProblemSpec {
 		}
 
 		void GradingConfig() {
-			TimeLimit(2);
+			TimeLimit(4);
 			MemoryLimit(256);
 		}
 
