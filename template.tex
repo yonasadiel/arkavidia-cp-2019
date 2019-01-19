@@ -15,6 +15,24 @@
 \renewcommand{\headrulewidth}{0pt}
 \lhead{Competitive Programming - Arkavidia V}
 \fancyfoot[CE,CO]{\thepage}
+\lstset{
+    basicstyle=\ttfamily\small,
+    columns=fixed,
+    extendedchars=true,
+    breaklines=true,
+    tabsize=2,
+    prebreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+    frame=none,
+    showtabs=false,
+    showspaces=false,
+    showstringspaces=false,
+    prebreak={},
+    keywordstyle=\color[rgb]{0.627,0.126,0.941},
+    commentstyle=\color[rgb]{0.133,0.545,0.133},
+    stringstyle=\color[rgb]{01,0,0},
+    captionpos=t,
+    escapeinside={(\%}{\%)}
+}
 
 \begin{document}
 
@@ -65,30 +83,15 @@ Untuk tiap kasus uji, tuliskan $N$ baris, dengan baris ke-$i$ menyatakn jumlah $
 \\
 
 \begin{multicols}{2}
-\subsection*{Contoh Masukan 1}
+\subsection*{Contoh Masukan}
 \begin{lstlisting}
 3
 1 2 3
 \end{lstlisting}
 \columnbreak
-\subsection*{Contoh Keluaran 1}
+\subsection*{Contoh Keluaran}
 \begin{lstlisting}
-6
-\end{lstlisting}
-\vfill
-\null
-\end{multicols}
-
-\begin{multicols}{2}
-\subsection*{Contoh Masukan 2}
-\begin{lstlisting}
-4
-1 2 3 4
-\end{lstlisting}
-\columnbreak
-\subsection*{Contoh Keluaran 2}
-\begin{lstlisting}
-10
+-6
 \end{lstlisting}
 \vfill
 \null
