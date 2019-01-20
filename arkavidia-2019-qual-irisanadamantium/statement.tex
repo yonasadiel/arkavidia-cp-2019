@@ -18,12 +18,12 @@
 
 \begin{document}
 \begin{center}
-    \section*{I. Irisan Adamantium} % ganti judul soal
+    \section*{I. Irisan Adamantium}
 
     \begin{tabular}{ | c c | }
         \hline
-        Batas Waktu  & 1s \\    % jangan lupa ganti time limit
-        Batas Memori & 64MB \\  % jangan lupa ganti memory limit
+        Batas Waktu  & 1s \\
+        Batas Memori & 64MB \\
         \hline
     \end{tabular}
 \end{center}
@@ -35,15 +35,15 @@ Arvy diminta untuk memotong logam tersebut supaya warisan terbagi rata antara 2 
 
 Logam terdiri dari $2N$ lapisan, dan ada $N$ jenis lapisan yang tersebar acak, sehingga ada tepat 2 lapisan berbeda memiliki jenis yang sama.
 Karena nilai setiap lapisan tidak diketahui pasti, satu-satunya cara memastikan agar pembagian rata adalah ketika setiap orang memiliki satu dari masing-masing jenis lapisan.
-Tetapi, tingkat kekerasan Adamantium kian lapisan jauh semakin keras (tidak dipengaruhi jenis lapisan), sehingga biaya untuk memotong lapisan ke-$i$ dan lapisan $i+1$ adalah $2^i$.
+Tetapi, tingkat kekerasan Adamantium kian lapisan jauh semakin keras (tidak dipengaruhi jenis lapisan), sehingga biaya untuk memotong di antara lapisan ke-$i$ dan lapisan $i+1$ adalah $2^i$.
 Kini Arvy harus menghitung biaya pemotongan minimum untuk membagi logam tersebut kepada dua pewaris.
 
 \subsection*{Format Masukan}
-Baris pertama terdiri dari satu bilangan bulat positif $T$ ($1 \leq T \leq 100$), menyatakan banyaknya kasus uji.
+Baris pertama terdiri dari satu bilangan bulat positif $T$ ($1 \leq T \leq 10$), menyatakan banyaknya kasus uji.
 Untuk tiap kasus uji, baris pertama menyatakan bilangan positif $N$ ($1 \leq N \leq 100.000$) dan baris kedua terdiri dari $N$ bilangan $A_1, A_2, \dots, A_N$ yang dipisahkan oleh spasi, menyatakan jenis tiap lapisan.
 
 \subsection*{Format Keluaran}
-Untuk tiap kasus uji, keluarkan satu baris berisi satu bilangan bulat, yakni biaya pemotongan termurah.
+Untuk tiap kasus uji, keluarkan satu baris berisi satu bilangan bulat, yakni biaya pemotongan termurah modulo ${10}^9+7$.
 \\
 
 \begin{multicols}{2}
@@ -69,13 +69,13 @@ Untuk tiap kasus uji, keluarkan satu baris berisi satu bilangan bulat, yakni bia
 \end{multicols}
 
 \subsection*{Penjelasan}
-Pada kasus uji pertama, dapat dilakukan 1 potongan di $i=3$, membentuk segmen \lstinline{1 2 3} dan \lstinline{1 2 3}.
+Pada kasus uji pertama, dapat dilakukan 1 potongan di $i=3$, membentuk segmen \lstinline{1 2 3 | 1 2 3}.
 Jadi, biaya pemotongan minimum adalah $2^3 = 8$.
 
-Pada kasus uji kedua, dapat dilakukan 3 potongan di $i=1, i=4, i=5$, membentuk segmen \lstinline{1}, \lstinline{2 3}, \lstinline{1 2}, dan \lstinline{3}.
+Pada kasus uji kedua, dapat dilakukan 3 potongan di $i=1, i=4, i=5$, membentuk segmen \lstinline{1 | 2 3 | 1 2 | 3}.
 Jadi, biaya pemotongan minimum adalah $2^1 + 2^3 + 2^5 = 42$.
 
-Pada kasus uji pertama, dapat dilakukan 2 potongan di $i=2, i=5$, membentuk segmen \lstinline{1 2}, \lstinline{3}, dan \lstinline{1 2 3}.
+Pada kasus uji pertama, dapat dilakukan 2 potongan di $i=2, i=5$, membentuk segmen \lstinline{1 2 | 3 | 1 2 3}.
 Jadi, biaya pemotongan minimum adalah $2^2 + 2^5 = 36$.
 
 \pagebreak

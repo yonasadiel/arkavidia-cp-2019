@@ -4,7 +4,7 @@ using namespace std;
 using namespace tcframe;
 
 #define MAXN 100000
-#define MAXT 100
+#define MAXT 10
 
 class ProblemSpec : public BaseProblemSpec {
 protected:
@@ -36,7 +36,7 @@ protected:
 
     void Constraints() {
         CONS(1 <= N <= MAXN);
-        CONS(arr.size() == 2*MAXN);
+        CONS(arr.size() == 2*N);
         CONS(isValid(arr,N));
     }
 
@@ -51,7 +51,7 @@ private:
             if(cek[arr[i]] == 2)return false;
             cek[arr[i]]++;
         }
-        return res;
+        return true;
     }
 
     bool allElementBetween(int a, int b, int N, vector<int> arr){
@@ -66,51 +66,97 @@ class TestSpec : public BaseTestSpec<ProblemSpec> {
 protected:
     void SampleTestCase1() {
         Input({
-            "3
-             1 2 3 1 2 3"
+            "3",
+            "1 2 3 1 2 3"
         });
         Output({
             "8"
         });
     }
 
-    void SampleTestCase1() {
+    void SampleTestCase2() {
         Input({
-            "3
-             1 1 2 2 3 3"
+            "3",
+            "1 1 2 2 3 3"
         });
         Output({
             "42"
         });
     }
 
-    void SampleTestCase1() {
+    void SampleTestCase3() {
         Input({
-            "3
-             1 2 1 2 3 3"
+            "3",
+             "1 2 1 2 3 3"
         });
         Output({
             "36"
         });
     }
 
-    void TestCases() {
-        CASE(L = 1, R = 2);
+    void BeforeTestCase() {
+        arr.clear();
+    }
 
-        for (long long i = 0; i <= 100; i++)
-            for (long long j = 0; j <= 100; j++)
-                CASE(L = 1 + i, R = 1000000000000000000 - j);
+    void TestGroup1() {
+        CASE(N=MAXN, Variant1(arr,N));
+        CASE(N=MAXN, Variant1(arr,N), Reverse(arr));
+        CASE(N=MAXN, Variant2(arr,N));
+        CASE(N=MAXN, Variant2(arr,N), Reverse(arr));
+        for(int i = 1; i <= 6; i++){
+            CASE(N=rnd.nextInt(1,MAXN), RandomArray(arr,N));
+        }
+    }
 
-        for (long long i = 0; i <= 10; i++)
-            for (long long j = 0; j <= 10; j++)
-                CASE(L = 144115188075855871 + i, R = 288230376151711743 - j);
+    void TestGroup2() {
+        for(int i = 1; i <= 10; i++){
+            CASE(N=rnd.nextInt(1,MAXN), RandomArray(arr,N));
+        }
+    }
 
-        for (long long i = 0; i <= 10; i++)
-            for (long long j = 0; j <= 10; j++)
-                CASE(L = 159202181970746799 + i, R = 529566899057755602 - j);
+    void TestGroup3() {
+        for(int i = 1; i <= 10; i++){
+            CASE(N=rnd.nextInt(1,MAXN), RandomArray(arr,N));
+        }
+    }
 
-        for (long long i = 0; i <= 1000; i++)
-            for (long long j = 0; j <= 100; j++)
-                CASE(L = 297379960876591172 + i, R = 801972410549895275 - j);
+    void TestGroup4() {
+        for(int i = 1; i <= 10; i++){
+            CASE(N=rnd.nextInt(1,MAXN), RandomArray(arr,N));
+        }
+    }
+
+    void TestGroup5() {
+        for(int i = 1; i <= 10; i++){
+            CASE(N=rnd.nextInt(1,MAXN), RandomArray(arr,N));
+        }
+    }
+
+private:
+    //1 1 2 2 3 3
+    void Variant1(vector<int> &v, int N){
+        for(int i = 1; i <= N; i++){
+            v.push_back(i);
+            v.push_back(i);
+        }
+    }
+
+    //1 2 3 1 2 3
+    void Variant2(vector<int> &v, int N){
+        for(int i = 1; i <= N; i++){
+            v.push_back(i);
+        }
+        for(int i = 1; i <= N; i++){
+            v.push_back(i);
+        }
+    }
+
+    void RandomArray(vector<int> &v, int N){
+        Variant1(v, N);
+        rnd.shuffle(v.begin(),v.end());
+    }
+
+    void Reverse(vector<int> &v){
+        reverse(v.begin(),v.end());
     }
 };
