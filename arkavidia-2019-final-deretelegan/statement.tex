@@ -15,24 +15,41 @@
 \renewcommand{\headrulewidth}{0pt}
 \lhead{Competitive Programming - Arkavidia V}
 \fancyfoot[CE,CO]{\thepage}
+\lstset{
+    basicstyle=\ttfamily\small,
+    columns=fixed,
+    extendedchars=true,
+    breaklines=true,
+    tabsize=2,
+    prebreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+    frame=none,
+    showtabs=false,
+    showspaces=false,
+    showstringspaces=false,
+    prebreak={},
+    keywordstyle=\color[rgb]{0.627,0.126,0.941},
+    commentstyle=\color[rgb]{0.133,0.545,0.133},
+    stringstyle=\color[rgb]{01,0,0},
+    captionpos=t,
+    escapeinside={(\%}{\%)}
+}
 
 \begin{document}
 
 \begin{center}
-    \section*{D. Deret Elegan} % ganti judul soal
+    \section*{D. Deret Elegan}
 
     \begin{tabular}{ | c c | }
         \hline
-        Batas Waktu  & 1s \\    % jangan lupa ganti time limit
-        Batas Memori & 64MB \\  % jangan lupa ganti memory limit
+        Batas Waktu  & 1s \\
+        Batas Memori & 512MB \\
         \hline
     \end{tabular}
 \end{center}
 
 \subsection*{Deskripsi}
 
-
-Diberikan sebuah array terurut berukuran $N$ dengan elemen bernilai $K_1,K_2,\dots,K_N$
+Diberikan sebuah array terurut berukuran $N$ dengan elemen bernilai $K_1,K_2, \dots, K_N$
 Deret elegan adalah array yang elemen terkecilnya adalah bilangan ganjil dan selisih dua elemen yang bersebelahan juga berupa bilangan ganjil.
 Untuk setiap array terdapat bilangan S yang menyatakan banyaknya subbagian dari array yang merupakan deret elegan.
 
@@ -46,13 +63,11 @@ Baris berikutnya adalah bilangan $K_1,K_2,\dots,K_N$ ($1 \leq K_1,K_2,\dots,K_N 
 
 Untuk setiap kasus uji, tuliskan bilangan $S$ yang merupakan banyak deret elegan dari array tersebut.
 
-
-
 \begin{multicols}{2}
 \subsection*{Contoh Masukan}
 \begin{lstlisting}
 3
-4 
+4
 1 3 5 7
 5
 4 5 6 10 11
@@ -67,10 +82,6 @@ TBD
 \vfill
 \null
 \end{multicols}
-
-
-% \subsection*{Penjelasan}
-
 
 \pagebreak
 
