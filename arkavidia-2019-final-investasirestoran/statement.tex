@@ -42,57 +42,79 @@
     \begin{tabular}{ | c c | }
         \hline
         Batas Waktu  & 1s \\
-        Batas Memori & 512MB \\ 
+        Batas Memori & 512MB \\
         \hline
     \end{tabular}
 \end{center}
 
 \subsection*{Deskripsi}
 
-Arvy yang telah bekerja pada perusahaan teknologi akhirnya memutuskan untuk keluar dari pekerjaannya untuk menjadi seorang wiraswasta. Ia menjadi tertarik untuk menginvestasikan uang yang telah ia dapatkan sebagai gaji pada perusahaan teknologi tersebut untuk membuat sebuah restoran. Ia pun tidak ingin memiliki restoran dengan gaya pelayanan konvensional, dimana pelanggan duduk pada kursi yang disediakan, lalu pelayan datang, mencatat pesanan, dan kemudian pelayanan mendatangkan makanan yang dipesan. Ia ingin restorannya memiliki gaya modern, dimana ia dapat memanfaatkan teknologi untuk mengurangi pengeluaran untuk menggaji pelayan pelanggan restoran, yaitu dengan membangun sebuah conveyor belt yang mana bagian-bagian dari conveyor belt tersebut dapat berisi makanan.
+Arvy akhirnya keluar dari perusahaan teknologinya untuk menjadi seorang wiraswasta.
+Ia ingin menginvestasikan sisa gajinya untuk membangun restoran canggih yang menggunakan \textit{conveyor belt} untuk menyajikan makanan.
 
-Conveyor belt yang dibangun memiliki panjang $X$ dan conveyor belt memiliki $X$ bagian yang dinomori dari 0 hingga $X-1$, dan bagian conveyor belt nomor $X-1$ bersebelahan langsung dengan bagian conveyor belt nomor 0 (berbentuk siklik). Tiap bagian conveyor belt dapat berisi 1 makanan atau tidak ada sama sekali. Pelanggan dapat memesan $N$ buah makanan pada restoran tersebut dan makanan akan diletakkan pada bagian-bagian tertentu pada conveyor belt sedemikian sehingga $N$ buah makanan tersebut dapat diletakkan pada conveyor belt tersebut. 
+\begin{center}
+    \includegraphics[width=180px]{conveyor-belt}
 
-Pelanggan yang memesan $N$ makanan tersebut wajib menghabiskan seluruh makanan yang dipesan. Tiap makanan dimakan dengan waktu yang sama, yaitu $P$. Pelanggan pada awalnya akan berdiri di depan suatu bagian dari conveyor belt dan akan makan makanan yang ada di depannya apabila ia sedang tidak makan. Ketika pelanggan telah selesai makan, ia dapat langsung makan makanan lain lagi. Jika pada suatu waktu, di depan pelanggan tidak ada makanan, maka ia hanya menunggu di tempat dia berada hingga di depannya terdapat makanan yang dibawa oleh conveyor belt yang bergerak. Conveyor belt tersebut bergerak tiap detik sebanyak 1 bagian conveyor belt, atau dengan kata lain, apabila posisi pelanggan adalah di depan bagian conveyor belt, sebut saja $A$, maka 1 detik kemudian, posisi conveyor belt di hadapan pelanggan tersebut adalah ($A$ + 1) \% $X$. Ketika pelanggan telah berada di posisi di depan suatu posisi conveyor belt, pelanggan tersebut tidak akan berpindah tempat hingga semua makanan habis. 
+    \footnotesize Sumber: \href{https://www.quora.com/How-much-food-should-I-take-at-a-conveyor-belt-sushi-restaurant-I-am-an-exchange-student-in-Japan-and-my-host-family-is-taking-me-to-a-restaurant-where-you-take-all-you-can-eat-How-much-should-I-take-The-family-seems-fairly-well-off}{quora.com}
+\end{center}
 
-Pelanggan yang makan disana adalah orang-orang pebisnis yang tentunya sangat menghargai waktu, sehingga ia ingin menghabiskan waktu di restoran tersebut dengan total waktu yang seminimal mungkin. Bantulah Arvy untuk menyarankan pelanggan-pelanggan tersebut untuk menentukan posisi awal dari pelanggan agar waktu total berada di restoran seminimal mungkin beserta waktu minimal yang dapat dicapai.
+\textit{Conveyor belt} adalah lintasan siklik terdiri dari $N$ bagian yang dinomori dari $1$ hingga $N$.
+Tiap bagian berisi maksimal 1 makanan.
+\textit{Conveyor belt} akan terus bergeser sejauh 1 bagian tiap detiknya.
+Dengan kata lain, apabila pelanggan ada di depan bagian nomor $X$, maka 1 detik kemudian ia ada di depan $X + 1$ (atau $1$ jika $X = N$).
+Pelanggan dapat memesan beberapa makanan pada restoran tersebut dan makanan akan diletakkan pada bagian-bagian pada \textit{conveyor belt}.
+
+Tiap makanan dimakan dengan durasi yang sama, yaitu $P$ detik.
+Pelanggan pada awalnya duduk di depan suatu bagian \textit{conveyor belt} dan menunggu hingga di depannya terdapat makanan.
+Jika ia sudah berhadapan dengan sebuah makanan, ia akan segera memakannya.
+Setelah makanan dihabiskan, pelanggan akan kembali menunggu hingga makanan selanjutnya ada di depannya untuk dihabiskan.
+Pelanggan tidak akan berpindah tempat hingga semua makanannya habis.
+
+Bantulah Arvy memberi saran pada para pelanggan untuk menentukan posisi duduk awal agar waktu durasi makan semua makanan menjadi sesedikit mungkin.
 
 \subsection*{Format Masukan}
 
 Baris pertama terdiri dari satu bilangan bulat positif $T$ ($1 \leq T \leq 10$), menyatakan banyaknya kasus uji.
-Tiap kasus uji diawali dengan 3 buah bilangan, yaitu $N$ ($1 \leq N \leq 200$) yang menyatakan banyaknya makanan yang dipesan, $X$ ($1 \leq N \leq X \leq 200$) yang menyatakan panjang conveyor belt, dan $P$ ($1 \leq P \leq 1.000.000.000$) yang menyatakan waktu yang dibutuhkan orang untuk memakan 1 makanan.
-Pada baris berikutnya terdapat $N$ buah bilangan berbeda, dengan bilangan ke-$i$ adalah $A_i$ ($0 \leq A_i \leq X-1$) yang menyatakan posisi makanan ke-$i$ diletakkan pada conveyor belt.
+
+Tiap kasus uji diawali dengan 3 buah bilangan, yaitu $N$ ($1 \leq N \leq X \leq 200$) yang menyatakan panjang \textit{conveyor belt}, $M$ ($1 \leq M \leq N$) yang menyatakan banyaknya makanan yang dipesan, dan $P$ ($1 \leq P \leq 1.000.000.000$) yang menyatakan waktu yang dibutuhkan untuk memakan 1 makanan.
+
+Baris berikutnya terdiri $M$ bilangan berbeda, dengan bilangan ke-$i$ adalah $A_i$ ($1 \leq A_i \leq N$), menyatakan posisi makanan ke-$i$ pada \textit{conveyor belt}.
 
 \subsection*{Format Keluaran}
 
-Untuk tiap kasus uji, tuliskan 1 baris yang terdiri dari 2 buah bilangan, dengan bilangan pertama merupakan posisi awal pelanggan harus ditempatkan, dan bilangan kedua menyatakan waktu minimal pelanggan berada pada restoran tersebut. Jika ada beberapa posisi awal yang mungkin, keluarkan posisi awal yang paling kecil.
+Untuk tiap kasus uji, tuliskan 1 baris yang terdiri dari 2 buah bilangan.
+Bilangan pertama merupakan posisi awal pelanggan harus ditempatkan.
+Bilangan kedua menyatakan waktu minimal pelanggan berada pada restoran tersebut.
+Jika ada beberapa posisi awal yang mungkin, keluarkan posisi awal yang paling kecil.
 \\
 
 \begin{multicols}{2}
 \subsection*{Contoh Masukan}
 \begin{lstlisting}
 1
-2 4 4
-0 1
-
+5 3 3
+1 3 5
 \end{lstlisting}
 \columnbreak
 \subsection*{Contoh Keluaran}
 \begin{lstlisting}
-0 9
+1 11
 \end{lstlisting}
 \vfill
 \null
 \end{multicols}
 
 \subsection*{Penjelasan}
-Berikut adalah simulasi pemilihan tempat optimal, yaitu posisi nomor 0:\\
+Berikut adalah simulasi pemilihan tempat optimal, yaitu posisi nomor 1:
 
-1. Ambil makanan pada detik ke 0 pada posisi 0, makan selama 4 detik\\
-2. Selesai makan pada detik ke 4 dan posisi conveyor belt di depan pelanggan adalah posisi 0\\
-3. Menunggu selama 1 detik lagi hingga makanan pada posisi 1 dapat berada di depan pelanggan\\
-4. Pada detik ke 5, pelanggan makan hingga detik ke 9\\
-5. Semua makanan telah habis\\
+\begin{enumerate}
+    \setlength{\itemsep}{0pt}
+    \item Pada detik ke-0, berada di bagian nomor 1, ambil makanan
+    \item Pada detik ke-3, berada di bagian nomor 4, tunggu hingga makanan datang
+    \item Pada detik ke-5, berada di bagian nomor 5, terdapat makanan dan diambil
+    \item Pada detik ke-8, berada di bagian nomor 3, langsung ambil makanan
+    \item Pada detik ke-11, semua makanan telah habis
+\end{enumerate}
 
 \pagebreak
 
