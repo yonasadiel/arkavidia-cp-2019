@@ -1,0 +1,85 @@
+\documentclass{article}
+
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\hypersetup{ colorlinks=true, linkcolor=black, filecolor=magenta, urlcolor=cyan}
+\geometry{ a4paper, total={170mm,257mm}, top=20mm, right=20mm, bottom=20mm, left=20mm}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1em}
+\renewcommand{\headrulewidth}{0pt}
+\lhead{Competitive Programming - Arkavidia V}
+\fancyfoot[CE,CO]{\thepage}
+\lstset{
+    basicstyle=\ttfamily\small,
+    columns=fixed,
+    extendedchars=true,
+    breaklines=true,
+    tabsize=2,
+    prebreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+    frame=none,
+    showtabs=false,
+    showspaces=false,
+    showstringspaces=false,
+    prebreak={},
+    keywordstyle=\color[rgb]{0.627,0.126,0.941},
+    commentstyle=\color[rgb]{0.133,0.545,0.133},
+    stringstyle=\color[rgb]{01,0,0},
+    captionpos=t,
+    escapeinside={(\%}{\%)}
+}
+
+\begin{document}
+
+\begin{center}
+    \section*{H. Hari Bekerja}
+
+    \begin{tabular}{ | c c | }
+        \hline
+        Batas Waktu  & 1s \\
+        Batas Memori & 512MB \\ 
+        \hline
+    \end{tabular}
+\end{center}
+
+\subsection*{Deskripsi}
+
+Pada suatu hari, Arvy sangat bersyukur bahwa ia berhasil diterima untuk bekerja pada perusahaan teknologi. Perusahaan teknologi tersebut ternyata memiliki mekanisme unik untuk mengatur tempat pegawainya bekerja, yaitu tiap pekerja ditetapkan untuk bekerja pada suatu lantai / tingkat pada gedung pada suatu hari dan tiap hari, dan tempat-tempat pegawai tersebut dapat berbeda-beda, namun terdapat pola penempatan suatu pegawai, yaitu terdapat siklus penempatan pegawai pada suatu lantai dengan panjang $N$. 
+
+Perusahaan teknologi tersebut masih mempercayai dengan angka sial, yaitu 4 dan 13, jadi lantai-lantai pada gedung perusahaan teknologi tersebut tidak akan mengandung angka 4 ataupun 13 sebagai bagian dari angka tersebut. Sebagai contoh, 4, 14, 24, 13, dan 113 termasuk angka sial. Arvy yang akan bekerja pada perusahaan teknologi tersebut diberitahu sebanyak $N$ buah nilai yang menyatakan nomor lantai tempat dia bekerja. Namun karena rasa penasaran, Arvy ingin mengetahui sebenarnya nomor lantai tempat dia bekerja tersebut berada pada tingkat berapa pada gedung tersebut. Sebagai contoh, apabila Arvy bekerja pada lantai 5, maka Arvy sebenarnya bekerja pada tingkat ke-4 gedung, karena nomor lantai yang ada adalah 1,2,3,lalu 5, sehingga lantai 5 gedung adalah tingkat ke 4 gedung. Bantulah Arvy!
+
+\subsection*{Format Masukan}
+
+Baris pertama terdiri dari satu bilangan bulat positif $T$ ($1 \leq T \leq 10$), menyatakan banyaknya kasus uji.
+Tiap kasus uji diawali dengan bilangan $N$ ($1 \leq N \leq 100.000$).
+Pada baris berikutnya terdapat $N$ buah bilangan, dengan bilangan ke-$i$ adalah $A_i$ ($1 \leq A_i \leq 1.000.000$) yang menyatakan nomor lantai tempat Arvy bekerja pada hari ke i.
+
+\subsection*{Format Keluaran}
+
+Untuk tiap kasus uji, tuliskan 1 baris yang terdiri dari $N$ buah bilangan, dengan bilangan ke-$i$ merupakan jawaban dari pertanyaan tersebut. Jika lantai $A_i$ tidak ada di gedung, cukup keluarkan -1 yang berarti lantai tidak valid.
+\\
+
+\begin{multicols}{2}
+\subsection*{Contoh Masukan}
+\begin{lstlisting}
+1
+2
+5 10
+\end{lstlisting}
+\columnbreak
+\subsection*{Contoh Keluaran}
+\begin{lstlisting}
+4 9
+\end{lstlisting}
+\vfill
+\null
+\end{multicols}
+
+\pagebreak
+
+\end{document}
