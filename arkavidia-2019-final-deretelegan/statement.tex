@@ -37,7 +37,7 @@
 \begin{document}
 
 \begin{center}
-    \section*{D. Deret Elegan}
+    \section*{D. Danau Ganesha}
 
     \begin{tabular}{ | c c | }
         \hline
@@ -49,39 +49,48 @@
 
 \subsection*{Deskripsi}
 
-Diberikan sebuah array terurut berukuran $N$ dengan elemen bernilai $K_1,K_2, \dots, K_N$
-Deret elegan adalah array yang elemen terkecilnya adalah bilangan ganjil dan selisih dua elemen yang bersebelahan juga berupa bilangan ganjil.
-Untuk setiap array terdapat bilangan S yang menyatakan banyaknya subbagian dari array yang merupakan deret elegan.
+Di negeri Ganesha, terdapat sebuah danau.
+Danau ini memiliki $N$ batu yang bersebelahan membentuk satu garis lurus, dinomori dari $1$ hingga $N$.
+
+Kini seekor katak berada di daratan.
+Katak ini spesies unik, karena ia hanya akan lompat ke batu dengan jarak ganjil.
+Artinya, jika ia sedang di daratan, ia hanya lompat ke batu $1, 3, 5$, dan seterusnya.
+Jika ia sedang berada di batu ke $x$, ia hanya lompat ke batu $x+1, x+3, x+5$, dan seterusnya.
+Katak hanya akan melompat menjauhi daratan, sehingga jika ia lompat dari batu $X$ ke $Y$, pastilah $X < Y$.
+
+Kini, Anda diminta menghitung berapa banyak rute katak yang mungkin. Dua rute dianggap berbeda jika satu batu diinjak di salah satu rute, namun tidak di rute yang lain. Katak boleh berhenti di mana saja dari batu ke-$1$ hingga $N$.
 
 \subsection*{Format Masukan}
 
 Baris pertama tediri dari sebuah bilangan $T$ ($1 \leq T \leq 100$), menyatakan banyak kasus uji.
-Tiap kasus uji terdiri dari bilangan $N$ ($1 \leq N \leq 1000$) .
-Baris berikutnya adalah bilangan $K_1,K_2,\dots,K_N$ ($1 \leq K_1,K_2,\dots,K_N \leq 1000$).
+Tiap kasus uji terdiri dari satu baris berisi bilangan bulat $N$ ($1 \leq N \leq 10^{12}$).
 
 \subsection*{Format Keluaran}
 
-Untuk setiap kasus uji, tuliskan bilangan $S$ yang merupakan banyak deret elegan dari array tersebut.
+Untuk setiap kasus uji, tuliskan dalam satu baris, banyaknya rute yang mungkin.
 
 \begin{multicols}{2}
 \subsection*{Contoh Masukan}
 \begin{lstlisting}
-3
+2
+1
 4
-1 3 5 7
-5
-4 5 6 10 11
-6
-3 5 12 21 24 27
 \end{lstlisting}
 \columnbreak
 \subsection*{Contoh Keluaran}
 \begin{lstlisting}
-TBD
+1
+4
 \end{lstlisting}
 \vfill
 \null
 \end{multicols}
+
+\subsection*{Penjelasan}
+
+Pada kasus uji pertama, hanya ada rute yang mungkin, yakni \lstinline{[1]}.
+
+Pada kasus uji kedua, contoh rute katak antara lain \lstinline{[1 2 3 4]}, \lstinline{[1 2 4]}, \lstinline{[1 4]}, dan \lstinline{[3 4]}.
 
 \pagebreak
 
