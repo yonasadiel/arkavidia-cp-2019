@@ -76,7 +76,7 @@ Bantulah Arvy memberi saran pada para pelanggan untuk menentukan posisi duduk aw
 
 Baris pertama terdiri dari satu bilangan bulat positif $T$ ($1 \leq T \leq 10$), menyatakan banyaknya kasus uji.
 
-Tiap kasus uji diawali dengan 3 buah bilangan, yaitu $N$ ($1 \leq N \leq X \leq 200$) yang menyatakan panjang \textit{conveyor belt}, $M$ ($1 \leq M \leq N$) yang menyatakan banyaknya makanan yang dipesan, dan $P$ ($1 \leq P \leq 1.000.000.000$) yang menyatakan waktu yang dibutuhkan untuk memakan 1 makanan.
+Tiap kasus uji diawali dengan 3 buah bilangan, yaitu $N$ ($1 \leq N \leq 200$) yang menyatakan panjang \textit{conveyor belt}, $M$ ($1 \leq M \leq N$) yang menyatakan banyaknya makanan yang dipesan, dan $P$ ($1 \leq P \leq 1.000.000.000$) yang menyatakan waktu yang dibutuhkan untuk memakan 1 makanan.
 
 Baris berikutnya terdiri $M$ bilangan berbeda, dengan bilangan ke-$i$ adalah $A_i$ ($1 \leq A_i \leq N$), menyatakan posisi makanan ke-$i$ pada \textit{conveyor belt}.
 
@@ -85,15 +85,15 @@ Baris berikutnya terdiri $M$ bilangan berbeda, dengan bilangan ke-$i$ adalah $A_
 Untuk tiap kasus uji, tuliskan 1 baris yang terdiri dari 2 buah bilangan.
 Bilangan pertama merupakan posisi awal pelanggan harus ditempatkan.
 Bilangan kedua menyatakan waktu minimal pelanggan berada pada restoran tersebut.
-Jika ada beberapa posisi awal yang mungkin, keluarkan posisi awal yang paling kecil.
+Jika ada beberapa posisi awal yang mungkin, keluarkan posisi awal di bagian dengan nomor paling kecil.
 \\
 
 \begin{multicols}{2}
 \subsection*{Contoh Masukan}
 \begin{lstlisting}
 1
-5 3 3
-1 3 5
+7 3 3
+1 4 2
 \end{lstlisting}
 \columnbreak
 \subsection*{Contoh Keluaran}
@@ -109,10 +109,10 @@ Berikut adalah simulasi pemilihan tempat optimal, yaitu posisi nomor 1:
 
 \begin{enumerate}
     \setlength{\itemsep}{0pt}
-    \item Pada detik ke-0, berada di bagian nomor 1, ambil makanan
-    \item Pada detik ke-3, berada di bagian nomor 4, tunggu hingga makanan datang
-    \item Pada detik ke-5, berada di bagian nomor 5, terdapat makanan dan diambil
-    \item Pada detik ke-8, berada di bagian nomor 3, langsung ambil makanan
+    \item Pada detik ke-0, berada di depan bagian nomor 1, ambil makanan
+    \item Pada detik ke-3, berada di depan bagian nomor 4, terdapat makanan dan bisa langsung diambil
+    \item Pada detik ke-6, berada di depan bagian nomor 7, tunggu hingga ada makanan
+    \item Pada detik ke-8, berada di depan bagian nomor 2, terdapat makanan dan bisa diambil
     \item Pada detik ke-11, semua makanan telah habis
 \end{enumerate}
 
