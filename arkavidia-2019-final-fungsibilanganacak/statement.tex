@@ -41,7 +41,7 @@
 
     \begin{tabular}{ | c c | }
         \hline
-        Batas Waktu  & 1s \\
+        Batas Waktu  & 4s \\
         Batas Memori & 512MB \\
         \hline
     \end{tabular}
@@ -57,12 +57,12 @@ Tentukanlah bilangan acak yang akan dibangkitkan!
 
 \subsection*{Format Masukan}
 Baris pertama terdiri dari satu bilangan bulat positif $T$ ($1 \leq T \leq 10$), menyatakan banyaknya kasus uji.
-Tiap kasus uji dimulai dengan sebuah baris berisikan nilai $N$ ($1 \leq N \leq 10^{9}$), $A$, dan $B$ ($1 \leq A, B \leq 10^{18}$) sesuai deskripsi di atas.
-Baris berikutnya terdiri dari sebuah bilangan $Q$ ($1 \leq Q \leq 100.000$), menyatakan banyaknya bilangan acak.
+Tiap kasus uji dimulai dengan sebuah baris berisikan nilai $N$, $A$, dan $B$ ($1 \leq N, A, B \leq 10^{9}$) sesuai deskripsi di atas.
+Baris berikutnya terdiri dari sebuah bilangan $Q$ ($1 \leq Q \leq 3 \times 10^{4}$), menyatakan banyaknya bilangan acak.
 $Q$ baris berikutnya terdiri dari dua bilangan, yakni $l$ dan $r$ ($1 \leq l \leq r \leq N$), sesuai deskripsi di atas.
 
 \subsection*{Format Keluaran}
-Untuk tiap kasus uji, keluarkan $Q$ baris berisi bilangan acak yang diminta. Karena bilangan bisa sangat besar, tuliskan nilainya dimodulo $1.000.000.007$
+Untuk tiap kasus uji, keluarkan $Q$ baris berisi bilangan acak yang diminta. Karena bilangan bisa sangat besar, tuliskan nilainya dimodulo $10^{9}+7$
 
 \begin{multicols}{2}
 \subsection*{Contoh Masukan}
@@ -73,10 +73,10 @@ Untuk tiap kasus uji, keluarkan $Q$ baris berisi bilangan acak yang diminta. Kar
 1 2
 1 3
 2 5
-20 1000000008 9999999999
+20 100000001 999999999
 3
 1 4
-5 10
+5 9
 1 10
 \end{lstlisting}
 \columnbreak
@@ -86,8 +86,8 @@ Untuk tiap kasus uji, keluarkan $Q$ baris berisi bilangan acak yang diminta. Kar
 500
 0
 1000
-8
 1
+4
 \end{lstlisting}
 \vfill
 \null
@@ -103,13 +103,13 @@ Pada kasus uji pertama, bilangan $5$ digit yang terbentuk adalah \lstinline{5000
     \item Digit kedua hingga kelima adalah \lstinline{0000}, sehingga nilai bilangan acaknya $0$.
 \end{itemize}
 
-Pada kasus uji kedua, bilangan $20$ digit yang terbentuk adalah \lstinline{10000000081000000008}.
+Pada kasus uji kedua, bilangan $20$ digit yang terbentuk adalah \lstinline{10000000110000000110}.
 
 \begin{itemize}
     \setlength\itemsep{0pt}
     \item Digit pertama hingga keempat adalah \lstinline{1000}, sehingga nilai bilangan acaknya $1000$.
-    \item Digit kelima hingga kesepuluh adalah \lstinline{000008}, sehingga nilai bilangan acaknya $8$.
-    \item Digit pertama hingga kesepuluh adalah \lstinline{1000000008}, sehingga nilai bilangan acaknya $1$ (setelah dimodulo).
+    \item Digit kelima hingga kesembilan adalah \lstinline{000001}, sehingga nilai bilangan acaknya $1$.
+    \item Digit pertama hingga kesepuluh adalah \lstinline{1000000011}, sehingga nilai bilangan acaknya $4$ (setelah dimodulo).
 \end{itemize}
 
 \end{document}
