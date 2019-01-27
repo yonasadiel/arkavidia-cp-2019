@@ -42,16 +42,24 @@
     \begin{tabular}{ | c c | }
         \hline
         Batas Waktu  & 1s \\
-        Batas Memori & 512MB \\ 
+        Batas Memori & 512MB \\
         \hline
     \end{tabular}
 \end{center}
 
 \subsection*{Deskripsi}
 
-Pada suatu hari, Arvy sangat bersyukur bahwa ia berhasil diterima untuk bekerja pada perusahaan teknologi. Perusahaan teknologi tersebut ternyata memiliki mekanisme unik untuk mengatur tempat pegawainya bekerja, yaitu tiap pekerja ditetapkan untuk bekerja pada suatu lantai / tingkat pada gedung pada suatu hari dan tiap hari, dan tempat-tempat pegawai tersebut dapat berbeda-beda, namun terdapat pola penempatan suatu pegawai, yaitu terdapat siklus penempatan pegawai pada suatu lantai dengan panjang $N$. 
+Pada suatu hari, Arvy sangat bersyukur bahwa ia berhasil diterima untuk bekerja pada perusahaan teknologi.
+Perusahaan teknologi tersebut ternyata memiliki mekanisme unik untuk mengatur tempat pegawainya bekerja.
+Tiap pekerja bekerja di satu lantai saja tiap harinya, dan lantai tersebut dapat berganti di hari esoknya.
 
-Perusahaan teknologi tersebut masih mempercayai dengan angka sial, yaitu 4 dan 13, jadi lantai-lantai pada gedung perusahaan teknologi tersebut tidak akan mengandung angka 4 ataupun 13 sebagai bagian dari angka tersebut. Sebagai contoh, 4, 14, 24, 13, dan 113 termasuk angka sial. Arvy yang akan bekerja pada perusahaan teknologi tersebut diberitahu sebanyak $N$ buah nilai yang menyatakan nomor lantai tempat dia bekerja. Namun karena rasa penasaran, Arvy ingin mengetahui sebenarnya nomor lantai tempat dia bekerja tersebut berada pada tingkat berapa pada gedung tersebut. Sebagai contoh, apabila Arvy bekerja pada lantai 5, maka Arvy sebenarnya bekerja pada tingkat ke-4 gedung, karena nomor lantai yang ada adalah 1,2,3,lalu 5, sehingga lantai 5 gedung adalah tingkat ke 4 gedung. Bantulah Arvy!
+Perusahaan teknologi tersebut masih mempercayai dengan angka sial, yaitu 4 dan 13, jadi lantai-lantai pada gedung perusahaan teknologi tersebut tidak akan mengandung angka 4 ataupun 13 sebagai bagian dari angka tersebut.
+Sebagai contoh, 4, 14, 24, 13, dan 113 termasuk angka sial.
+
+Arvy diberitahu sebanyak $N$ buah nilai yang menyatakan nomor lantai tempat dia bekerja.
+Namun karena rasa penasaran, Arvy ingin mengetahui sebenarnya nomor lantai tempat dia bekerja tersebut berada pada tingkat berapa pada gedung tersebut.
+Sebagai contoh, apabila Arvy bekerja pada lantai 5, maka Arvy sebenarnya bekerja pada tingkat ke-4 gedung.
+Bantulah Arvy!
 
 \subsection*{Format Masukan}
 
@@ -61,20 +69,20 @@ Pada baris berikutnya terdapat $N$ buah bilangan, dengan bilangan ke-$i$ adalah 
 
 \subsection*{Format Keluaran}
 
-Untuk tiap kasus uji, tuliskan 1 baris yang terdiri dari $N$ buah bilangan, dengan bilangan ke-$i$ merupakan jawaban dari pertanyaan tersebut. Jika lantai $A_i$ tidak ada di gedung, cukup keluarkan -1 yang berarti lantai tidak valid.
+Untuk tiap kasus uji, tuliskan 1 baris yang terdiri dari $N$ buah bilangan, dengan bilangan ke-$i$ merupakan lantai sebenearnya Arvy bekerja. Jika lantai $A_i$ tidak ada di gedung, cukup keluarkan -1 yang berarti lantai tidak valid.
 \\
 
 \begin{multicols}{2}
 \subsection*{Contoh Masukan}
 \begin{lstlisting}
 1
-2
-5 10
+3
+5 14 15
 \end{lstlisting}
 \columnbreak
 \subsection*{Contoh Keluaran}
 \begin{lstlisting}
-4 9
+4 -1 12
 \end{lstlisting}
 \vfill
 \null
