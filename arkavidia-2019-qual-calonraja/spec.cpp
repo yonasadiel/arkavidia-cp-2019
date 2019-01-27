@@ -4,6 +4,10 @@ using namespace tcframe;
 using namespace std;
 
 #define MAXN 100000
+<<<<<<< HEAD
+=======
+#define MAXT 10
+>>>>>>> 3188206d949504492f8794639a35632955bc1aef
 
 class ProblemSpec : public BaseProblemSpec{
     protected:
@@ -35,7 +39,11 @@ class ProblemSpec : public BaseProblemSpec{
         }
 
         void MultipleTestCasesConstraint(){
+<<<<<<< HEAD
             CONS(1 <= T <= 100);
+=======
+            CONS(1 <= T <= MAXT);
+>>>>>>> 3188206d949504492f8794639a35632955bc1aef
         }
 
         void Constraints(){
@@ -108,18 +116,55 @@ class TestSpec : public BaseTestSpec <ProblemSpec>{
             b.clear();
             x.clear();
             y.clear();
+<<<<<<< HEAD
         }        
 
         void TestCases(){
             CASE(N = 3, a = {1, 1}, b={2, 3}, Q = 6, x = {1, 1, 1, 3, 2, 3}, y = {1, 2, 3, 2, 3, 3});
             CASE(N = 10, RandomTree(N, a, b), Q = 10, RandomQuery(Q, N, x, y));
             CASE(N = 1000, RandomTree(N, a, b), Q = 2000, RandomQuery(Q, N,  x, y));
+=======
+        }
+
+        void TestGroup1(){
+            CASE(N = 3, a = {1, 1}, b={2, 3}, Q = 6, x = {1, 1, 1, 3, 2, 3}, y = {1, 2, 3, 2, 3, 3});
+            CASE(N = 10, RandomTree(N, a, b), Q = 10, RandomQuery(Q, N, x, y));
+            CASE(N = 1000, RandomTree(N, a, b), Q = 2000, RandomQuery(Q, N,  x, y));
+            for (int i = 0; i < 7; i++){
+                CASE(N = rnd.nextInt(1, MAXN),
+                RandomTree(N, a, b), 
+                Q = rnd.nextInt(1, MAXN),
+                RandomQuery(Q, N, x, y));
+            }
+        }
+
+        void TestGroup2(){
+            for (int i = 0; i < 10; i++){
+                CASE(N = rnd.nextInt(1, MAXN),
+                RandomTree(N, a, b), 
+                Q = rnd.nextInt(1, MAXN),
+                RandomQuery(Q, N, x, y));
+            }
+        }
+
+        void TestGroup3(){
+            for (int i = 0; i < 10; i++){
+                CASE(N = rnd.nextInt(1, MAXN),
+                RandomTree(N, a, b), 
+                Q = rnd.nextInt(1, MAXN),
+                RandomQuery(Q, N, x, y));
+            }
+        }
+
+        void TestGroup4(){
+>>>>>>> 3188206d949504492f8794639a35632955bc1aef
             for (int i = 0; i < 10; i++){
                 CASE(N = MAXN-i, 
                 RandomTree(N, a, b), 
                 Q = MAXN-i,
                 RandomQuery(Q, N, x, y));
             }
+<<<<<<< HEAD
             for (int i = 0; i < 37; i++){
                 CASE(N = rnd.nextInt(1, MAXN),
                 RandomTree(N, a, b), 
@@ -127,6 +172,57 @@ class TestSpec : public BaseTestSpec <ProblemSpec>{
                 RandomQuery(Q, N, x, y));
             }
             for (int i = 0; i < 50; i++){
+=======
+        }
+
+        void TestGroup5(){
+            for (int i = 0; i < 10; i++){
+                CASE(N = rnd.nextInt(1, MAXN),
+                RandomTree(N, a, b), 
+                Q = rnd.nextInt(N, MAXN),
+                RandomQuery(Q, N, x, y));
+            }
+        }
+
+        void TestGroup6(){
+            for (int i = 0; i < 10; i++){
+                CASE(N = rnd.nextInt(1, MAXN),
+                RandomTree(N, a, b), 
+                Q = rnd.nextInt(N, MAXN),
+                RandomQuery(Q, N, x, y));
+            }
+        }
+
+        void TestGroup7(){
+            for (int i = 0; i < 10; i++){
+                CASE(N = rnd.nextInt(1, MAXN),
+                RandomTree(N, a, b), 
+                Q = rnd.nextInt(N, MAXN),
+                RandomQuery(Q, N, x, y));
+            }
+        }
+
+        void TestGroup8(){
+            for (int i = 0; i < 10; i++){
+                CASE(N = rnd.nextInt(1, MAXN),
+                RandomTree(N, a, b), 
+                Q = rnd.nextInt(N, MAXN),
+                RandomQuery(Q, N, x, y));
+            }
+        }
+
+        void TestGroup9(){
+            for (int i = 0; i < 10; i++){
+                CASE(N = rnd.nextInt(1, MAXN),
+                RandomTree(N, a, b), 
+                Q = rnd.nextInt(N, MAXN),
+                RandomQuery(Q, N, x, y));
+            }
+        }
+
+        void TestGroup10(){
+            for (int i = 0; i < 10; i++){
+>>>>>>> 3188206d949504492f8794639a35632955bc1aef
                 CASE(N = rnd.nextInt(1, MAXN),
                 RandomTree(N, a, b), 
                 Q = rnd.nextInt(N, MAXN),

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 // by : irfan sofyana
+=======
+// by : Irfan Sofyana
+>>>>>>> 3188206d949504492f8794639a35632955bc1aef
 #include <bits/stdc++.h>
 
 #define fi first
@@ -171,7 +175,12 @@ vector<LL> Solve(LL X, LL K){
         }
     }
     for (int i = 0; i < (int)kand.size(); i++){
+<<<<<<< HEAD
         vector<LL> res = {kand[i]};
+=======
+        vector<LL> res;
+        res.push_back(kand[i]);
+>>>>>>> 3188206d949504492f8794639a35632955bc1aef
         cari(i, res, pkand[i], PX);
     }
 
@@ -182,6 +191,7 @@ int main(){
     ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
     cin >> T;
     while (T--) {
+<<<<<<< HEAD
         cin >> X >> K;
         vector<LL> ans = Solve(X, K);
         if ((int)ans.size() == 0) ans.pb(K-X);
@@ -190,6 +200,20 @@ int main(){
         for (int i = 0; i < (int)ans.size(); i++){
             cout << ans[i];
             cout << (i == (int)ans.size()-1 ? '\n' : ' ');
+=======
+        int N;
+        cin >> N >> K;
+        while (N--) {
+            cin >> X;
+            vector<LL> ans = Solve(X, K);
+            if ((int)ans.size() == 0) ans.pb(X);
+            cout << (int)ans.size();
+            cout << " ";
+            for (int i = 0; i < (int)ans.size(); i++){
+                cout << ans[i];
+                cout << (i == (int)ans.size()-1 ? '\n' : ' ');
+            }
+>>>>>>> 3188206d949504492f8794639a35632955bc1aef
         }
     }
     return 0;

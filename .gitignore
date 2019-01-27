@@ -22,3 +22,6 @@
 # ignore testcases
 **/tc
 .vscode/*
+
+# Unignore build file
+!**build
