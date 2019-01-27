@@ -160,6 +160,7 @@ ll query(ll L, ll R) {
 void resetAll() {
 	ids.clear();
 	cmprs.clear();
+	num = 0;
 }
 
 int main(int argc, char* argv[]) {
@@ -171,7 +172,7 @@ int main(int argc, char* argv[]) {
 	}
 	int T;
 	sci(T);
-	int tc = 0;
+	// int tc = 0;
 	while (T--) {
 		resetAll();
 		ll N;
@@ -208,7 +209,7 @@ int main(int argc, char* argv[]) {
 		st.resize(num + num);
 		arr.resize(num);
 		build();
-		printf("Case #%d:\n", ++tc);
+		// printf("Case #%d:\n", ++tc);
 		for (int i = 0; i < queries.size(); ++i) {
 			if (queries[i].type == 'U') {
 				update(queries[i].idx, queries[i].val);
