@@ -16,14 +16,14 @@ int n,x,p;
 ll getWaktu(int awal, int akhir) {
 	ll jarak = abs(awal - akhir);
 	if(awal > akhir)
-		return x - jarak;
+		return n - jarak;
 	else
 		return jarak;
 }
 
 set<int>::iterator getNext(int pos) {
 	set<int>::iterator it2;
-	pos = (pos + p) % x;
+	pos = (pos + p) % n;
 	it2 = s.lower_bound(pos);
 	if(it2 == s.end()) {
 		it2--;
@@ -46,6 +46,7 @@ ll simulate(int awal) {
 		int nextPos = *(getNext(cur));
 
 		totWaktu += p;
+		cur = (cur + p) % n;
 		totWaktu += getWaktu(cur, nextPos);
 		cur = nextPos;
 	}
@@ -61,8 +62,9 @@ int main(){
 		scanf("%d %d %d",&n,&x,&p);
 		int a[maxn];
 
-		for(i=0;i<n;i++){
+		for(i=0;i<x;i++){
 			scanf("%d",&a[i]);
+			a[i]--;
 			s.insert(a[i]);
 		}
 
@@ -70,7 +72,7 @@ int main(){
 		ll waktuMin = (ll)1e18;
 		int idxMin;
 
-		for(i=0;i<n;i++){
+		for(i=0;i<x;i++){
 			s = temp; // reset
 			ll waktu = simulate(a[i]);
 			if(waktu < waktuMin){
@@ -79,7 +81,7 @@ int main(){
 			}
 		}
 
-		printf("%d %lld\n",idxMin, waktuMin);
+		printf("%d %lld\n",idxMin+1, waktuMin);
 	}
 	return 0;
 };
