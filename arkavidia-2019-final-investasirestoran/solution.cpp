@@ -26,7 +26,7 @@ set<int>::iterator getNext(int pos) {
 	pos = (pos + p) % n;
 	it2 = s.lower_bound(pos);
 	if(it2 == s.end()) {
-		it2--;
+		it2 = s.begin();
 	}
 	return it2;
 }
@@ -34,7 +34,7 @@ set<int>::iterator getNext(int pos) {
 ll simulate(int awal) {
 	int cur = awal;
 	ll totWaktu = 0;
-
+	
 	while(1){
 		s.erase(cur);
 
@@ -44,7 +44,7 @@ ll simulate(int awal) {
 		}
 
 		int nextPos = *(getNext(cur));
-
+		
 		totWaktu += p;
 		cur = (cur + p) % n;
 		totWaktu += getWaktu(cur, nextPos);
@@ -71,16 +71,15 @@ int main(){
 		temp = s;
 		ll waktuMin = (ll)1e18;
 		int idxMin;
-
-		for(i=0;i<x;i++){
+		for(it=temp.begin();it!=temp.end();it++){
 			s = temp; // reset
-			ll waktu = simulate(a[i]);
+			ll waktu = simulate(*it);
 			if(waktu < waktuMin){
 				waktuMin = waktu;
-				idxMin = a[i];
+				idxMin = *it;
 			}
 		}
-
+		
 		printf("%d %lld\n",idxMin+1, waktuMin);
 	}
 	return 0;
