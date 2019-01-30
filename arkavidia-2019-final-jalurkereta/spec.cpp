@@ -160,11 +160,26 @@ private:
     }
 
     //Create 2 binary tree, and join their leaf to create a planar graph
-    void createPlanarGraph(int leaf, vector<pair<int,int> > &v){
+    void createPlanarGraph(int N, vector<pair<int,pair<int,pair<int,int> > > > &arr, int leaf = 0){
+        leaf = N/3+2;
         vector<int> leaftemp1,leaftemp2;
+        vector<int> adjList[N+5],rvsAdjList[N+5];
+        vector<pair<int,int> > v;
         int maxNum = createBinaryTree(leaf, v, leaftemp1, 0, 0);
         maxNum = createBinaryTree(leaf, v, leaftemp2, maxNum+1, 1);
         connect(maxNum+1, leaftemp1, leaftemp2, v);
-        permuteNum(v);
+        permuteNum(maxNum+1, v);
+
+        for(int i = 0; i < v.size(); i++){
+            adjList[v[i].first].push_back(v[i].second);
+            rvsAdjList[v[i].second].push_back(v[i].first);
+        }
+        for(int i = 0; i < N; i++){
+            if(adjList[i].size() == 1){
+                arr.push_back({2,{rvsAdjList[i][0],{rvsAdjList[i][1],i}}});
+            } else if(adjList[i].size() == 2){
+                arr.push_back({1,{i,{adjList[i][0],adjList[i][1]}}});
+            }
+        }
     }
 };
