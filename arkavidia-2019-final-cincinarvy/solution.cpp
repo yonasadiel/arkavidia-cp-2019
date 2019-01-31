@@ -7,7 +7,7 @@ int t,d,x,y,vk,va;
 
 double calc(double a){
 	double at = (((double)d+y)/y)*sqrt(a*a+y*y)/va;
-	double kt = (a+x)/vk;
+	double kt = (((double)d+y)/y*a+x)/vk;
 	return kt-at;
 }
 
