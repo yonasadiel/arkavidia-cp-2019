@@ -160,7 +160,7 @@ private:
     }
 
     //Create 2 binary tree, and join their leaf to create a planar graph
-    void createPlanarGraph(int N, vector<pair<int,pair<int,pair<int,int> > > > &arr, int leaf = 0){
+    void createPlanarGraphWithBinaryTree(int N, vector<pair<int,pair<int,pair<int,int> > > > &arr, int leaf = 0){
         leaf = N/3+2;
         vector<int> leaftemp1,leaftemp2;
         vector<int> adjList[N+5],rvsAdjList[N+5];
@@ -181,5 +181,9 @@ private:
                 arr.push_back({1,{i,{adjList[i][0],adjList[i][1]}}});
             }
         }
+    }
+
+    void createPlanarGraphWithList(int N, vector<pair<int,pair<int,pair<int,int> > > > &arr){
+        
     }
 };
