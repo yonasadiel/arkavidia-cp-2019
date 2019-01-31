@@ -1,8 +1,8 @@
 #include <tcframe/spec.hpp>
 using namespace tcframe;
 
-#define MAXT 100
-#define MAXN 10000
+#define MAXT 10
+#define MAXN 100000
 #define MAXVAL 1000000000
 
 class ProblemSpec : public BaseProblemSpec {
@@ -39,7 +39,7 @@ protected:
     }
 
     void GradingConfig() {
-        TimeLimit(1);
+        TimeLimit(10);
         MemoryLimit(512);
     }
 
