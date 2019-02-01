@@ -1,4 +1,4 @@
-//by : irfan sofyana
+// by : Irfan Sofyana
 #include <bits/stdc++.h>
 
 typedef long long LL;
