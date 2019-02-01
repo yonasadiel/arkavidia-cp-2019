@@ -1,3 +1,5 @@
+// by : Tony
+
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -187,16 +189,6 @@ void solve(){
             else{
                 doZ(n, mv.second);
             }
-            // printf("print rubik\n");
-            // for(int i=0;i<6;++i){
-            //     printf("side %d\n", i);
-            //     for(int j=0;j<n;++j){
-            //         for(int k=0;k<n;++k){
-            //             printf("%d ", rubik[i*n*n + j*n + k]);
-            //         }
-            //         puts("");
-            //     }
-            // }
         }
         for(int i=0;i<n*n*6;++i){
             if(rubik[i] == i && num[i] == -1){
@@ -204,12 +196,7 @@ void solve(){
             }
         }
         cnt++;
-        // break;
     }while(*min_element(num, num+n*n*6) == -1);
-    // for(int i=0;i<n*n*6;++i){
-    //     printf("%d ", num[i]);
-    // }
-    // puts("");
     long long ans = 1;
     for(int i=0;i<n*n*6;++i){
         int sq = sqrt(num[i]);
