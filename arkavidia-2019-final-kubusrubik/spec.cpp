@@ -49,7 +49,7 @@ protected:
     }
 
     void GradingConfig() {
-        TimeLimit(2);
+        TimeLimit(5);
         MemoryLimit(512);
     }
 
@@ -358,6 +358,18 @@ protected:
             CASE(
                 n = rnd.nextInt(MINN, MAXN),
                 m = rnd.nextInt(1, 100),
+                generateChar(c, m),
+                generateIndex(p, n, m)
+            );
+        }
+    }
+
+    /* SLOW TEST */
+    void TestGroup24(){
+        for(int i=0;i<MAXT;++i){
+            CASE(
+                n = 20,
+                m = MAXM,
                 generateChar(c, m),
                 generateIndex(p, n, m)
             );
