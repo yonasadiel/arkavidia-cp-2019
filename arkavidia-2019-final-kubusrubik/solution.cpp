@@ -10,7 +10,7 @@ const long long mod = 1e9+7;
 int rubik[2405];
 int num[2405];
 int mat[405];
-int cntf[5001];
+int cntf[30];
 
 void rotateccw(int n, int x){
     memcpy(mat, rubik + x*n*n, 4*n*n);
@@ -217,6 +217,8 @@ void solve(){
     }
     for(int i=2;i<=5000;++i){
         if(cntf[i]){
+            if(ans * powmod(i, cntf[i]) < ans)
+                assert(false);
             ans *= powmod(i, cntf[i]);
         }
     }
