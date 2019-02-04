@@ -134,6 +134,7 @@ private:
         }
 
         for(int i = 0; i < temp.size(); i++){
+            int x,y,z,tipe;
             auto it = temp[i];
             tie(tipe,x,y,z) = it;
             arr.push_back(make_pair(tipe,make_pair(x,make_pair(y,z))));
