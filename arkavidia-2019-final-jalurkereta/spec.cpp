@@ -40,7 +40,6 @@ protected:
     }
 
 private:
-
     bool allElementBetween(vector<pair<int,pair<int,pair<int,int> > > > arr, int M, int a, int b){
         for(int i = 0; i < M; i++){
             if(arr[i].second.first < a or arr[i].second.first > b)return false;
@@ -102,88 +101,42 @@ protected:
     }
 
 private:
-    //Return maximum index in a tree, 0-based
-    int createBinaryTree(int leaf, vector<pair<int,int> > &v, vector<int> &leafV, int curIdx, bool isReverse){
-        if(leaf == 1){
-            leafV.push_back(curIdx);
-            return curIdx;
-        }
-        int x = rnd.nextInt(1,leaf-1);
-        int y = leaf-x;
-
-        if(!isReverse)v.push_back(make_pair(curIdx,curIdx+1));
-        else v.push_back(make_pair(curIdx+1,curIdx));
-        int lastIdx = createBinaryTree(x, v, leafV, curIdx+1, isReverse);
-        if(!isReverse)v.push_back(make_pair(curIdx,lastIdx+1));
-        else v.push_back(make_pair(lastIdx+1,curIdx));
-        lastIdx = createBinaryTree(y, v, leafV, lastIdx+1, isReverse);
-
-        return lastIdx;
-    }
-
-    void permuteNum(int maxNum, vector<pair<int,int> > &v){
-        map<int,bool> cek;
-        map<int,int> temp;
-        vector<int> pm;
-        int cur = 0;
-        for(int i = 0; i < v.size(); i++){
-            cek[v[i].first] = true;
-            cek[v[i].second] = true;
-        }
-        pm.resize(cek.size());
-        for(int i = 0; i < pm.size(); i++){
-            pm[i] = i;
-        }
-        rnd.shuffle(pm.begin(),pm.end());
-        for(auto it = cek.begin(); it != cek.end(); ++it){
-            temp[it->first] = pm[cur];
-            cur++;
-        }
-        for(int i = 0; i < v.size(); i++){
-            v[i].first = temp[v[i].first];
-            v[i].second = temp[v[i].second];
-        }
-    }
-
-    //Connect 2 binary tree given their leaf
-    void connect(int N, vector<int> a, vector<int> b, vector<pair<int,int> > &v){
-        assert(a.size() == b.size());
-        map<int,int> val;
-        for(int i = 0; i < N; i++)val[i] = i;
-        for(int i = 0; i < b.size(); i++){
-            val[b[i]] = a[i];
-        }
-        for(int i = 0; i < v.size(); i++){
-            v[i].first = val[v[i].first];
-            v[i].second = val[v[i].second];
-        }
-    }
-
-    //Create 2 binary tree, and join their leaf to create a planar graph
-    void createPlanarGraphWithBinaryTree(int N, vector<pair<int,pair<int,pair<int,int> > > > &arr, int leaf = 0){
-        leaf = N/3+2;
-        vector<int> leaftemp1,leaftemp2;
-        vector<int> adjList[N+5],rvsAdjList[N+5];
-        vector<pair<int,int> > v;
-        int maxNum = createBinaryTree(leaf, v, leaftemp1, 0, 0);
-        maxNum = createBinaryTree(leaf, v, leaftemp2, maxNum+1, 1);
-        connect(maxNum+1, leaftemp1, leaftemp2, v);
-        permuteNum(maxNum+1, v);
-
-        for(int i = 0; i < v.size(); i++){
-            adjList[v[i].first].push_back(v[i].second);
-            rvsAdjList[v[i].second].push_back(v[i].first);
-        }
-        for(int i = 0; i < N; i++){
-            if(adjList[i].size() == 1){
-                arr.push_back({2,{rvsAdjList[i][0],{rvsAdjList[i][1],i}}});
-            } else if(adjList[i].size() == 2){
-                arr.push_back({1,{i,{adjList[i][0],adjList[i][1]}}});
+    void createPlanarGraphWithList(int N, vector<pair<int,pair<int,pair<int,int> > > > &arr){
+        vector<int> v;
+        int maxNum;
+        maxNum = 0;
+        v.push_back(0);
+        vector<tuple<int,int,int,int> > temp;
+        while(maxNum < N){
+            for(int i = 0; i < v.size() && maxNum < N; i++){
+                if(rnd.nextInt(0,4) == 0){
+                    if(v.size() > 1 && i != v.size()-1 && (maxNum == N-1 || rnd.nextInt(0,1) == 0)){
+                        int x = v[i];
+                        int y = v[i+1];
+                        v.erase(v.begin()+i);
+                        v.erase(v.begin()+i);
+                        maxNum++;
+                        v.insert(v.begin()+i,maxNum);
+                        auto it = make_tuple(1,maxNum,x,y);
+                        temp.push_back(it);
+                    } else {
+                        int x = v[i];
+                        v.erase(v.begin()+i);
+                        maxNum++;
+                        v.insert(v.begin()+i,maxNum);
+                        maxNum++;
+                        v.insert(v.begin()+i,maxNum);
+                        auto it = make_tuple(2,maxNum-1,maxNum,x);
+                        temp.push_back(it);
+                    }
+                }
             }
         }
-    }
 
-    void createPlanarGraphWithList(int N, vector<pair<int,pair<int,pair<int,int> > > > &arr){
-        
+        for(int i = 0; i < temp.size(); i++){
+            auto it = temp[i];
+            tie(tipe,x,y,z) = it;
+            arr.push_back(make_pair(tipe,make_pair(x,make_pair(y,z))));
+        }
     }
 };
