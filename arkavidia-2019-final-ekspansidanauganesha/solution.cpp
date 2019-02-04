@@ -48,9 +48,9 @@ long long findNthTerm(long long n)
 }
 
 void solve(){
-	int n;
-	scanf("%d", &n);
-	printf("%d\n", findNthTerm(n)-1);
+	long long n;
+	scanf("%lld", &n);
+	printf("%lld\n", findNthTerm(n+2)-1);
 }
 
 int main(){
