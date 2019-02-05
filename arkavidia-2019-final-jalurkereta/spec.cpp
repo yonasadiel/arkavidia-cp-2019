@@ -3,15 +3,19 @@
 using namespace std;
 using namespace tcframe;
 
+#define EPS 0.0000001
 #define MAXN 10000
 #define MAXT 10
 
 class ProblemSpec : public BaseProblemSpec {
 protected:
     int T, N, M, result;
-    vector<pair<int,pair<int,pair<int,int> > > > arr;
+    vector<char> tipe;
+    vector<int> a,b,c;
 
     void InputFormat() {
+        LINE(N, M);
+        LINES(tipe,a,b,c) % SIZE(N);
     }
 
     void OutputFormat() {
@@ -35,45 +39,25 @@ protected:
     void Constraints() {
         CONS(1 <= N <= MAXN);
         CONS(1 <= M <= MAXN);
-        CONS(allElementBetween(arr,M,1,N));
-        CONS(isPlanar(arr,N));
+        CONS(allElementBetween(a,N,1,M));
+        CONS(allElementBetween(b,N,1,M));
+        CONS(allElementBetween(c,N,1,M));
+        CONS(allElementBetween(tipe,N,'A','B'));
     }
 
 private:
-    bool allElementBetween(vector<pair<int,pair<int,pair<int,int> > > > arr, int M, int a, int b){
-        for(int i = 0; i < M; i++){
-            if(arr[i].second.first < a or arr[i].second.first > b)return false;
-            if(arr[i].second.second.first < a or arr[i].second.second.first > b)return false;
-            if(arr[i].second.second.second < a or arr[i].second.second.second > b)return false;
-            if(arr[i].first < 1 or arr[i].first > 2)return false;
+    bool allElementBetween(vector<int> arr, int N, int a, int b){
+        for(int i = 0; i < N; i++){
+            if(arr[i] < a or arr[i] > b)return false;
         }
         return true;
     }
 
-    bool isPlanar(vector<pair<int,pair<int,pair<int,int> > > > arr, int N){
-        vector<vector<int>  > v;
-        v.resize(N);
-        generateAdjList(v,arr);
-        return true;
-        //Todo
-    }
-
-    void generateAdjList(vector<vector<int> > &v, vector<pair<int,pair<int,pair<int,int> > > > arr){
-        for(int i = 0; i < arr.size(); i++){
-            int x = arr[i].second.first;
-            int y = arr[i].second.second.first;;
-            int z = arr[i].second.second.second;
-            x--;
-            y--;
-            z--;
-            if(arr[i].first == 1){
-                v[x].push_back(y);
-                v[x].push_back(z);
-            } else {
-                v[y].push_back(z);
-                v[x].push_back(z);
-            }
+    bool allElementBetween(vector<char> arr, int N, char a, char b){
+        for(int i = 0; i < N; i++){
+            if(arr[i] < a or arr[i] > b)return false;
         }
+        return true;
     }
 };
 
@@ -93,31 +77,54 @@ protected:
     }
 
     void BeforeTestCase() {
-        arr.clear();
+        a.clear();
+        tipe.clear();
+        b.clear();
+        c.clear();
     }
 
-    void TestCases() {
-        //Todo
+    void TestGroup1() {
+        for(int i = 0; i < MAXT; i++){
+            CASE(N = rnd.nextInt(1,MAXN), M = rnd.nextInt(1,N-1), createPlanarGraphWithList(N, M, tipe,a,b,c));
+        }
+    }
+
+    void TestGroup2() {
+        for(int i = 0; i < MAXT; i++){
+            CASE(N = rnd.nextInt(1,MAXN), M = rnd.nextInt(1,N-1), createPlanarGraphWithList(N, M, tipe,a,b,c));
+        }
+    }
+
+    void TestGroup3() {
+        for(int i = 0; i < MAXT; i++){
+            CASE(N = rnd.nextInt(1,MAXN), M = rnd.nextInt(1,N-1), createPlanarGraphWithList(N, M, tipe,a,b,c));
+        }
+    }
+
+    void TestGroup4() {
+        for(int i = 0; i < MAXT; i++){
+            CASE(N = rnd.nextInt(1,MAXN), M = rnd.nextInt(1,N-1), createPlanarGraphWithList(N, M, tipe,a,b,c));
+        }
     }
 
 private:
-    void createPlanarGraphWithList(int N, vector<pair<int,pair<int,pair<int,int> > > > &arr){
+    void createPlanarGraphWithList(int N, int M, vector<char> &t, vector<int> &a, vector<int> &b, vector<int> &c){
         vector<int> v;
-        int maxNum;
-        maxNum = 0;
+        int maxNum, totalEdge;
+        maxNum = totalEdge = 0;
         v.push_back(0);
         vector<tuple<int,int,int,int> > temp;
-        while(maxNum < N){
+        while(totalEdge < M){
             for(int i = 0; i < v.size() && maxNum < N; i++){
                 if(rnd.nextInt(0,4) == 0){
-                    if(v.size() > 1 && i != v.size()-1 && (maxNum == N-1 || rnd.nextInt(0,1) == 0)){
+                    if(v.size() > 1 && i != v.size()-1 && (maxNum == N-1 || rnd.nextInt(0,1) == 0) && fabs(log(M-totalEdge)-(N-maxNum+1)) <= EPS){
                         int x = v[i];
                         int y = v[i+1];
                         v.erase(v.begin()+i);
                         v.erase(v.begin()+i);
                         maxNum++;
                         v.insert(v.begin()+i,maxNum);
-                        auto it = make_tuple(1,maxNum,x,y);
+                        auto it = make_tuple('A',maxNum,x,y);
                         temp.push_back(it);
                     } else {
                         int x = v[i];
@@ -126,7 +133,7 @@ private:
                         v.insert(v.begin()+i,maxNum);
                         maxNum++;
                         v.insert(v.begin()+i,maxNum);
-                        auto it = make_tuple(2,maxNum-1,maxNum,x);
+                        auto it = make_tuple('B',maxNum-1,maxNum,x);
                         temp.push_back(it);
                     }
                 }
@@ -137,7 +144,10 @@ private:
             int x,y,z,tipe;
             auto it = temp[i];
             tie(tipe,x,y,z) = it;
-            arr.push_back(make_pair(tipe,make_pair(x,make_pair(y,z))));
+            t.push_back(tipe);
+            a.push_back(x);
+            b.push_back(y);
+            c.push_back(z);
         }
     }
 };
