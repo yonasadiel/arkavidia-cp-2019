@@ -36,7 +36,7 @@ class ProblemSpec : public BaseProblemSpec{
         }
 
         void MultipleTestCasesConstraint(){
-            CONS(1 <= T <= 100);
+            CONS(1 <= T <= MAXT);
         }
 
         void Constraints(){
