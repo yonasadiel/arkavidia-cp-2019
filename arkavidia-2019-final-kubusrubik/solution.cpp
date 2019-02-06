@@ -157,12 +157,13 @@ void solve(){
     memset(cntf, 0, sizeof cntf);
     memset(num, -1, sizeof num);
     int n, m;
-    scanf("%d %d\n", &n, &m);
+    scanf("%d %d", &n, &m);
     vector<pair<char, int> >v;
     for(int i=0;i<m;++i){
         char c;
         int a;
-        scanf("%c %d\n", &c, &a);
+        getchar();
+        scanf("%c %d", &c, &a);
         v.push_back({c, --a});
     }
     for(int i=0;i<n*n*6;++i){
@@ -215,7 +216,7 @@ void solve(){
             cntf[tmp] = max(cntf[tmp], 1);
         }
     }
-    for(int i=2;i<=5000;++i){
+    for(int i=2;i<30;++i){
         if(cntf[i]){
             if(ans * powmod(i, cntf[i]) < ans)
                 assert(false);
@@ -227,7 +228,7 @@ void solve(){
 
 int main(){
     int tc;
-    scanf("%d\n", &tc);
+    scanf("%d", &tc);
     while(tc--){
         solve();
     }
