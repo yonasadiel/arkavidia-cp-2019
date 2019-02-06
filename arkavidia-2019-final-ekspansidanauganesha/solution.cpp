@@ -14,49 +14,55 @@ void multiply(long long a[mat_sz][mat_sz], long long b[mat_sz][mat_sz])
         {
             mul[i][j] = 0;
             for (int k = 0; k < mat_sz; k++)
-                mul[i][j] += a[i][k]*b[k][j];
-                mul[i][j] %= INF;
+                mul[i][j] += a[i][k] * b[k][j];
+            mul[i][j] %= INF;
         }
     }
 
-    for (int i=0; i<mat_sz; i++)
-        for (int j=0; j<mat_sz; j++)
+    for (int i = 0; i < mat_sz; i++)
+        for (int j = 0; j < mat_sz; j++)
             a[i][j] = mul[i][j];
 }
 
-long long power(long long F[mat_sz][mat_sz], int n)
+long long power(long long F[mat_sz][mat_sz], long long n)
 {
-    long long M[mat_sz][mat_sz] = {{1,1},{1,0}};
+    long long M[mat_sz][mat_sz] = {{1, 1}, {1, 0}};
 
-    if (n==1) return F[1][0];
-    if(n==0)return 0;
+    if (n == 1)
+        return F[1][0];
+    if (n == 0)
+        return 0;
 
-    power(F, n/2);
+    power(F, n / 2);
 
     multiply(F, F);
 
-    if (n%2 != 0) multiply(F, M);
+    if (n % 2 != 0)
+        multiply(F, M);
 
-    return F[1][0] ;
+    return F[1][0];
 }
 
 long long findNthTerm(long long n)
 {
-    long long F[mat_sz][mat_sz] = {{1,1},{1,0}};
+    long long F[mat_sz][mat_sz] = {{1, 1}, {1, 0}};
 
     return power(F, n);
 }
 
-void solve(){
-	long long n;
-	scanf("%lld", &n);
-	printf("%lld\n", findNthTerm(n+2)-1);
+void solve()
+{
+    long long n;
+    scanf("%lld", &n);
+    printf("%lld\n", findNthTerm(n + 2) - 1);
 }
 
-int main(){
-	int t;
-	scanf("%d", &t);
-	while(t--){
-		solve();
-	}
+int main()
+{
+    int t;
+    scanf("%d", &t);
+    while (t--)
+    {
+        solve();
+    }
 }
