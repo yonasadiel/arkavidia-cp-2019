@@ -338,8 +338,9 @@ void solve()
         {
             for (int j = 0; j < n; j++)
             {
-                ans = (ans * invmod(__gcd(ans, path_long[f][i][j]))) % MOD;
-                ans = (ans * path_long[f][i][j]) % MOD;
+                ans = (ans * path_long[f][i][j]) / __gcd(ans, path_long[f][i][j]);
+                // ans = (ans * invmod(__gcd(ans, path_long[f][i][j]))) % MOD;
+                // ans = (ans * path_long[f][i][j]) % MOD;
             }
         }
     }
