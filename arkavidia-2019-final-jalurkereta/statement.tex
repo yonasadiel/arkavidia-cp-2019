@@ -15,7 +15,7 @@
 \setlength{\parskip}{1em}
 \renewcommand{\headrulewidth}{0pt}
 \lhead{Competitive Programming - Arkavidia V}
-\fancyfoot[CE,CO]{\thepage}
+\fancyfoot[CE,CO]{J - \thepage}
 \lstset{
     basicstyle=\ttfamily\small,
     columns=fixed,
@@ -58,14 +58,14 @@ Peta jalur kereta ini sangat rumit, sehingga peta jalur kereta ini hanya boleh d
     \includegraphics[width=200px]{sample-1}
 \end{center}
 
-Di samping ini merupakan contoh peta jalur kereta yang terdiri dari 8 jalur kereta (kiri adalah kota A dan kanan adalah kota B).
+Di samping ini merupakan contoh peta jalur kereta yang terdiri dari 9 jalur kereta (kiri adalah kota A dan kanan adalah kota B).
 Hanya terdapat 2 jenis persimpangan, yakni:
 \begin{enumerate}[A.]
     \setlength{\itemsep}{0pt}
     \item Sebuah jalur terbagi menjadi dua jalur berbeda
     \item Dua jalur berbeda bergabung menjadi satu jalur
 \end{enumerate}
-Sebagai contoh, persimpangan 1, 2, 3 merupakan persimpangan jenis A dan persimpangan 3, 5, 7 merupakan persimpangan jenis B.
+Sebagai contoh, persimpangan di ujung akhir jalur 1 merupakan persimpangan jenis A dan persimpangan di ujung awal jalur 8 merupakan persimpangan jenis B.
 Selain itu, juga sudah dipastikan tidak ada dua jalur yang saling tumpang tindih.
 \end{multicols}
 
@@ -74,7 +74,7 @@ Kini ia bertanya, berapa maksimum kereta yang bisa ditempatkan sehingga penempat
 
 \subsection*{Format Masukan}
 Baris pertama terdiri dari satu bilangan bulat positif $T$ ($1 \leq T \leq 10$), menyatakan banyaknya kasus uji.
-Tiap kasus uji diawali dengan bilangan $N$ dan $M$ ($1 \leq N, M \leq 10.000$) menyatakan banyaknya persimpangan dan banyaknya jalur.
+Setiap kasus uji diawali dengan bilangan $N$ dan $M$ ($1 \leq N, M \leq 10.000$) menyatakan banyaknya persimpangan dan banyaknya jalur.
 $N$ baris berikutnya terdiri dari 4 bilangan dengan format:
 \begin{itemize}
     \setlength{\itemsep}{0pt}
@@ -83,7 +83,7 @@ $N$ baris berikutnya terdiri dari 4 bilangan dengan format:
 \end{itemize}
 
 \subsection*{Format Keluaran}
-Tuliskan $T$ baris, masing-masing berisikan banyaknya kereta maksimum yang dapat ditempatkan sehingga penempatan tiap dua pasang kereta dianggap bagus oleh Arvy.
+Untuk setiap kasus uji, tuliskan dalam satu baris, banyaknya kereta maksimum yang dapat ditempatkan sehingga penempatan tiap dua pasang kereta dianggap bagus oleh Arvy.
 
 \pagebreak
 
@@ -107,6 +107,6 @@ B 5 7 8
 \end{multicols}
 
 \subsection*{Penjelasan}
-Pada kasus uji pertama, peta jalur kereta dapat digambarkan seperti peta yang ada di deskripsi soal. Penempatan yang maksimum salah satunya dengan menempatkan kereta pada nomor $2, 3, 7, 9$.
+Pada kasus uji pertama, peta jalur kereta dapat digambarkan seperti peta yang ada di deskripsi soal. Penempatan yang maksimum salah satunya dengan menempatkan kereta pada nomor $2$, $4$, $5$, $7$, dan $9$.
 
 \end{document}

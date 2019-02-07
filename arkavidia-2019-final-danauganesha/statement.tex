@@ -14,7 +14,7 @@
 \setlength{\parskip}{1em}
 \renewcommand{\headrulewidth}{0pt}
 \lhead{Competitive Programming - Arkavidia V}
-\fancyfoot[CE,CO]{\thepage}
+\fancyfoot[CE,CO]{D - \thepage}
 \lstset{
     basicstyle=\ttfamily\small,
     columns=fixed,
@@ -61,13 +61,13 @@ Jika ia sedang berada di batu ke $x$, ia hanya lompat ke batu $x+1, x+3, x+5$, d
 Katak hanya akan melompat menjauhi daratan, sehingga jika ia lompat dari batu $X$ ke $Y$, pastilah $X < Y$.
 
 Kini, Anda diminta menghitung berapa banyak rute katak yang mungkin.
-Dua rute dianggap berbeda jika satu batu diinjak di salah satu rute, namun tidak di rute yang lain.
+Dua rute dianggap berbeda apabila terdapat minimal satu batu yang diinjak di salah satu rute, namun tidak diinjak di rute yang lain.
 Katak boleh berhenti di mana saja dari batu ke-$1$ hingga $N$, \textbf{namun ia hanya boleh melompat tepat $K$ kali}.
 
 \subsection*{Format Masukan}
 
 Baris pertama tediri dari sebuah bilangan $T$ ($1 \leq T \leq 100$), menyatakan banyak kasus uji.
-Tiap kasus uji terdiri dari satu baris berisi bilangan bulat $N$ dan $K$ ($1 \leq K \leq N \leq 100.000$) menyatakn banyaknya batu dan maksimum banyaknya lompatan.
+Setiap kasus uji terdiri dari satu baris berisi bilangan bulat $N$ dan $K$ ($1 \leq K \leq N \leq 100.000$) menyatakn banyaknya batu dan maksimum banyaknya lompatan.
 
 \subsection*{Format Keluaran}
 
@@ -100,6 +100,12 @@ Pada kasus uji kedua, contoh rute katak antara lain \lstinline{[1 2]}, \lstinlin
 
 Pada kasus uji ketiga, contoh rute katak antara lain \lstinline{[1 2 3]}, \lstinline{[1 2 5]}, \lstinline{[1 4 5]}, dan \lstinline{[3 4 5]}.
 
-\pagebreak
+
+\newpage
+\vspace*{\fill}
+\begin{center}
+    \textit{Halaman ini sengaja dibiarkan kosong.}
+\end{center}
+\vspace*{\fill}
 
 \end{document}

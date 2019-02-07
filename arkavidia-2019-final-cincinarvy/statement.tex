@@ -14,7 +14,7 @@
 \setlength{\parskip}{1em}
 \renewcommand{\headrulewidth}{0pt}
 \lhead{Competitive Programming - Arkavidia V}
-\fancyfoot[CE,CO]{\thepage}
+\fancyfoot[CE,CO]{C - \thepage}
 \lstset{
     basicstyle=\ttfamily\small,
     columns=fixed,
@@ -49,13 +49,15 @@
 
 \subsection*{Deskripsi}
 
-Arvy yang sudah beranjak dewasa pergi kesebuah toko perhiasan. Disana Arvy membeli sebuah cincin untuk hadiah kekasih barunya.
-Namun Arvy yang kurang beruntung pada hari itu.
-Sesaat Arvy keluar dari toko, cincin arvy dirampas oleh seorang penjahat.
+Arvy yang sudah beranjak dewasa pergi ke sebuah toko perhiasan.
+Di sana Arvy membeli sebuah cincin untuk hadiah kekasih barunya.
+Namun Arvy kurang beruntung pada hari itu.
+Sesaat setelah Arvy keluar dari toko, cincin arvy dirampas oleh seorang penjahat.
 Kemudian penjahat tersebut berlari melewati rel kereta yang lebarnya $d$ meter.
 
-Arvy ingin melewati rel kereta tersebut, namun tepat sebuah kereta akan melintas dengan kelajuan $v_k$ meter per sekon.
-Saat ini Arvy sedang berada $y$ meter dari rel dan dapat berlari dengan kecepatan $v_a$ meter per sekon.
+Arvy ingin melewati rel kereta tersebut, namun di saat yang sama, Arvy melihat sebuah kereta akan melintas.
+Kereta tersebut melaju sejauh $v_k$ meter per detik.
+Saat ini Arvy sedang berada $y$ meter dari rel dan dapat berlari dengan kecepatan $v_a$ meter per detik.
 Kepala kereta berjarak $\sqrt{x^2+y^2}$ meter dari Arvy.
 Posisi Arvy, kereta, dan rel dapat digambarkan seperti berikut:
 
@@ -63,15 +65,16 @@ Posisi Arvy, kereta, dan rel dapat digambarkan seperti berikut:
     \includegraphics[width=200px]{skema}
 \end{center}
 
-Arvy dapat berlari lurus, bergerak parabola, atau berputar-putar, namun tidak melebih kecepatan $v_a$ meter per sekon.
-Apakah Arvy dapat mendahului kereta untuk melalui rel kereta tersebut dan mendapatkan kembali cincin yang ingin Arvy hadiahkan untuk kekasihnya?
+Kereta tersebut punya banyak gerbong, jadi kalau Arvy menunggu kereta selesai lewat, pencuri pasti berhasil kabur.
+Arvy dapat berlari lurus, bergerak parabola, atau berputar-putar, namun tidak melebihi kelajuan $v_a$ meter per detik.
+Apakah Arvy dapat menyebrangi rel sebelum kereta dan mengejar si pencuri cincin?
 
 \subsection*{Format Masukan}
 Baris pertama terdiri dari satu bilangan bulat positif $T$ ($1 \leq T \leq 1.000$), menyatakan banyaknya kasus uji.
-Tiap kasus uji terdiri dari bilangan $d, x, y, v_k, v_a$ ($1 \leq d, x, y, v_k, v_a \leq 1.000.000.000$) menyatakan lebar rel kereta, jarak horizontal Arvy dengan kereta, jarak vertikal Arvy dengan kereta, kecepatan kereta, dan kecepatan Arvy.
+Setiap kasus uji terdiri dari bilangan $d, x, y, v_k, v_a$ ($1 \leq d, x, y, v_k, v_a \leq 1.000.000.000$) menyatakan lebar rel kereta, jarak horizontal Arvy dengan kereta, jarak vertikal Arvy dengan kereta, kecepatan kereta, dan kecepatan Arvy.
 
 \subsection*{Format Keluaran}
-Untuk tiap kasus uji, keluarkan \lstinline{YA} jika Arvy dapat menyebrangi rel, atau \lstinline{TIDAK} jika tidak.
+Untuk setiap kasus uji, keluarkan \lstinline{YA} jika Arvy dapat menyebrangi rel, atau \lstinline{TIDAK} jika tidak.
 
 \begin{multicols}{2}
 \subsection*{Contoh Masukan}
@@ -91,5 +94,12 @@ YA
 \vfill
 \null
 \end{multicols}
+
+\newpage
+\vspace*{\fill}
+\begin{center}
+    \textit{Halaman ini sengaja dibiarkan kosong.}
+\end{center}
+\vspace*{\fill}
 
 \end{document}

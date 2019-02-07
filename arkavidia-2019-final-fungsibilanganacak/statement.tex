@@ -14,7 +14,7 @@
 \setlength{\parskip}{1em}
 \renewcommand{\headrulewidth}{0pt}
 \lhead{Competitive Programming - Arkavidia V}
-\fancyfoot[CE,CO]{\thepage}
+\fancyfoot[CE,CO]{F - \thepage}
 \lstset{
     basicstyle=\ttfamily\small,
     columns=fixed,
@@ -57,12 +57,13 @@ Tentukanlah bilangan acak yang akan dibangkitkan!
 
 \subsection*{Format Masukan}
 Baris pertama terdiri dari satu bilangan bulat positif $T$ ($1 \leq T \leq 10$), menyatakan banyaknya kasus uji.
-Tiap kasus uji dimulai dengan sebuah baris berisikan nilai $N$, $A$, dan $B$ ($1 \leq N, A, B \leq 10^{9}$) sesuai deskripsi di atas.
-Baris berikutnya terdiri dari sebuah bilangan $Q$ ($1 \leq Q \leq 3 \times 10^{4}$), menyatakan banyaknya bilangan acak.
+Setiap kasus uji terdiri dari dua baris.
+Baris pertama berisikan nilai $N$, $A$, dan $B$ ($1 \leq N, A, B \leq 10^{9}$) sesuai deskripsi di atas.
+Baris kedua terdiri dari sebuah bilangan $Q$ ($1 \leq Q \leq 3 \times 10^{4}$), menyatakan banyaknya bilangan acak.
 $Q$ baris berikutnya terdiri dari dua bilangan, yakni $l$ dan $r$ ($1 \leq l \leq r \leq N$), sesuai deskripsi di atas.
 
 \subsection*{Format Keluaran}
-Untuk tiap kasus uji, keluarkan $Q$ baris berisi bilangan acak yang diminta. Karena bilangan bisa sangat besar, tuliskan nilainya dimodulo $10^{9}+7$
+Untuk setiap kasus uji, keluarkan $Q$ baris berisi bilangan acak yang diminta. Karena bilangan bisa sangat besar, tuliskan nilainya dimodulo $10^{9}+7$.
 
 \begin{multicols}{2}
 \subsection*{Contoh Masukan}
@@ -111,5 +112,11 @@ Pada kasus uji kedua, bilangan $20$ digit yang terbentuk adalah \lstinline{10000
     \item Digit kelima hingga kesembilan adalah \lstinline{000001}, sehingga nilai bilangan acaknya $1$.
     \item Digit pertama hingga kesepuluh adalah \lstinline{1000000011}, sehingga nilai bilangan acaknya $4$ (setelah dimodulo).
 \end{itemize}
+\newpage
+\vspace*{\fill}
+\begin{center}
+    \textit{Halaman ini sengaja dibiarkan kosong.}
+\end{center}
+\vspace*{\fill}
 
 \end{document}

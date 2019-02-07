@@ -14,7 +14,7 @@
 \setlength{\parskip}{1em}
 \renewcommand{\headrulewidth}{0pt}
 \lhead{Competitive Programming - Arkavidia V}
-\fancyfoot[CE,CO]{\thepage}
+\fancyfoot[CE,CO]{I - \thepage}
 \lstset{
     basicstyle=\ttfamily\small,
     columns=fixed,
@@ -61,12 +61,12 @@ Ia ingin menginvestasikan sisa gajinya untuk membangun restoran canggih yang men
 \textit{Conveyor belt} adalah lintasan siklik terdiri dari $N$ bagian yang dinomori dari $1$ hingga $N$.
 Tiap bagian berisi maksimal 1 makanan.
 \textit{Conveyor belt} akan terus bergeser sejauh 1 bagian tiap detiknya.
-Dengan kata lain, apabila pelanggan ada di depan bagian nomor $X$, maka 1 detik kemudian ia ada di depan $X + 1$ (atau $1$ jika $X = N$).
+Dengan kata lain, apabila pelanggan ada di depan bagian nomor $X$, maka 1 detik kemudian ia ada di depan bagian nomor $X + 1$ (atau $1$ jika $X = N$).
 Pelanggan dapat memesan beberapa makanan pada restoran tersebut dan makanan akan diletakkan pada bagian-bagian pada \textit{conveyor belt}.
 
 Tiap makanan dimakan dengan durasi yang sama, yaitu $P$ detik.
 Pelanggan pada awalnya duduk di depan suatu bagian \textit{conveyor belt} dan menunggu hingga di depannya terdapat makanan.
-Jika ia sudah berhadapan dengan sebuah makanan, ia akan segera memakannya.
+Jika ia sudah berhadapan dengan sebuah makanan, ia akan segera memakannya tanpa jeda waktu.
 Setelah makanan dihabiskan, pelanggan akan kembali menunggu hingga makanan selanjutnya ada di depannya untuk dihabiskan.
 Pelanggan tidak akan berpindah tempat hingga semua makanannya habis.
 
@@ -75,16 +75,17 @@ Bantulah Arvy memberi saran pada para pelanggan untuk menentukan posisi duduk aw
 \subsection*{Format Masukan}
 
 Baris pertama terdiri dari satu bilangan bulat positif $T$ ($1 \leq T \leq 10$), menyatakan banyaknya kasus uji.
+Setiap kasus uji terdiri dari dua baris.
 
-Tiap kasus uji diawali dengan 3 buah bilangan, yaitu $N$ ($1 \leq N \leq 200$) yang menyatakan panjang \textit{conveyor belt}, $M$ ($1 \leq M \leq N$) yang menyatakan banyaknya makanan yang dipesan, dan $P$ ($1 \leq P \leq 1.000.000.000$) yang menyatakan waktu yang dibutuhkan untuk memakan 1 makanan.
+Baris pertama terdiri dari 3 buah bilangan, yaitu $N$ ($1 \leq N \leq 200$) yang menyatakan panjang \textit{conveyor belt}, $M$ ($1 \leq M \leq N$) yang menyatakan banyaknya makanan yang dipesan, dan $P$ ($1 \leq P \leq 1.000.000.000$) yang menyatakan waktu yang dibutuhkan untuk memakan 1 makanan.
 
 Baris berikutnya terdiri $M$ bilangan berbeda, dengan bilangan ke-$i$ adalah $A_i$ ($1 \leq A_i \leq N$), menyatakan posisi makanan ke-$i$ pada \textit{conveyor belt}.
 
 \subsection*{Format Keluaran}
 
-Untuk tiap kasus uji, tuliskan 1 baris yang terdiri dari 2 buah bilangan.
+Untuk setiap kasus uji, tuliskan 1 baris yang terdiri dari 2 buah bilangan.
 Bilangan pertama merupakan posisi awal pelanggan harus ditempatkan.
-Bilangan kedua menyatakan waktu minimal pelanggan berada pada restoran tersebut.
+Bilangan kedua menyatakan waktu minimal yang dibutuhkan untuk pelanggan menghabiskan semua $M$ makanan.
 Jika ada beberapa posisi awal yang mungkin, keluarkan posisi awal di bagian dengan nomor paling kecil.
 \\
 

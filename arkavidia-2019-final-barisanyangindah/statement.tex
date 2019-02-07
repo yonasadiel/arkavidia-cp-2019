@@ -13,7 +13,7 @@
 \setlength{\parskip}{1em}
 \renewcommand{\headrulewidth}{0pt}
 \lhead{Competitive Programming - Arkavidia V}
-\fancyfoot[CE,CO]{\thepage}
+\fancyfoot[CE,CO]{B - \thepage}
 \lstset{
     basicstyle=\ttfamily\small,
     columns=fixed,
@@ -46,14 +46,16 @@
 \end{center}
 
 \subsection*{Deskripsi}
-Sebuah barisan dapat dikatakan indah jika barisan tersebut memiliki $M$ elemen, dan masing-masing elemennya bernilai lebih besar dari nilai ($E_1$ \& $E_2$ \& $\dots$ \& $E_M$), di mana $E_i$ menyatakan elemen ke-$i$ dari barisan tersebut dan \& adalah operator bit AND.
+Sebuah barisan yang terdiri dari $M$ elemen dikatakan indah apabila masing-masing elemennya bernilai lebih besar dari ($E_1$ \& $E_2$ \& $\dots$ \& $E_M$).
+$E_i$ menyatakan elemen ke-$i$ dari barisan tersebut, sedangkan \& adalah operator bitwise AND.
 
 Diberikan sebuah barisan $A$ terdiri dari $N$ buah bilangan bulat, tentukan banyaknya $(i, j)$ sehingga $i < j$ dan barisan $A_i, A_{i+1}, \dots A_j$ merupakan barisan indah.
 
 \subsection*{Format Masukan}
 Baris pertama terdiri dari satu bilangan bulat positif $T$ ($1 \leq T \leq 10$), menyatakan banyaknya kasus uji.
-Tiap kasus uji diawali dengan sebuah baris berisikan bilangan bulat $N$ ($1 \leq N \leq 100.000$).
-Baris berikutnya terdiri dari $N$ bilangan, menyatakan nilai dari $A_1, A_2, \dots A_N$ ($0 \leq A_i \leq 1.000.000.000$).
+Setiap kasus uji terdiri dari 2 baris.
+Baris pertama setiap kasus uji berisikan sebuah bilangan bulat $N$ ($1 \leq N \leq 100.000$).
+Baris kedua setiap kasus uji terdiri dari $N$ bilangan, menyatakan nilai dari $A_1, A_2, \dots A_N$ ($0 \leq A_i \leq 1.000.000.000$).
 
 \subsection*{Format Keluaran}
 Untuk tiap kasus uji, tuliskan dalam sebuah baris, banyaknya pasangan $(i, j)$ yang memenuhi deskripsi di atas.
@@ -77,7 +79,7 @@ Untuk tiap kasus uji, tuliskan dalam sebuah baris, banyaknya pasangan $(i, j)$ y
 
 
 \subsection*{Penjelasan}
-Pada kasus uji pertama, kandidat $(i, j)$ antara lain:
+Pada satu-satunya kasus uji di atas, kandidat $(i, j)$ antara lain:
 
 \begin{enumerate}
     \setlength\itemsep{0pt}
@@ -91,5 +93,10 @@ Pada kasus uji pertama, kandidat $(i, j)$ antara lain:
 
 Dari semua kandidat, hanya nomor $2$ dan $3$ yang memenuhi.
 
-\pagebreak
+\newpage
+\vspace*{\fill}
+\begin{center}
+    \textit{Halaman ini sengaja dibiarkan kosong.}
+\end{center}
+\vspace*{\fill}
 \end{document}

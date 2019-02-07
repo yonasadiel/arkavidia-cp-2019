@@ -14,7 +14,7 @@
 \setlength{\parskip}{1em}
 \renewcommand{\headrulewidth}{0pt}
 \lhead{Competitive Programming - Arkavidia V}
-\fancyfoot[CE,CO]{\thepage}
+\fancyfoot[CE,CO]{A - \thepage}
 \lstset{
     basicstyle=\ttfamily\small,
     columns=fixed,
@@ -53,7 +53,7 @@
 Saat berjualan pakaian, terjadi kecelakaan sehingga $M$ potong baju menjadi kotor.
 Daripada terbuang sia-sia, Arvy memutuskan untuk mencuci baju kotor tersebut dan menggunakannya sendiri.
 
-Setelah dicuci, ia menjemur menggunakan jemuran berbentuk gurita.
+Setelah dicuci, ia menjemur $M$ baju tersebut menggunakan jemuran berbentuk gurita.
 Lalu, ia terpikir sebuah teka-teki.
 
 \begin{center}
@@ -62,16 +62,24 @@ Lalu, ia terpikir sebuah teka-teki.
 \footnotesize Sumber: \href{https://www.bukalapak.com/p/perlengkapan-bayi/perlengkapan-bayi-lainnya/9plhup-jual-jemuran-gantungan-baju-pakaian-bayi-lion-star-folding-hanger-30-sticks-besar-jemuran-gurita}{bukalapak.com}
 \end{center}
 
-Jika ia memiliki sebuah jemuran gurita dengan $N$ tangan (artinya, ada $N$ tempat menggantungkan pakaian), apakah ada konfigurasi untuk menjemur $M$ pakaian yang tidak membuat jemuran berat sebelah? Anda dapat mengasumsikan antar tangan jemuran memiliki jarak yang sama, semua pakaian memiliki berat yang sama, dan dijemur pada jarak yang sama dari titik pusat.
+Jika ia memiliki sebuah jemuran gurita dengan $N$ tangan (artinya, ada $N$ tempat menggantungkan pakaian), apakah ada konfigurasi untuk menjemur $M$ baju tersebut, sehingga tidak membuat jemuran berat sebelah?
+Anda dapat mengasumsikan antar tangan jemuran memiliki jarak yang sama, semua pakaian memiliki berat yang sama, dan dijemur pada jarak yang sama dari titik pusat.
 
 Sebuah konfigurasi dianggap tidak membuat jemuran berat sebelah jika resultan dari gaya berat pakaian hanya mengarah ke bawah (tidak ada gaya arah horizontal).
+Secara formal, kita dapat memeriksa apakah jemuran berat sebelah dengan cara berikut:
+\begin{enumerate}
+    \item Gambar $N$ buah titik di koordinat kartesian dengan jarak $1$ dari titik $(0,0)$ dan memiliki jarak yang sama satu sama lain.
+    \item Hapus beberapa titik hingga tersisa hanya $M$ titik.
+    \item Jumlahkan nilai $x$ semua titik yang tersisa. Hasilnya harus nol.
+    \item Jumlahkan nilai $y$ semua titik yang tersisa. Hasilnya harus nol.
+\end{enumerate}
 
 \subsection*{Format Masukan}
 Baris pertama terdiri dari satu bilangan bulat positif $T$ ($1 \leq T \leq 100$), menyatakan banyaknya kasus uji.
-Tiap kasus uji terdiri dari bilangan $N$ dan $M$ ($1 \leq M \leq N \leq 200.000$) menyatakan banyaknya tangan gurita dan banyaknya pakaian.
+Setiap kasus uji terdiri dari bilangan $N$ dan $M$ ($1 \leq M \leq N \leq 200.000$) menyatakan banyaknya tangan gurita dan banyaknya pakaian.
 
 \subsection*{Format Keluaran}
-Untuk tiap kasus uji, keluarkan \lstinline{YA} jika ada konfigurasi yang diminta, atau \lstinline{NO} jika tidak.
+Untuk setiap kasus uji, keluarkan \lstinline{YA} jika ada konfigurasi yang diminta, atau \lstinline{TIDAK} jika tidak.
 
 \begin{multicols}{2}
 \subsection*{Contoh Masukan}
@@ -94,19 +102,17 @@ YA
 \null
 \end{multicols}
 
-\pagebreak
-
 \subsection*{Penjelasan}
 Pada kasus uji pertama, konfigurasi yang mungkin salah satu dengan menaruh pakaian di titik berwarna merah:
 
-\includegraphics[width=200px]{sample-1}
+\includegraphics[width=150px]{sample-1}
 
 Pada kasus uji kedua, konfigurasi yang mungkin salah satu dengan menaruh pakaian di titik berwarna merah:
 
-\includegraphics[width=200px]{sample-2}
+\includegraphics[width=150px]{sample-2}
 
 Pada kasus uji keempat, konfigurasi yang mungkin salah satu dengan menaruh pakaian di titik berwarna merah:
 
-\includegraphics[width=200px]{sample-4}
+\includegraphics[width=150px]{sample-4}
 
 \end{document}
