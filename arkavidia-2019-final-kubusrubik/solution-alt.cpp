@@ -10,7 +10,7 @@ using namespace std;
 #define U 4
 #define D 5
 
-char cface[] = {'F', 'L', 'B', 'R', 'U', 'D'};
+char cface[] = {'G', 'O', 'B', 'R', 'W', 'Y'};
 
 int n;
 struct piece
@@ -89,7 +89,9 @@ void print_face()
             printf("%c(%d,%d) ", cface[faces[R][i][j].color], faces[R][i][j].x, faces[R][i][j].y);
         printf("\n");
     }
-    printf("\n");
+    for (int j = 0; j < 14 * n; j++)
+        printf(" ");
+    printf("  <- di sini (1,1,1)\n");
     for (int i = 0; i < n; i++)
     {
         for (int j = 0; j < 2 + 7 * n; j++)
@@ -156,29 +158,6 @@ void print_run()
     printf("------\n");
 }
 
-long long fastpow(long long a, long long b)
-{
-    long long ans = 1;
-    long long p = 1;
-    for (int i = 0; i < 40; i++)
-    {
-        if (b & p)
-        {
-            ans *= a;
-            ans %= MOD;
-        }
-        a *= a;
-        a %= MOD;
-        p <<= 1;
-    }
-    return ans;
-}
-
-long long invmod(long long x)
-{
-    return fastpow(x, MOD - 2);
-}
-
 void solve()
 {
     int m;
@@ -204,49 +183,49 @@ void solve()
                 }
             }
         }
-        if (cc == 'X' || cc == 'x')
+        if (cc == 'Y' || cc == 'y')
         {
             int path[] = {F, R, B, L};
-            int xpath[] = {x - 1, x - 1, n - x, x - 1};
+            int xpath[] = {n - x, n - x, x - 1, n - x};
             for (int i = 0; i < 4; i++)
             {
                 for (int j = 0; j < n; j++)
                 {
-                    if (cc == 'X')
+                    if (cc == 'Y')
                         faces[path[i]][xpath[i]][i == 2 ? n - j - 1 : j] = temp[path[(i + 4 - 1) % 4]][xpath[(i + 4 - 1) % 4]][(i + 4 - 1) % 4 == 2 ? n - j - 1 : j];
-                    else /* cc == 'x' */
+                    else /* cc == 'y' */
                         faces[path[i]][xpath[i]][i == 2 ? n - j - 1 : j] = temp[path[(i + 1) % 4]][xpath[(i + 1) % 4]][(i + 1) % 4 == 2 ? n - j - 1 : j];
                 }
             }
             if (x == 1)
             {
-                rotate_face(U, cc == 'X');
+                rotate_face(D, cc == 'y');
             }
             else if (x == n)
             {
-                rotate_face(D, cc == 'x');
+                rotate_face(U, cc == 'Y');
             }
         }
-        else if (cc == 'Y' || cc == 'y')
+        else if (cc == 'X' || cc == 'x')
         {
             int path[] = {F, U, B, D};
             for (int i = 0; i < 4; i++)
             {
                 for (int j = 0; j < n; j++)
                 {
-                    if (cc == 'Y')
-                        faces[path[i]][j][x - 1] = temp[path[(i + 1) % 4]][j][x - 1];
-                    else /* cc == 'y' */
-                        faces[path[i]][j][x - 1] = temp[path[(i + 4 - 1) % 4]][j][x - 1];
+                    if (cc == 'X')
+                        faces[path[i]][j][n - x] = temp[path[(i + 4 - 1) % 4]][j][n - x];
+                    else /* cc == 'x' */
+                        faces[path[i]][j][n - x] = temp[path[(i + 1) % 4]][j][n - x];
                 }
             }
             if (x == 1)
             {
-                rotate_face(L, cc == 'y');
+                rotate_face(R, cc == 'x');
             }
             else if (x == n)
             {
-                rotate_face(R, cc == 'Y');
+                rotate_face(L, cc == 'X');
             }
         }
         else /* cc == 'Z' || cc == 'z' */
