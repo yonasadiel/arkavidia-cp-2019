@@ -4,7 +4,7 @@ using namespace std;
 using namespace tcframe;
 
 #define EPS 0.0000001
-#define MAXN 10000
+#define MAXN 4999 //MAXN = (MAXM-1)/2
 #define MAXT 10
 
 class ProblemSpec : public BaseProblemSpec
@@ -50,6 +50,7 @@ class ProblemSpec : public BaseProblemSpec
         CONS(allElementBetween(b, N, 1, M));
         CONS(allElementBetween(c, N, 1, M));
         CONS(allElementBetween(tipe, N, 'A', 'B'));
+        CONS(nodeCheck(N,M,a,b,c));
     }
 
   private:
@@ -69,6 +70,21 @@ class ProblemSpec : public BaseProblemSpec
         {
             if (arr[i] < a or arr[i] > b)
                 return false;
+        }
+        return true;
+    }
+
+    bool nodeCheck(int N, int M, vector<int> a, vector<int> b, vector<int> c){
+        int cek[M+5];
+        for(int i = 0; i < M; i++)cek[i] = 0;
+        for(int i = 0; i < N; i++){
+            cek[a[i]-1]++;
+            cek[b[i]-1]++;
+            cek[c[i]-1]++;
+        }
+
+        for(int i = 0; i < M; i++){
+            if(cek[i]<= 0 || cek[i] > 2)return false;
         }
         return true;
     }
@@ -99,7 +115,7 @@ class TestSpec : public BaseTestSpec<ProblemSpec>
     {
         for (int i = 0; i < MAXT; i++)
         {
-            CASE(N = rnd.nextInt(1, MAXN), M = rnd.nextInt(1, N - 1), createPlanarGraphWithList(N, M, tipe, a, b, c));
+            CASE(N = rnd.nextInt(1, MAXN), N = rnd.nextInt(N+2+(N-1)/2, N*2+1), createPlanarGraphWithList(N, M, tipe, a, b, c));
         }
     }
 
@@ -107,7 +123,7 @@ class TestSpec : public BaseTestSpec<ProblemSpec>
     {
         for (int i = 0; i < MAXT; i++)
         {
-            CASE(N = rnd.nextInt(1, MAXN), M = rnd.nextInt(1, N - 1), createPlanarGraphWithList(N, M, tipe, a, b, c));
+            CASE(N = rnd.nextInt(1, MAXN), N = rnd.nextInt(N+2+(N-1)/2, N*2+1), createPlanarGraphWithList(N, M, tipe, a, b, c));
         }
     }
 
@@ -115,7 +131,7 @@ class TestSpec : public BaseTestSpec<ProblemSpec>
     {
         for (int i = 0; i < MAXT; i++)
         {
-            CASE(N = rnd.nextInt(1, MAXN), M = rnd.nextInt(1, N - 1), createPlanarGraphWithList(N, M, tipe, a, b, c));
+            CASE(N = rnd.nextInt(1, MAXN), N = rnd.nextInt(N+2+(N-1)/2, N*2+1), createPlanarGraphWithList(N, M, tipe, a, b, c));
         }
     }
 
@@ -123,7 +139,7 @@ class TestSpec : public BaseTestSpec<ProblemSpec>
     {
         for (int i = 0; i < MAXT; i++)
         {
-            CASE(N = rnd.nextInt(1, MAXN), M = rnd.nextInt(1, N - 1), createPlanarGraphWithList(N, M, tipe, a, b, c));
+            CASE(N = rnd.nextInt(1, MAXN), N = rnd.nextInt(N+2+(N-1)/2, N*2+1), createPlanarGraphWithList(N, M, tipe, a, b, c));
         }
     }
 
@@ -134,49 +150,66 @@ class TestSpec : public BaseTestSpec<ProblemSpec>
         int maxNum, totalEdge;
         maxNum = totalEdge = 0;
         v.push_back(0);
-        vector<tuple<int, int, int, int>> temp;
-        while (totalEdge < M)
-        {
-            for (int i = 0; i < v.size() && maxNum < N && totalEdge < M; i++)
-            {
-                if (rnd.nextInt(0, 4) == 0)
-                {
-                    totalEdge += 1;
-                    if (v.size() > 1 && i != v.size() - 1 && (maxNum == N - 1 || rnd.nextInt(0, 1) == 0) && fabs(log(M - totalEdge) - (N - maxNum + 1)) <= EPS)
-                    {
+        vector<tuple<int,int,int,int> > temp;
+
+        while(totalEdge < M){
+            for(int i = 0; i < v.size() && maxNum < N && totalEdge < M; i++){
+                if(rnd.nextInt(0,4) == 0){
+                    if((maxNum == N-1 || rnd.nextInt(0,1) == 0)){
+                        if((M-totalEdge)*2+1 == N-maxNum){
+                            if(i == 0){
+                                int x = v[i];
+                                v.erase(v.begin()+i);
+                                maxNum++;
+                                v.insert(v.begin()+i,maxNum);
+                                maxNum++;
+                                auto it = make_tuple('A',maxNum-1,x,maxNum);
+                                temp.push_back(it);    
+                                totalEdge += 1;
+                            } else if(i == v.size()-1){
+                                int x = v[i];
+                                v.erase(v.begin()+i);
+                                maxNum++;
+                                v.insert(v.begin()+i,maxNum);
+                                maxNum++;
+                                auto it = make_tuple('A',maxNum-1,maxNum,x);
+                                temp.push_back(it);    
+                                totalEdge += 1;                         
+                            }
+                        } else if(v.size() > 1 && i != v.size()-1){
+                            int x = v[i];
+                            int y = v[i+1];
+                            v.erase(v.begin()+i);
+                            v.erase(v.begin()+i);
+                            maxNum++;
+                            v.insert(v.begin()+i,maxNum);
+                            auto it = make_tuple('A',maxNum,x,y);
+                            temp.push_back(it); 
+                            totalEdge += 1;                     
+                        }
+                    } else if(v.size() == 1 || (M-totalEdge)+2+(M-totalEdge-1)/2 < N-maxNum){
                         int x = v[i];
-                        int y = v[i + 1];
-                        v.erase(v.begin() + i);
-                        v.erase(v.begin() + i);
+                        v.erase(v.begin()+i);
                         maxNum++;
-                        v.insert(v.begin() + i, maxNum);
-                        auto it = make_tuple('A', maxNum, x, y);
+                        v.insert(v.begin()+i,maxNum);
+                        maxNum++;
+                        v.insert(v.begin()+i,maxNum);
+                        auto it = make_tuple('B',maxNum-1,maxNum,x);
                         temp.push_back(it);
-                    }
-                    else
-                    {
-                        int x = v[i];
-                        v.erase(v.begin() + i);
-                        maxNum++;
-                        v.insert(v.begin() + i, maxNum);
-                        maxNum++;
-                        v.insert(v.begin() + i, maxNum);
-                        auto it = make_tuple('B', maxNum - 1, maxNum, x);
-                        temp.push_back(it);
+                        totalEdge += 1;
                     }
                 }
             }
         }
-
-        for (int i = 0; i < temp.size(); i++)
-        {
-            int x, y, z, tipe;
+        rnd.shuffle(temp.begin(),temp.end());
+        for(int i = 0; i < temp.size(); i++){
+            int x,y,z,tipe;
             auto it = temp[i];
-            tie(tipe, x, y, z) = it;
+            tie(tipe,x,y,z) = it;
             t.push_back(tipe);
-            a.push_back(x);
-            b.push_back(y);
-            c.push_back(z);
+            a.push_back(x+1);
+            b.push_back(y+1);
+            c.push_back(z+1);
         }
     }
 };
