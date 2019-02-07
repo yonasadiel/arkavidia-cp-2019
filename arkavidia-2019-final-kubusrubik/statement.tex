@@ -63,6 +63,8 @@ Pertama, Arvy menuliskan beberapa perintah pemutaran rubik.
 Kemudian, ia melakukan perintah yang ia tulis tadi berulang-ulang dan ternyata rubik dapat kembali ke pola semula.
 Arvy penasaran berapa kali ia harus mengulang perintah yang sama agar rubik kembali ke pola semula.
 
+Rubik dianggap kembali ke pola semula jika semua warna bagian depan kembali ke bagian depan, semua warna bagian kanan kembali ke bagian kanan, dan seterusnya untuk semua sisi.
+
 \subsection*{Format Masukan}
 
 Baris pertama terdiri dari satu bilangan bulat positif $T$ ($1 \leq T \leq 10$), menyatakan banyaknya kasus uji.
@@ -75,13 +77,13 @@ $M$ baris berikutnya berisikan sebuah perintah, masing-masing dengan format \lst
 
 \subsection*{Format Keluaran}
 
-Untuk tiap kasus uji, tuliskan dalam satu baris, banyaknya pengulangan perintah yang sama (lebih dari 0) agar rubik kembali ke pola semula.
+Untuk tiap kasus uji, tuliskan dalam satu baris, banyaknya pengulangan perintah yang sama (lebih dari 0) agar rubik kembali ke pola semula. Tuliskan nilainya setelah dimodulo $1.000.000.007$.
 \\
 
 \begin{multicols}{2}
 \subsection*{Contoh Masukan}
 \begin{lstlisting}
-2
+3
 3 2
 Y 2
 y 1
@@ -89,12 +91,18 @@ y 1
 x 2
 Y 1
 z 1
+4 4
+x 1
+x 2
+x 3
+x 4
 \end{lstlisting}
 \columnbreak
 \subsection*{Contoh Keluaran}
 \begin{lstlisting}
 4
 30
+4
 \end{lstlisting}
 \vfill
 \null
@@ -109,6 +117,8 @@ Pada kasus uji kedua, cukup dengan menjalankan rangkaian perintah sebanyak 30 ka
 \begin{center}
 \includegraphics[width=450px]{sample-2}
 \end{center}
+
+Perhatikan juga pada kasus uji ketiga, setelah satu pola dijalankan, rubik tidak teracak namun menghadap ke samping. Meskipun tidak teracak, rubik belum dianggap kembali ke kondisi semula, jadi Arvy tetap harus melakukan pola tersebut 4 kali.
 \pagebreak
 
 \end{document}
