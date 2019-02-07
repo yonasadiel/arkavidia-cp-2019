@@ -162,7 +162,7 @@ class TestSpec : public BaseTestSpec<ProblemSpec>
                                 maxNum++;
                                 v.insert(v.begin()+i,maxNum);
                                 maxNum++;
-                                auto it = make_tuple('A',maxNum-1,x,maxNum);
+                                auto it = make_tuple('A',maxNum-1,maxNum,x);
                                 temp.push_back(it);    
                                 totalEdge += 1;
                             } else if(i == v.size()-1){
@@ -171,7 +171,7 @@ class TestSpec : public BaseTestSpec<ProblemSpec>
                                 maxNum++;
                                 v.insert(v.begin()+i,maxNum);
                                 maxNum++;
-                                auto it = make_tuple('A',maxNum-1,maxNum,x);
+                                auto it = make_tuple('A',maxNum-1,x,maxNum);
                                 temp.push_back(it);    
                                 totalEdge += 1;                         
                             }
@@ -193,7 +193,7 @@ class TestSpec : public BaseTestSpec<ProblemSpec>
                         v.insert(v.begin()+i,maxNum);
                         maxNum++;
                         v.insert(v.begin()+i,maxNum);
-                        auto it = make_tuple('B',maxNum-1,maxNum,x);
+                        auto it = make_tuple('B',maxNum,maxNum-1,x);
                         temp.push_back(it);
                         totalEdge += 1;
                     }
