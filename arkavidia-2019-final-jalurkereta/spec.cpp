@@ -3,7 +3,6 @@
 using namespace std;
 using namespace tcframe;
 
-#define EPS 0.0000001
 #define MAXN 4999 //MAXN = (MAXM-1)/2
 #define MAXT 10
 
@@ -115,7 +114,7 @@ class TestSpec : public BaseTestSpec<ProblemSpec>
     {
         for (int i = 0; i < MAXT; i++)
         {
-            CASE(N = rnd.nextInt(1, MAXN), N = rnd.nextInt(N+2+(N-1)/2, N*2+1), createPlanarGraphWithList(N, M, tipe, a, b, c));
+            CASE(N = rnd.nextInt(1, MAXN), N = rnd.nextInt(N+2+(N-1)/2, N*2+1), createPlanarGraphWithList(M, N, tipe, a, b, c));
         }
     }
 
@@ -123,7 +122,7 @@ class TestSpec : public BaseTestSpec<ProblemSpec>
     {
         for (int i = 0; i < MAXT; i++)
         {
-            CASE(N = rnd.nextInt(1, MAXN), N = rnd.nextInt(N+2+(N-1)/2, N*2+1), createPlanarGraphWithList(N, M, tipe, a, b, c));
+            CASE(N = rnd.nextInt(1, MAXN), N = rnd.nextInt(N+2+(N-1)/2, N*2+1), createPlanarGraphWithList(M, N, tipe, a, b, c));
         }
     }
 
@@ -131,7 +130,7 @@ class TestSpec : public BaseTestSpec<ProblemSpec>
     {
         for (int i = 0; i < MAXT; i++)
         {
-            CASE(N = rnd.nextInt(1, MAXN), N = rnd.nextInt(N+2+(N-1)/2, N*2+1), createPlanarGraphWithList(N, M, tipe, a, b, c));
+            CASE(N = rnd.nextInt(1, MAXN), N = rnd.nextInt(N+2+(N-1)/2, N*2+1), createPlanarGraphWithList(M, N, tipe, a, b, c));
         }
     }
 
@@ -139,7 +138,7 @@ class TestSpec : public BaseTestSpec<ProblemSpec>
     {
         for (int i = 0; i < MAXT; i++)
         {
-            CASE(N = rnd.nextInt(1, MAXN), N = rnd.nextInt(N+2+(N-1)/2, N*2+1), createPlanarGraphWithList(N, M, tipe, a, b, c));
+            CASE(N = rnd.nextInt(1, MAXN), N = rnd.nextInt(N+2+(N-1)/2, N*2+1), createPlanarGraphWithList(M, N, tipe, a, b, c));
         }
     }
 
