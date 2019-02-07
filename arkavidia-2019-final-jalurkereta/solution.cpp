@@ -6,7 +6,7 @@ using namespace std;
 
 typedef vector<int> vi;
 
-const int maxn = 1e4 + 4;
+const int maxn = 1e5 + 4;
 
 int indeg[maxn], jalurUp[maxn], jalurDown[maxn], areaUp[maxn], areaDown[maxn];
 int dp[maxn];

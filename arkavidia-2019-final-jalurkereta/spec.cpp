@@ -114,7 +114,7 @@ class TestSpec : public BaseTestSpec<ProblemSpec>
     {
         for (int i = 0; i < MAXT; i++)
         {
-            CASE(N = rnd.nextInt(1, MAXN), N = rnd.nextInt(N+2+(N-1)/2, N*2+1), createPlanarGraphWithList(M, N, tipe, a, b, c));
+            CASE(N = rnd.nextInt(1, MAXN), M = rnd.nextInt(N+2+(N-1)/2, N*2+1), createPlanarGraphWithList(M, N, tipe, a, b, c));
         }
     }
 
@@ -122,7 +122,7 @@ class TestSpec : public BaseTestSpec<ProblemSpec>
     {
         for (int i = 0; i < MAXT; i++)
         {
-            CASE(N = rnd.nextInt(1, MAXN), N = rnd.nextInt(N+2+(N-1)/2, N*2+1), createPlanarGraphWithList(M, N, tipe, a, b, c));
+            CASE(N = rnd.nextInt(1, MAXN), M = rnd.nextInt(N+2+(N-1)/2, N*2+1), createPlanarGraphWithList(M, N, tipe, a, b, c));
         }
     }
 
@@ -130,7 +130,7 @@ class TestSpec : public BaseTestSpec<ProblemSpec>
     {
         for (int i = 0; i < MAXT; i++)
         {
-            CASE(N = rnd.nextInt(1, MAXN), N = rnd.nextInt(N+2+(N-1)/2, N*2+1), createPlanarGraphWithList(M, N, tipe, a, b, c));
+            CASE(N = rnd.nextInt(1, MAXN), M = rnd.nextInt(N+2+(N-1)/2, N*2+1), createPlanarGraphWithList(M, N, tipe, a, b, c));
         }
     }
 
@@ -138,7 +138,7 @@ class TestSpec : public BaseTestSpec<ProblemSpec>
     {
         for (int i = 0; i < MAXT; i++)
         {
-            CASE(N = rnd.nextInt(1, MAXN), N = rnd.nextInt(N+2+(N-1)/2, N*2+1), createPlanarGraphWithList(M, N, tipe, a, b, c));
+            CASE(N = rnd.nextInt(1, MAXN), M = rnd.nextInt(N+2+(N-1)/2, N*2+1), createPlanarGraphWithList(M, N, tipe, a, b, c));
         }
     }
 
@@ -150,9 +150,9 @@ class TestSpec : public BaseTestSpec<ProblemSpec>
         maxNum = totalEdge = 0;
         v.push_back(0);
         vector<tuple<int,int,int,int> > temp;
-
         while(totalEdge < M){
             for(int i = 0; i < v.size() && maxNum < N && totalEdge < M; i++){
+                //printf("%d %d\n", maxNum, totalEdge);
                 if(rnd.nextInt(0,4) == 0){
                     if((maxNum == N-1 || rnd.nextInt(0,1) == 0)){
                         if((M-totalEdge)*2+1 == N-maxNum){
@@ -200,7 +200,7 @@ class TestSpec : public BaseTestSpec<ProblemSpec>
                 }
             }
         }
-        rnd.shuffle(temp.begin(),temp.end());
+        //rnd.shuffle(temp.begin(),temp.end());
         for(int i = 0; i < temp.size(); i++){
             int x,y,z,tipe;
             auto it = temp[i];
