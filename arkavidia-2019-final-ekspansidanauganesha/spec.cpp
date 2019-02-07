@@ -25,7 +25,7 @@ class ProblemSpec : public BaseProblemSpec
     void GradingConfig()
     {
         TimeLimit(1);
-        MemoryLimit(64);
+        MemoryLimit(512);
     }
 
     void MultipleTestCasesConfig()

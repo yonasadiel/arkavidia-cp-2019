@@ -3,72 +3,107 @@
 using namespace std;
 using namespace tcframe;
 
-#define MAXN 1e12
+#define MAXN 100000
 #define MAXT 100
 
-class ProblemSpec : public BaseProblemSpec {
-protected:
+class ProblemSpec : public BaseProblemSpec
+{
+  protected:
     int T;
-    long long N,result;
+    long long N, K, result;
 
-    void InputFormat() {
-        LINE(N);
+    void InputFormat()
+    {
+        LINE(N, K);
     }
 
-    void OutputFormat() {
+    void OutputFormat()
+    {
         LINE(result);
     }
 
-    void GradingConfig() {
+    void GradingConfig()
+    {
         TimeLimit(1);
-        MemoryLimit(64);
+        MemoryLimit(512);
     }
 
-    void MultipleTestCasesConfig() {
+    void MultipleTestCasesConfig()
+    {
         Counter(T);
         OutputPrefix("");
     }
 
-    void MultipleTestCasesConstraints() {
+    void MultipleTestCasesConstraints()
+    {
         CONS(1 <= T && T <= MAXT);
+    }
+
+    void Constraints()
+    {
+        CONS(1 <= N && N <= MAXN);
+        CONS(1 <= K && K <= N);
     }
 };
 
-class TestSpec : public BaseTestSpec<ProblemSpec> {
-protected:
-    void SampleTestCase1() {
-        Input({
-            "1"
-        });
-        Output({
-            "1"
-        });
+class TestSpec : public BaseTestSpec<ProblemSpec>
+{
+  protected:
+    void SampleTestCase1()
+    {
+        Input({"1 1"});
+        Output({"1"});
     }
 
-    void SampleTestCase2() {
-        Input({
-            "4"
-        });
-        Output({
-            "7"
-        });
+    void SampleTestCase2()
+    {
+        Input({"4 2"});
+        Output({"3"});
     }
 
-    void TestGroup1(){
-        for(int i = 0; i < MAXT; i++){
-            CASE(N = rnd.nextLongLong(1e9,1e12));
+    void SampleTestCase3()
+    {
+        Input({"5 3"});
+        Output({"4"});
+    }
+
+    void TestGroup1()
+    {
+        for (int i = 0; i < MAXT; i++)
+        {
+            CASE(N = rnd.nextInt(MAXN / 2, MAXN), K = rnd.nextInt(1, N));
         }
     }
 
-    void TestGroup2() {
-        for(int i = 0; i < MAXT; i++){
-            CASE(N = rnd.nextInt(1e6,1e9));
+    void TestGroup2()
+    {
+        for (int i = 0; i < MAXT; i++)
+        {
+            CASE(N = rnd.nextInt(1, MAXN), K = rnd.nextInt(1, N));
         }
     }
 
-    void TestGroup3() {
-        for(int i = 0; i < MAXT; i++){
-            CASE(N = rnd.nextInt(1,1e6));
+    void TestGroup3()
+    {
+        for (int i = 0; i < MAXT; i++)
+        {
+            CASE(N = rnd.nextInt(1, MAXN), K = rnd.nextInt(1, N));
+        }
+    }
+
+    void TestGroup4()
+    {
+        for (int i = 0; i < MAXT; i++)
+        {
+            CASE(N = rnd.nextInt(1, MAXN), K = rnd.nextInt(1, N));
+        }
+    }
+
+    void TestGroup5()
+    {
+        for (int i = 0; i < MAXT; i++)
+        {
+            CASE(N = rnd.nextInt(1, MAXN), K = rnd.nextInt(1, N));
         }
     }
 };

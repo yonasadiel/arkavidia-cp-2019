@@ -67,7 +67,7 @@ Katak boleh berhenti di mana saja dari batu ke-$1$ hingga $N$, \textbf{namun ia 
 \subsection*{Format Masukan}
 
 Baris pertama tediri dari sebuah bilangan $T$ ($1 \leq T \leq 100$), menyatakan banyak kasus uji.
-Tiap kasus uji terdiri dari satu baris berisi bilangan bulat $N$ ($1 \leq N \leq 10^{12}$).
+Tiap kasus uji terdiri dari satu baris berisi bilangan bulat $N$ dan $K$ ($1 \leq K \leq N \leq 100.000$) menyatakn banyaknya batu dan maksimum banyaknya lompatan.
 
 \subsection*{Format Keluaran}
 
@@ -77,14 +77,16 @@ Untuk setiap kasus uji, tuliskan dalam satu baris, banyaknya rute yang mungkin.
 \subsection*{Contoh Masukan}
 \begin{lstlisting}
 2
-1
-4
+1 1
+4 2
+5 3
 \end{lstlisting}
 \columnbreak
 \subsection*{Contoh Keluaran}
 \begin{lstlisting}
 1
-7
+3
+4
 \end{lstlisting}
 \vfill
 \null
@@ -94,7 +96,9 @@ Untuk setiap kasus uji, tuliskan dalam satu baris, banyaknya rute yang mungkin.
 
 Pada kasus uji pertama, hanya ada rute yang mungkin, yakni \lstinline{[1]}.
 
-Pada kasus uji kedua, contoh rute katak antara lain \lstinline{[1 2 3 4]}, \lstinline{[1 2 3]}, \lstinline{[1 2]}, \lstinline{[1]}, \lstinline{[3]}, \lstinline{[1 4]}, dan \lstinline{[3 4]}.
+Pada kasus uji kedua, contoh rute katak antara lain \lstinline{[1 2]}, \lstinline{[1 4]}, dan \lstinline{[3 4]}.
+
+Pada kasus uji ketiga, contoh rute katak antara lain \lstinline{[1 2 3]}, \lstinline{[1 2 5]}, \lstinline{[1 4 5]}, dan \lstinline{[3 4 5]}.
 
 \pagebreak
 
