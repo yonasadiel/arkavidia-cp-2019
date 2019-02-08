@@ -11,7 +11,7 @@ const int maxn = 2e5 + 4;
 int indeg[maxn], jalurUp[maxn], jalurDown[maxn], areaUp[maxn], areaDown[maxn];
 int dp[maxn];
 vector<vi> AdjList, graf, back;
-int daerah;
+int daerah, daerahPalingBawah;
 
 void reset()
 {
@@ -65,6 +65,7 @@ void constructJalurAndAreaUpDownAwal(const vi &listAwal)
 		jalurDown[jalur] = -1;
 		areaUp[jalur] = daerah++;
 		areaDown[jalur] = daerah++;
+		daerahPalingBawah = areaDown[jalur];
 	}
 	else
 	{
@@ -92,6 +93,7 @@ void constructJalurAndAreaUpDownAwal(const vi &listAwal)
 				areaUp[jalur] = areaDown[listAwal[i - 1]];
 				areaDown[jalur] = daerah++;
 			}
+			daerahPalingBawah = areaDown[jalur];
 		}
 	}
 }
@@ -116,11 +118,13 @@ void constructCabangJalur(int v, int front, int i)
 
 void constructGabungJalur(int v, int front)
 {
-	jalurUp[v] = jalurUp[front];
-	areaUp[v] = areaDown[jalurUp[v]];
+	int elemenAtas = back[v][0];
+	jalurUp[v] = jalurUp[elemenAtas];
+	areaUp[v] = (jalurUp[v] == -1? 0: areaDown[jalurUp[v]]);
+
 	int elemenBawah = back[v][1];
 	jalurDown[v] = jalurDown[elemenBawah];
-	areaDown[v] = areaDown[elemenBawah];
+	areaDown[v] = (jalurDown[v] == -1? daerahPalingBawah: areaDown[elemenBawah]);
 }
 
 void constructGraph(int n, int m)
