@@ -1,103 +1,123 @@
+// by: Wiwit Rifai
 #include <bits/stdc++.h>
 
 using namespace std;
 
 #define pb push_back
 
-vector<pair<int, int> > adj[300002];
-vector<int> padj[300002];
-int n;
-int deg[300002];
-char p[300002];
-int a[300002];
-int b[300002];
-int c[300002];
-int atas[300002];
-int dp[300002];
-int bawah[300002];
-bool vis[300002];
+int col[N][2], ncol;
 
-int dfs(int v){
-    if(dp[v] == -1){
-        dp[v] = 0;
-        for(int x : padj[v]){
-            dp[v] = max(dp[v], dfs(x) + 1);
-        }
-    }
-    return dp[v];
-}
+vector<int> starts;
+vector<int> g[N];
+int din[N];
 
-int solve(){
-    memset(dp, -1, sizeof dp);
-    memset(atas, 0, sizeof atas);
-    memset(bawah, 0, sizeof bawah);
-    memset(vis, false, sizeof vis);
-    memset(deg, 0, sizeof deg);
-    int m;
-    n = 0;
-    scanf("%d", &m);
-    for(int i=0;i<m;++i){
-        getchar();
-        scanf("%c %d %d %d", p+i, a+i, b+i, c+i);
-        n = max(max(n, a[i]), max(b[i], c[i]));
-        if(p[i] == 'A'){
-            adj[a[i]].push_back({b[i], i});
-            adj[a[i]].push_back({c[i], i});
-            deg[b[i]]++;
-            deg[c[i]]++;
+int main()
+{
+    int t;
+    scanf("%d", &t);
+    while (t--)
+    {
+        int n, m;
+        scanf("%d", &n);
+        m = n * 3 / 2 + 1;
+        memset(pre, 0, sizeof pre);
+        memset(nxt, 0, sizeof nxt);
+        for (int i = 0; i < n; ++i)
+        {
+            char ty[3];
+            int a, b, c;
+            scanf("%s %d %d %d", ty, &a, &b, &c);
+            if (ty[0] == 'A')
+            {
+                assert(nxt[a][0] == 0 || nxt[a][0] == b);
+                assert(pre[b][1] == 0 || nxt[b][1] == a);
+                nxt[a][0] = b;
+                pre[b][1] = a;
+                assert(nxt[a][1] == 0 || nxt[a][1] == c);
+                assert(pre[c][0] == 0 || nxt[c][0] == a);
+                nxt[a][1] = c;
+                pre[c][0] = a;
+            }
+            else
+            {
+                assert(pre[c][0] == 0 || pre[c][0] == a);
+                assert(nxt[a][1] == 0 || nxt[a][1] == c);
+                pre[c][0] = a;
+                nxt[a][1] = c;
+                assert(pre[c][1] == 0 || nxt[c][1] == b);
+                assert(nxt[b][0] == 0 || nxt[b][0] == c);
+                pre[c][1] = b;
+                nxt[b][0] = c;
+            }
         }
-        else{
-            adj[a[i]].push_back({c[i], i});
-            adj[b[i]].push_back({c[i], i});
-            deg[c[i]]+=2;
+        starts.clear();
+        for (int i = 1; i <= m; ++i)
+            if (pre[i][0] == 0 && pre[i][1] == 0)
+                starts.push_back(i);
+        assert(starts.size() > 0);
+        ncol = 0;
+        col[starts[0]][0] = ++ncol;
+        for (int i = 1; i < starts.size(); ++i)
+        {
+            col[starts[i - 1]][1] = col[starts[i]][0] = ++ncol;
         }
-    }
-    queue<int> q;
-    q.push(1);
-    atas[1] = 1;
-    bawah[1] = 2;
-    int now = 3;
-    while(!q.empty()){
-        int tmp = q.front();
-        q.pop();
-        if(adj[tmp].size() == 1){
-            if(--deg[adj[tmp][0].first]) continue;
-            int idx = adj[tmp][0].second;
-            int x = adj[tmp][0].first;
-            int m = a[idx];
-            int n = b[idx];
-            atas[x] = atas[m];
-            bawah[x] = bawah[n];
-            q.push(x);
+        col[starts.back()][1] = ++ncol;
+        for (int i = 0; i < starts.size(); ++i)
+        {
+            int v = starts[i], l, r;
+            l = nxt[v][0];
+            r = nxt[v][1];
+            if (l == 0 && r == 0)
+                continue;
+            if (l == 0)
+                l = r;
+            if (r == 0)
+                r = l;
+            if (pre[l][0] == v || pre[l][0] == 0)
+                col[l][0] = col[v][0];
+            if (pre[r][1] == v || pre[r][1] == 0)
+                col[r][1] = col[v][1];
+            if (l != r)
+            {
+                col[l][1] = col[r][0] = ++ncol;
+            }
+            if (col[l][0] && col[l][1])
+                starts.push_back(l);
+            if (col[r][0] && col[r][1] && r != l)
+                starts.push_back(r);
         }
-        else if(adj[tmp].size() == 2){
-            int x = adj[tmp][0].first;
-            int y = adj[tmp][1].first;
-            --deg[x];
-            --deg[y];
-            atas[x] = atas[tmp];
-            bawah[y] = bawah[tmp];
-            bawah[x] = atas[y] = now++;
-            q.push(x);
-            q.push(y);
+        for (int i = 1; i <= ncol; ++i)
+            g[i].clear();
+        fill(din, din + ncol + 1, 0);
+        for (int i = 1; i <= m; ++i)
+        {
+            assert(col[i][0] && col[i][1]);
+            g[col[i][0]].push_back(col[i][1]);
+            ++din[col[i][1]];
         }
-    }
-    for(int i=1;i<=n;++i){
-        padj[atas[i]].push_back(bawah[i]);
-    }
-    printf("%d\n", dfs(1));
-    for(int i=1;i<=n;++i){
-        padj[i].clear();
-        adj[i].clear();
+        vector<int> topo;
+        for (int i = 1; i <= ncol; ++i)
+            if (din[i] == 0)
+                topo.push_back(i);
+        for (int i = 0; i < topo.size(); ++i)
+        {
+            int v = topo[i];
+            for (int u : g[v])
+            {
+                --din[u];
+                if (din[u] == 0)
+                    topo.push_back(u);
+            }
+        }
+        assert(topo.size() == ncol);
+        fill(din, din + ncol + 1, 0);
+        int ans = 0;
+        for (int v : topo)
+        {
+            ans = max(ans, (int)din[v]);
+            for (int u : g[v])
+                din[u] = max(din[u], din[v] + 1);
+        }
+        printf("%d\n", ans);
     }
     return 0;
-}
-
-int main(){
-    int tc;
-    scanf("%d", &tc);
-    while(tc--){
-        solve();
-    }
-    return 0;
-}
