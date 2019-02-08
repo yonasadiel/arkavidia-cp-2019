@@ -73,16 +73,14 @@ cd ..
 cd arkavidia-2019-final-jalurkereta
 pdflatex statement.tex
 rm *.aux
-rm *.lohflog
-rm *.dvi
+rm *.log
 rm *.out
 cd ..
 
 cd arkavidia-2019-final-kubusrubik
 pdflatex statement.tex
 rm *.aux
-rm *.lohflog
-rm *.dvi
+rm *.log
 rm *.out
 cd ..
 
