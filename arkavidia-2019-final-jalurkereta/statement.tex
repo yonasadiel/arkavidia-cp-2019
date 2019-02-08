@@ -50,7 +50,8 @@
 
 \subsection*{Deskripsi}
 
-Negeri Ganesha memiliki peta jalur kereta yang terdiri dari banyak jalur kereta, menghubungkan kota A dan kota B.
+Negeri Ganesha memiliki peta jalur kereta yang terdiri dari $M$ jalur kereta, menghubungkan kota A dan kota B.
+Jalur kereta dinomori dari $1$ sampai $M$.
 Peta jalur kereta ini sangat rumit, sehingga peta jalur kereta ini hanya boleh dilewati oleh kereta dari kota A ke B, tidak sebaliknya.
 Lalu, \textbf{hanya ada satu} jalur kereta yang keluar dari kota A dan \textbf{hanya ada satu} jalur kereta yang masuk ke kota B.
 
@@ -70,14 +71,14 @@ Hanya terdapat 2 jenis persimpangan, yakni:
 
 Sebagai contoh, persimpangan di ujung akhir jalur 1 merupakan persimpangan jenis A dan persimpangan di ujung awal jalur 6 merupakan persimpangan jenis B.
 Sudah dipastikan tidak ada dua jalur yang saling tumpang tindih.
-Selain itu, jalur yang langsung keluar dari kota A pasti bernomor 1 dan jalur yang langsung masuk ke kota B pasti bernomor paling besar.
+Selain itu, jalur yang langsung keluar dari kota A pasti bernomor 1 dan jalur yang langsung masuk ke kota B pasti bernomor $M$.
 
 Menurut Arvy, penempatan dua kereta di jalur $x$ dan $y$ dianggap bagus jika $x$ tidak bisa dicapai dari $y$ dan $y$ tidak bisa dicapai dari $x$ (ingat kalau semua rel hanya satu arah, dari kiri ke kanan).
 Kini ia bertanya, berapa maksimum kereta yang bisa ditempatkan sehingga penempatan \textbf{setiap} dua pasang kereta dianggap bagus oleh Arvy.
 
 \subsection*{Format Masukan}
 Baris pertama terdiri dari satu bilangan bulat positif $T$ ($1 \leq T \leq 10$), menyatakan banyaknya kasus uji.
-Setiap kasus uji diawali dengan bilangan $N$ ($1 \leq N \leq 100.000$) menyatakan banyaknya persimpangan.
+Setiap kasus uji diawali dengan bilangan $N$ ($1 \leq N \leq 100.000$) dan $M$ ($1 \leq M \leq 200.000$) menyatakan banyaknya persimpangan dan banyaknya jalur.
 $N$ baris berikutnya memiliki format:
 \begin{itemize}
     \setlength{\itemsep}{0pt}
@@ -94,7 +95,7 @@ Untuk setiap kasus uji, tuliskan dalam satu baris, banyaknya kereta maksimum yan
 \subsection*{Contoh Masukan}
 \begin{lstlisting}
 1
-6
+6 10
 A 1 2 3
 A 2 4 5
 B 4 7 6

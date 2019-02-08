@@ -3,13 +3,15 @@
 
 using namespace std;
 
-#define pb push_back
+const int N = 2e5 + 5;
 
+int pre[N][2], nxt[N][2];
 int col[N][2], ncol;
 
 vector<int> starts;
 vector<int> g[N];
 int din[N];
+bool used[N];
 
 int main()
 {
@@ -18,8 +20,9 @@ int main()
     while (t--)
     {
         int n, m;
-        scanf("%d", &n);
-        m = n * 3 / 2 + 1;
+        scanf("%d %d", &n, &m);
+        assert((n & 1) == 0);
+        assert(m == n * 3 / 2 + 1);
         memset(pre, 0, sizeof pre);
         memset(nxt, 0, sizeof nxt);
         for (int i = 0; i < n; ++i)
@@ -51,10 +54,16 @@ int main()
             }
         }
         starts.clear();
+        memset(used, 0, sizeof used);
         for (int i = 1; i <= m; ++i)
             if (pre[i][0] == 0 && pre[i][1] == 0)
+            {
                 starts.push_back(i);
+                used[i] = 1;
+            }
         assert(starts.size() > 0);
+
+        memset(col, 0, sizeof col);
         ncol = 0;
         col[starts[0]][0] = ++ncol;
         for (int i = 1; i < starts.size(); ++i)
@@ -81,17 +90,25 @@ int main()
             {
                 col[l][1] = col[r][0] = ++ncol;
             }
-            if (col[l][0] && col[l][1])
+            if (col[l][0] && col[l][1] && !used[l])
+            {
                 starts.push_back(l);
-            if (col[r][0] && col[r][1] && r != l)
+                used[l] = 1;
+            }
+            if (col[r][0] && col[r][1] && !used[r])
+            {
                 starts.push_back(r);
+                used[r] = 1;
+            }
         }
+        assert(starts.size() == m);
         for (int i = 1; i <= ncol; ++i)
             g[i].clear();
         fill(din, din + ncol + 1, 0);
         for (int i = 1; i <= m; ++i)
         {
-            assert(col[i][0] && col[i][1]);
+            assert(col[i][0] > 0 && col[i][1] > 0);
+            assert(col[i][0] <= ncol && col[i][1] <= ncol);
             g[col[i][0]].push_back(col[i][1]);
             ++din[col[i][1]];
         }
@@ -114,10 +131,11 @@ int main()
         int ans = 0;
         for (int v : topo)
         {
-            ans = max(ans, (int)din[v]);
+            ans = max(ans, din[v]);
             for (int u : g[v])
                 din[u] = max(din[u], din[v] + 1);
         }
         printf("%d\n", ans);
     }
     return 0;
+}

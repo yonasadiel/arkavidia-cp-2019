@@ -4,18 +4,19 @@ using namespace std;
 using namespace tcframe;
 
 #define MAXN 100000
+#define MAXM 200000
 #define MAXT 10
 
 class ProblemSpec : public BaseProblemSpec
 {
   protected:
-    int T, N, result;
+    int T, N, M, result;
     vector<char> tipe;
     vector<int> a, b, c;
 
     void InputFormat()
     {
-        LINE(N);
+        LINE(N, M);
         LINES(tipe, a, b, c) % SIZE(N);
     }
 
@@ -44,13 +45,15 @@ class ProblemSpec : public BaseProblemSpec
     void Constraints()
     {
         CONS(1 <= N <= MAXN);
+        CONS(M == 3 * N / 2 + 1);
+        CONS(1 <= M <= MAXM);
         CONS(N % 2 == 0);
         CONS(a.size() == N);
         CONS(b.size() == N);
         CONS(c.size() == N);
-        CONS(allElementBetween(a, N, 1, 3 * N / 2 + 1));
-        CONS(allElementBetween(b, N, 1, 3 * N / 2 + 1));
-        CONS(allElementBetween(c, N, 1, 3 * N / 2 + 1));
+        CONS(allElementBetween(a, N, 1, M));
+        CONS(allElementBetween(b, N, 1, M));
+        CONS(allElementBetween(c, N, 1, M));
         CONS(allElementBetween(tipe, N, 'A', 'B'));
         CONS(nodeCheck(N, a, b, c));
     }
@@ -103,7 +106,7 @@ class TestSpec : public BaseTestSpec<ProblemSpec>
   protected:
     void SampleTestCase1()
     {
-        Input({"6",
+        Input({"6 10",
                "A 1 2 3",
                "A 2 4 5",
                "B 4 7 6",
@@ -125,7 +128,7 @@ class TestSpec : public BaseTestSpec<ProblemSpec>
     {
         for (int i = 0; i < MAXT; i++)
         {
-            CASE(N = rnd.nextInt(1, MAXN / 2) * 2, createPlanarGraphWithList(N, tipe, a, b, c));
+            CASE(N = rnd.nextInt(1, MAXN / 2) * 2, M = 3 * N / 2 + 1, createPlanarGraphWithList(N, tipe, a, b, c));
         }
     }
 

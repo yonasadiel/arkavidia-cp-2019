@@ -218,10 +218,10 @@ int main()
 	scanf("%d", &tc);
 	while (tc--)
 	{
-		scanf("%d", &n);
+		scanf("%d%d", &n, &m);
 
 		reset();
-		constructGraph(n, n * 3 / 2 + 1);
+		constructGraph(n, m);
 
 		printf("%d\n", solve(0) - 1); //berkurang 1 karena jumlah edge dalam path = jumlah node - 1
 	}
