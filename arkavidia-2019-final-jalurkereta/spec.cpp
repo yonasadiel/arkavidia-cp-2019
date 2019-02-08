@@ -132,29 +132,77 @@ class TestSpec : public BaseTestSpec<ProblemSpec>
         }
     }
 
-    // void TestGroup2()
-    // {
-    //     for (int i = 0; i < MAXT; i++)
-    //     {
-    //         CASE(N = rnd.nextInt(1, MAXN / 2) * 2, createPlanarGraphWithList(N, tipe, a, b, c));
-    //     }
-    // }
+    void TestGroup2()
+    {
+        for (int i = 0; i < MAXT; i++)
+        {
+            CASE(N = rnd.nextInt(1, MAXN / 2) * 2, M = 3 * N / 2 + 1, createPlanarGraphWithList(N, tipe, a, b, c));
+        }
+    }
 
-    // void TestGroup3()
-    // {
-    //     for (int i = 0; i < MAXT; i++)
-    //     {
-    //         CASE(N = rnd.nextInt(1, MAXN / 2) * 2, createPlanarGraphWithList(N, tipe, a, b, c));
-    //     }
-    // }
+    void TestGroup3()
+    {
+        for (int i = 0; i < MAXT; i++)
+        {
+            CASE(N = rnd.nextInt(1, MAXN / 2) * 2, M = 3 * N / 2 + 1, createPlanarGraphWithList(N, tipe, a, b, c));
+        }
+    }
 
-    // void TestGroup4()
-    // {
-    //     for (int i = 0; i < MAXT; i++)
-    //     {
-    //         CASE(N = rnd.nextInt(1, MAXN / 2) * 2, createPlanarGraphWithList(N, tipe, a, b, c));
-    //     }
-    // }
+    void TestGroup4()
+    {
+        for (int i = 0; i < MAXT; i++)
+        {
+            CASE(N = rnd.nextInt(1, MAXN / 2) * 2, M = 3 * N / 2 + 1, createPlanarGraphWithList(N, tipe, a, b, c));
+        }
+    }
+
+    void TestGroup5()
+    {
+        for (int i = 0; i < MAXT; i++)
+        {
+            CASE(N = rnd.nextInt(1, MAXN / 2) * 2, M = 3 * N / 2 + 1, createPlanarGraphWithList(N, tipe, a, b, c));
+        }
+    }
+
+    void TestGroup6()
+    {
+        for (int i = 0; i < MAXT; i++)
+        {
+            CASE(N = rnd.nextInt(1, MAXN / 2) * 2, M = 3 * N / 2 + 1, createPlanarGraphWithList(N, tipe, a, b, c));
+        }
+    }
+
+    void TestGroup7()
+    {
+        for (int i = 0; i < MAXT; i++)
+        {
+            CASE(N = rnd.nextInt(1, MAXN / 2) * 2, M = 3 * N / 2 + 1, createPlanarGraphWithList(N, tipe, a, b, c));
+        }
+    }
+
+    void TestGroup8()
+    {
+        for (int i = 0; i < MAXT; i++)
+        {
+            CASE(N = rnd.nextInt(1, MAXN / 2) * 2, M = 3 * N / 2 + 1, createPlanarGraphWithList(N, tipe, a, b, c));
+        }
+    }
+
+    void TestGroup9()
+    {
+        for (int i = 0; i < MAXT; i++)
+        {
+            CASE(N = rnd.nextInt(1, MAXN / 2) * 2, M = 3 * N / 2 + 1, createPlanarGraphWithList(N, tipe, a, b, c));
+        }
+    }
+
+    void TestGroup10()
+    {
+        for (int i = 0; i < MAXT; i++)
+        {
+            CASE(N = rnd.nextInt(1, MAXN / 2) * 2, M = 3 * N / 2 + 1, createPlanarGraphWithList(N, tipe, a, b, c));
+        }
+    }
 
   private:
     list<int>::const_iterator getRandomElement(const list<int> &l, int lo, int hi)
@@ -174,9 +222,13 @@ class TestSpec : public BaseTestSpec<ProblemSpec>
         int aCount = 0, bCount = 0;
         while (aCount + bCount < N)
         {
-            char typeNode = 'A' + rnd.nextInt(0, (l.size() > 1 ? 1 : 0));
+            char typeNode;
             if (aCount == N / 2)
                 typeNode = 'B';
+            else if (l.size() == 1)
+                typeNode = 'A';
+            else
+                typeNode = (rnd.nextInt(0, 3) == 0 ? 'B' : 'A');
             t.push_back(typeNode);
 
             if (typeNode == 'A')
