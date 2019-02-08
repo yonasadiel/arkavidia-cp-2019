@@ -3,8 +3,9 @@
 
 using namespace std;
 
-#define pb push_back
+const int N = 2e5;
 
+int pre[N][2], nxt[N][2];
 int col[N][2], ncol;
 
 vector<int> starts;
@@ -121,3 +122,4 @@ int main()
         printf("%d\n", ans);
     }
     return 0;
+}
