@@ -3,19 +3,19 @@
 using namespace std;
 using namespace tcframe;
 
-#define MAXN 4999 //MAXN = (MAXM-1)/2
+#define MAXN 100000
 #define MAXT 10
 
 class ProblemSpec : public BaseProblemSpec
 {
   protected:
-    int T, N, M, result;
+    int T, N, result;
     vector<char> tipe;
     vector<int> a, b, c;
 
     void InputFormat()
     {
-        LINE(N, M);
+        LINE(N);
         LINES(tipe, a, b, c) % SIZE(N);
     }
 
@@ -27,7 +27,7 @@ class ProblemSpec : public BaseProblemSpec
     void GradingConfig()
     {
         TimeLimit(1);
-        MemoryLimit(64);
+        MemoryLimit(512);
     }
 
     void MultipleTestCasesConfig()
@@ -44,12 +44,15 @@ class ProblemSpec : public BaseProblemSpec
     void Constraints()
     {
         CONS(1 <= N <= MAXN);
-        CONS(1 <= M <= MAXN);
-        CONS(allElementBetween(a, N, 1, M));
-        CONS(allElementBetween(b, N, 1, M));
-        CONS(allElementBetween(c, N, 1, M));
+        CONS(N % 2 == 0);
+        CONS(a.size() == N);
+        CONS(b.size() == N);
+        CONS(c.size() == N);
+        CONS(allElementBetween(a, N, 1, 3 * N / 2 + 1));
+        CONS(allElementBetween(b, N, 1, 3 * N / 2 + 1));
+        CONS(allElementBetween(c, N, 1, 3 * N / 2 + 1));
         CONS(allElementBetween(tipe, N, 'A', 'B'));
-        CONS(nodeCheck(N,M,a,b,c));
+        CONS(nodeCheck(N, a, b, c));
     }
 
   private:
@@ -73,17 +76,23 @@ class ProblemSpec : public BaseProblemSpec
         return true;
     }
 
-    bool nodeCheck(int N, int M, vector<int> a, vector<int> b, vector<int> c){
-        int cek[M+5];
-        for(int i = 0; i < M; i++)cek[i] = 0;
-        for(int i = 0; i < N; i++){
-            cek[a[i]-1]++;
-            cek[b[i]-1]++;
-            cek[c[i]-1]++;
+    bool nodeCheck(int N, const vector<int> &a, const vector<int> &b, const vector<int> &c)
+    {
+        int M = N * 3 / 2 + 1;
+        int cek[M + 5];
+        for (int i = 0; i < M; i++)
+            cek[i] = 0;
+        for (int i = 0; i < N; i++)
+        {
+            cek[a[i] - 1]++;
+            cek[b[i] - 1]++;
+            cek[c[i] - 1]++;
         }
 
-        for(int i = 0; i < M; i++){
-            if(cek[i]<= 0 || cek[i] > 2)return false;
+        for (int i = 0; i < M; i++)
+        {
+            if (cek[i] <= 0 || cek[i] > 2)
+                return false;
         }
         return true;
     }
@@ -94,12 +103,14 @@ class TestSpec : public BaseTestSpec<ProblemSpec>
   protected:
     void SampleTestCase1()
     {
-        Input({"4 9",
+        Input({"6",
                "A 1 2 3",
-               "A 3 4 5",
-               "A 6 7 9",
-               "B 5 7 8"});
-        Output({"5"});
+               "A 2 4 5",
+               "B 4 7 6",
+               "A 3 7 8",
+               "B 5 6 9",
+               "B 9 8 10"});
+        Output({"4"});
     }
 
     void BeforeTestCase()
@@ -114,7 +125,7 @@ class TestSpec : public BaseTestSpec<ProblemSpec>
     {
         for (int i = 0; i < MAXT; i++)
         {
-            CASE(N = rnd.nextInt(1, MAXN), M = rnd.nextInt(N+2+(N-1)/2, N*2+1), createPlanarGraphWithList(M, N, tipe, a, b, c));
+            CASE(N = rnd.nextInt(1, MAXN), createPlanarGraphWithList(N, tipe, a, b, c));
         }
     }
 
@@ -122,7 +133,7 @@ class TestSpec : public BaseTestSpec<ProblemSpec>
     {
         for (int i = 0; i < MAXT; i++)
         {
-            CASE(N = rnd.nextInt(1, MAXN), M = rnd.nextInt(N+2+(N-1)/2, N*2+1), createPlanarGraphWithList(M, N, tipe, a, b, c));
+            CASE(N = rnd.nextInt(1, MAXN), createPlanarGraphWithList(N, tipe, a, b, c));
         }
     }
 
@@ -130,7 +141,7 @@ class TestSpec : public BaseTestSpec<ProblemSpec>
     {
         for (int i = 0; i < MAXT; i++)
         {
-            CASE(N = rnd.nextInt(1, MAXN), M = rnd.nextInt(N+2+(N-1)/2, N*2+1), createPlanarGraphWithList(M, N, tipe, a, b, c));
+            CASE(N = rnd.nextInt(1, MAXN), createPlanarGraphWithList(N, tipe, a, b, c));
         }
     }
 
@@ -138,77 +149,57 @@ class TestSpec : public BaseTestSpec<ProblemSpec>
     {
         for (int i = 0; i < MAXT; i++)
         {
-            CASE(N = rnd.nextInt(1, MAXN), M = rnd.nextInt(N+2+(N-1)/2, N*2+1), createPlanarGraphWithList(M, N, tipe, a, b, c));
+            CASE(N = rnd.nextInt(1, MAXN), createPlanarGraphWithList(N, tipe, a, b, c));
         }
     }
 
   private:
-    void createPlanarGraphWithList(int N, int M, vector<char> &t, vector<int> &a, vector<int> &b, vector<int> &c)
+    list<int>::const_iterator getRandomElement(const list<int> &l, int lo, int hi)
     {
-        vector<int> v;
-        int maxNum, totalEdge;
-        maxNum = totalEdge = 0;
-        v.push_back(0);
-        vector<tuple<int,int,int,int> > temp;
-        while(totalEdge < M){
-            for(int i = 0; i < v.size() && maxNum < N && totalEdge < M; i++){
-                //printf("%d %d\n", maxNum, totalEdge);
-                if(rnd.nextInt(0,4) == 0){
-                    if((maxNum == N-1 || rnd.nextInt(0,1) == 0)){
-                        if((M-totalEdge)*2+1 == N-maxNum){
-                            if(i == 0){
-                                int x = v[i];
-                                v.erase(v.begin()+i);
-                                maxNum++;
-                                v.insert(v.begin()+i,maxNum);
-                                maxNum++;
-                                auto it = make_tuple('A',maxNum-1,maxNum,x);
-                                temp.push_back(it);    
-                                totalEdge += 1;
-                            } else if(i == v.size()-1){
-                                int x = v[i];
-                                v.erase(v.begin()+i);
-                                maxNum++;
-                                v.insert(v.begin()+i,maxNum);
-                                maxNum++;
-                                auto it = make_tuple('A',maxNum-1,x,maxNum);
-                                temp.push_back(it);    
-                                totalEdge += 1;                         
-                            }
-                        } else if(v.size() > 1 && i != v.size()-1){
-                            int x = v[i];
-                            int y = v[i+1];
-                            v.erase(v.begin()+i);
-                            v.erase(v.begin()+i);
-                            maxNum++;
-                            v.insert(v.begin()+i,maxNum);
-                            auto it = make_tuple('A',maxNum,x,y);
-                            temp.push_back(it); 
-                            totalEdge += 1;                     
-                        }
-                    } else if(v.size() == 1 || (M-totalEdge)+2+(M-totalEdge-1)/2 < N-maxNum){
-                        int x = v[i];
-                        v.erase(v.begin()+i);
-                        maxNum++;
-                        v.insert(v.begin()+i,maxNum);
-                        maxNum++;
-                        v.insert(v.begin()+i,maxNum);
-                        auto it = make_tuple('B',maxNum,maxNum-1,x);
-                        temp.push_back(it);
-                        totalEdge += 1;
-                    }
-                }
+        int pos = rnd.nextInt(lo, hi);
+        list<int>::const_iterator it = l.begin();
+        while (pos--)
+            ++it;
+        return it;
+    }
+
+    void createPlanarGraphWithList(int N, vector<char> &t, vector<int> &a, vector<int> &b, vector<int> &c)
+    {
+        std::list<int> l;
+        l.push_back(1);
+        int jalurCount = 1;
+        int aCount = 0, bCount = 0;
+        while (aCount + bCount < N)
+        {
+            char typeNode = 'A' + rnd.nextInt(0, (l.size() > 1 ? 1 : 0));
+            t.push_back(typeNode);
+            if (aCount == N / 2)
+                typeNode = 'B';
+
+            if (typeNode == 'A')
+            {
+                list<int>::const_iterator pos = getRandomElement(l, 0, l.size() - 1);
+                int _b = ++jalurCount, _c = ++jalurCount;
+                a.push_back(*pos);
+                b.push_back(_b);
+                c.push_back(_c);
+                l.insert(pos, _b);
+                l.insert(pos, _c);
+                l.erase(pos);
             }
-        }
-        //rnd.shuffle(temp.begin(),temp.end());
-        for(int i = 0; i < temp.size(); i++){
-            int x,y,z,tipe;
-            auto it = temp[i];
-            tie(tipe,x,y,z) = it;
-            t.push_back(tipe);
-            a.push_back(x+1);
-            b.push_back(y+1);
-            c.push_back(z+1);
+            else
+            {
+                list<int>::const_iterator pos1 = getRandomElement(l, 0, l.size() - 2);
+                list<int>::const_iterator pos2 = pos1;
+                pos2++;
+                int _c = ++jalurCount;
+                a.push_back(*pos1);
+                b.push_back(*pos2);
+                c.push_back(_c);
+                l.insert(pos1, _c);
+                l.erase(pos1);
+                l.erase(pos2);
+            }
         }
     }
 };
