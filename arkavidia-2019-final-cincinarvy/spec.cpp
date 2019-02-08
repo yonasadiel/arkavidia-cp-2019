@@ -3,7 +3,7 @@
 using namespace tcframe;
 
 #define MAXT 100000
-#define MAXVAL 1000
+#define MAXVAL 1000000000
 
 class ProblemSpec : public BaseProblemSpec {
 private:
