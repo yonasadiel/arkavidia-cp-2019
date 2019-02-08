@@ -3,7 +3,7 @@
 
 using namespace std;
 
-const int N = 1e5;
+const int N = 2e5;
 
 int pre[N][2], nxt[N][2];
 int col[N][2], ncol;

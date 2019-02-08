@@ -172,9 +172,9 @@ class TestSpec : public BaseTestSpec<ProblemSpec>
         while (aCount + bCount < N)
         {
             char typeNode = 'A' + rnd.nextInt(0, (l.size() > 1 ? 1 : 0));
-            t.push_back(typeNode);
             if (aCount == N / 2)
                 typeNode = 'B';
+            t.push_back(typeNode);
 
             if (typeNode == 'A')
             {
