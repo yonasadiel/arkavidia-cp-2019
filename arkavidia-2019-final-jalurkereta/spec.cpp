@@ -125,33 +125,33 @@ class TestSpec : public BaseTestSpec<ProblemSpec>
     {
         for (int i = 0; i < MAXT; i++)
         {
-            CASE(N = rnd.nextInt(1, MAXN), createPlanarGraphWithList(N, tipe, a, b, c));
+            CASE(N = rnd.nextInt(1, MAXN / 2) * 2, createPlanarGraphWithList(N, tipe, a, b, c));
         }
     }
 
-    void TestGroup2()
-    {
-        for (int i = 0; i < MAXT; i++)
-        {
-            CASE(N = rnd.nextInt(1, MAXN), createPlanarGraphWithList(N, tipe, a, b, c));
-        }
-    }
+    // void TestGroup2()
+    // {
+    //     for (int i = 0; i < MAXT; i++)
+    //     {
+    //         CASE(N = rnd.nextInt(1, MAXN / 2) * 2, createPlanarGraphWithList(N, tipe, a, b, c));
+    //     }
+    // }
 
-    void TestGroup3()
-    {
-        for (int i = 0; i < MAXT; i++)
-        {
-            CASE(N = rnd.nextInt(1, MAXN), createPlanarGraphWithList(N, tipe, a, b, c));
-        }
-    }
+    // void TestGroup3()
+    // {
+    //     for (int i = 0; i < MAXT; i++)
+    //     {
+    //         CASE(N = rnd.nextInt(1, MAXN / 2) * 2, createPlanarGraphWithList(N, tipe, a, b, c));
+    //     }
+    // }
 
-    void TestGroup4()
-    {
-        for (int i = 0; i < MAXT; i++)
-        {
-            CASE(N = rnd.nextInt(1, MAXN), createPlanarGraphWithList(N, tipe, a, b, c));
-        }
-    }
+    // void TestGroup4()
+    // {
+    //     for (int i = 0; i < MAXT; i++)
+    //     {
+    //         CASE(N = rnd.nextInt(1, MAXN / 2) * 2, createPlanarGraphWithList(N, tipe, a, b, c));
+    //     }
+    // }
 
   private:
     list<int>::const_iterator getRandomElement(const list<int> &l, int lo, int hi)
@@ -186,6 +186,7 @@ class TestSpec : public BaseTestSpec<ProblemSpec>
                 l.insert(pos, _b);
                 l.insert(pos, _c);
                 l.erase(pos);
+                aCount++;
             }
             else
             {
@@ -199,6 +200,7 @@ class TestSpec : public BaseTestSpec<ProblemSpec>
                 l.insert(pos1, _c);
                 l.erase(pos1);
                 l.erase(pos2);
+                bCount++;
             }
         }
     }
